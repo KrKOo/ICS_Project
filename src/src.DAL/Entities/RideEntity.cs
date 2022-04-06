@@ -1,15 +1,17 @@
 ﻿namespace src.DAL.Entities;
 
-public class RideEntity : BaseEntity
+public record RideEntity(
+    Guid Id,
+    DateTime TimeOfStart,
+    string RideOrigin,
+    string RideDestination,
+    TimeSpan Duration,
+    string? Info,
+    Guid CarID,
+    Guid DriverId
+) : IEntity
 {
-    public DateTime TimeOfStart { get; set; }
-    public string RideOrigin { get; set; }
-    public string RideDestination { get; set; }
-    public TimeSpan Duration { get; set; }
-    public string? Info { get; set; }
-    public CarEntity Car { get; set; } 
-    public Guid CarId { get; set; }
-    public UserEntity Driver { get; set; } 
-    public Guid DriverId { get; set; }
-    public ICollection<UserRide> Passengers { get; set; }
+    public ICollection<UserRide> Passengers { get; init; } = new List<UserRide>();
+    public UserEntity? Driver { get; init; }
+    public CarEntity? Car { get; init; }
 }

@@ -1,9 +1,11 @@
 ﻿namespace src.DAL.Entities;
 
-public class UserRide 
+public record UserRide(
+    Guid Id,
+    Guid UserId,
+    Guid RideId
+) : IEntity
 {
-    public Guid UserId { get; set; }
-    public UserEntity User { get; set; }
-    public Guid RideId { get; set; }
-    public RideEntity Ride { get; set; }
+    public UserEntity? User { get; init; }
+    public RideEntity? Ride { get; init; }
 }
