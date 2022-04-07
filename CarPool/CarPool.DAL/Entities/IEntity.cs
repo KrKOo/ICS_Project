@@ -1,4 +1,4 @@
-﻿namespace src.DAL.Entities
+﻿namespace CarPool.DAL.Entities
 {
     public interface IEntity
     {

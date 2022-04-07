@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "src.DAL", "src.DAL\src.DAL.csproj", "{AE86B432-B3A7-4196-A04B-E275F08BCCD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarPool.DAL", "CarPool.DAL\CarPool.DAL.csproj", "{AE86B432-B3A7-4196-A04B-E275F08BCCD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
