@@ -26,6 +26,16 @@ public static class UserSeeds
         DateOfBirth: new DateOnly(1980, 9, 20),
         Info: "I like long rides.");
 
+    public static readonly UserEntity UserEntity2 = new(
+        Id: Guid.Parse(input: "06a8a2cf-ea03-4095-a3e4-aa0291fe9c75"),
+        Email: "user2@email.com",
+        FirstName: "Thomas",
+        LastName: "Eben",
+        PhotoUrl: @"https://cdn.vectorstock.com/i/1000x1000/54/17/person-gray-photo-placeholder-man-vector-24005445.webp",
+        PhoneNumber: "+420 725 496 785",
+        DateOfBirth: new DateOnly(1995, 12, 4),
+        Info: "Safety is my priority, so I am riding slow as snail.");
+
     //To ensure that no tests reuse these clones for non-idempotent operations
     public static readonly UserEntity UserEntityWithNothing = UserEntity with { Id = Guid.Parse("98B7F7B6-0F51-43B3-B8C0-B5FCFFF6DC2E"), Cars = Array.Empty<CarEntity>(), RidesAsDriver = Array.Empty<RideEntity>(), RidesAsPassenger = Array.Empty<UserRideEntity>()};
     public static readonly UserEntity UserEntityUpdate = UserEntity with { Id = Guid.Parse("0953F3CE-7B1A-48C1-9796-D2BAC7F67868"), Cars = Array.Empty<CarEntity>(), RidesAsDriver = Array.Empty<RideEntity>(), RidesAsPassenger = Array.Empty<UserRideEntity>()};
@@ -37,16 +47,18 @@ public static class UserSeeds
     public static readonly UserEntity UserRidesAsDriverEntityUpdate = UserEntity with { Id = Guid.Parse("E0927FE8-99C8-4A88-9460-9B4300FD619A"), Cars = Array.Empty<CarEntity>(), RidesAsDriver = Array.Empty<RideEntity>(), RidesAsPassenger = Array.Empty<UserRideEntity>()};
     public static readonly UserEntity UserRidesAsDriverEntityDelete = UserEntity with { Id = Guid.Parse("D66A43B8-CBE1-4497-8551-29B89B5AD371"), Cars = Array.Empty<CarEntity>(), RidesAsDriver = Array.Empty<RideEntity>(), RidesAsPassenger = Array.Empty<UserRideEntity>()};
 
-    public static readonly UserEntity UserRidesAsPassengerEntityUpdate = UserEntity with { Id = Guid.Parse("3E201B8E-7399-437F-A379-727BBCFB5E91"), Cars = Array.Empty<CarEntity>(), RidesAsDriver = Array.Empty<RideEntity>(), RidesAsPassenger = Array.Empty<UserRideEntity>()};
-    public static readonly UserEntity UserRidesAsPassengerEntityDelete = UserEntity with { Id = Guid.Parse("AD62ED05-7859-474A-9FC9-079A936E1BE5"), Cars = Array.Empty<CarEntity>(), RidesAsDriver = Array.Empty<RideEntity>(), RidesAsPassenger = Array.Empty<UserRideEntity>()};
+    public static readonly UserEntity UserRidesAsPassengerEntityUpdate = UserEntity2 with { Id = Guid.Parse("3E201B8E-7399-437F-A379-727BBCFB5E91"), Cars = Array.Empty<CarEntity>(), RidesAsDriver = Array.Empty<RideEntity>(), RidesAsPassenger = Array.Empty<UserRideEntity>()};
+    public static readonly UserEntity UserRidesAsPassengerEntityDelete = UserEntity2 with { Id = Guid.Parse("AD62ED05-7859-474A-9FC9-079A936E1BE5"), Cars = Array.Empty<CarEntity>(), RidesAsDriver = Array.Empty<RideEntity>(), RidesAsPassenger = Array.Empty<UserRideEntity>()};
 
     static UserSeeds()
     {
-        UserEntity.Cars.Add(CarSeeds.CarEntity1);
-        UserEntity.Cars.Add(CarSeeds.CarEntity2);
+        UserEntity.Cars.Add(CarSeeds.CarEntity);
 
-        UserEntity.RidesAsDriver.Add(UserRideSeeds.UserRide1);
-        UserEntity.RidesAsPassenger.Add(UserRideSeeds.UserRide2);
+        UserEntity.RidesAsDriver.Add(UserRideSeeds.UserRideEntity1);
+        UserEntity2.RidesAsPassenger.Add(UserRideSeeds.UserRideEntity1);
+
+        UserEntity.RidesAsDriver.Add(UserRideSeeds.UserRideEntity2);
+        UserEntity2.RidesAsPassenger.Add(UserRideSeeds.UserRideEntity2);
     } 
 
     public static void Seed(this ModelBuilder modelBuilder)
