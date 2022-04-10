@@ -19,15 +19,18 @@ namespace CarPool.BL.Models
 		public string? PhotoUrl { get; set; }
 		public string? Info { get; set; }
 		public List<CarListModel> Cars { get; set; } = new();
-		public List<RideBasicModel> RidesAsPassenger { get; set; } = new();
-		public List<RideBasicModel> RidesAsDriver { get; set; } = new();
+		public List<RideListModel> RidesAsPassenger { get; set; } = new();
+		public List<RideListModel> RidesAsDriver { get; set; } = new();
 
 		public class MapperProfile : Profile
 		{
 			public MapperProfile()
 			{
 				CreateMap<UserEntity, UserDetailModel>()
-					.ForMember(dto => dto.RidesAsPassenger, opt => opt.MapFrom(x => x.RidesAsPassenger.Select(y => y.Ride).ToList()));
+					.ForMember(dto => dto.RidesAsPassenger, opt => opt.MapFrom(x => x.RidesAsPassenger.Select(y => y.Ride).ToList()))
+					.ReverseMap()
+					.ForMember(entity => entity.RidesAsDriver, expression => expression.Ignore())
+					.ForMember(entity => entity.Cars, expression => expression.Ignore());
 			}
 		}
 	}

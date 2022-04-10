@@ -5,7 +5,7 @@ using CarPool.DAL.UnitOfWork;
 
 namespace CarPool.BL.Facades;
 
-public class RideFacade : CRUDFacade<IngredientEntity, IngredientListModel, IngredientDetailModel>
+public class RideFacade : CRUDFacade<RideEntity, RideListModel, RideDetailModel>
 {
 	public RideFacade(IUnitOfWorkFactory unitOfWorkFactory, IMapper mapper) : base(unitOfWorkFactory, mapper)
 	{

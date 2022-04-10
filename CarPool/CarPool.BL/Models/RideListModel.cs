@@ -4,7 +4,7 @@ using CarPool.DAL.Entities;
 
 namespace CarPool.BL.Models
 {
-	public record RideBasicModel(
+	public record RideListModel(
 		DateTime TimeOfStart,
 		TimeSpan Duration,
 		string RideOrigin,
@@ -21,8 +21,7 @@ namespace CarPool.BL.Models
 		{
 			public MapperProfile()
 			{
-				CreateMap<RideEntity, RideBasicModel>()
-					.ReverseMap();
+				CreateMap<RideEntity, RideListModel>();
 			}
 		}
 	}

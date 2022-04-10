@@ -25,8 +25,12 @@ namespace CarPool.BL.Models
 			public MapperProfile()
 			{
 				CreateMap<RideEntity, RideDetailModel>()
-					.ForMember(dto => dto.Passengers, opt => opt.MapFrom(x => x.Passengers.Select(y => y.User).ToList()));
+					.ForMember(dto => dto.Passengers, opt => opt.MapFrom(x => x.Passengers.Select(y => y.User).ToList()))
+					.ReverseMap();
+
 			}
 		}
+
+		public static RideDetailModel Empty => new(default, default, string.Empty, string.Empty);
 	}
 }

@@ -18,15 +18,19 @@ namespace CarPool.BL.Models
 		public DateOnly DateOfRegistration { get; set; } = DateOfRegistration;
 		public string PhotoUrl { get; set; } = PhotoUrl;
 		public int NumberOfSeats { get; set; } = NumberOfSeats;
-		public UserListModel Owner { get; set; }
+		public UserDetailModel Owner { get; set; }
 
 		public class MapperProfile : Profile
 		{
 			public MapperProfile()
 			{
 				CreateMap<CarEntity, CarDetailModel>()
-					.ReverseMap();
+					.ReverseMap()
+					.ForMember(entity => entity.Owner, expression => expression.Ignore());
 			}
 		}
+
+		public static CarDetailModel Empty => new(string.Empty, string.Empty, string.Empty, default, string.Empty, default);
+
 	}
 }

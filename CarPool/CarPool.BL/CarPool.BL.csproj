@@ -11,4 +11,10 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\CarPool.Common\CarPool.Common.csproj" />
+    <ProjectReference Include="..\CarPool.DAL\CarPool.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

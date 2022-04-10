@@ -22,5 +22,7 @@ namespace CarPool.BL.Models
 				CreateMap<UserEntity, UserListModel>();
 			}
 		}
+
+		public static UserListModel Empty => new(string.Empty, string.Empty, string.Empty);
 	}
 }
