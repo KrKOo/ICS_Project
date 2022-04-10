@@ -12,7 +12,7 @@ public static class RideSeeds
         RideDestination: default!,
         Duration: default,
         Info: default,
-        CarID: default,
+        CarId: default,
         DriverId: default)
     {
         Driver = default,
@@ -26,7 +26,7 @@ public static class RideSeeds
         RideDestination: "Brno",
         Duration: new TimeSpan(1, 45, 00),
         Info: "Du dom, gdo chce svezu vas.",
-        CarID: CarSeeds.CarEntity.Id,
+        CarId: CarSeeds.CarEntity.Id,
         DriverId: CarSeeds.CarEntity.OwnerID
     )
     {
@@ -41,7 +41,7 @@ public static class RideSeeds
         RideDestination: "Praha",
         Duration: new TimeSpan(2, 55, 00),
         Info: "Miluji Rock.",
-        CarID: CarSeeds.CarEntity.Id,
+        CarId: CarSeeds.CarEntity.Id,
         DriverId: CarSeeds.CarEntity.OwnerID
     )
     {
