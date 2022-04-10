@@ -190,13 +190,13 @@ public class DbContextUserTests : DbContextTestsBase
         };
 
             //Act
-        CarPoolDbContextSUT.Recipes.Add(entity);
-        await CookBookDbContextSUT.SaveChangesAsync();
+        CarPoolDbContextSUT.Users.Add(entity);
+        await CarPoolDbContextSUT.SaveChangesAsync();
 
         //Assert
         await using var dbx = await DbContextFactory.CreateDbContextAsync();
-        var actualEntity = await dbx.Recipes
-            .Include(i => i.Ingredients)
+        var actualEntity = await dbx.Users
+            .Include(i => i.Users)
             .SingleAsync(i => i.Id == entity.Id);
         DeepAssert.Equal(entity, actualEntity);
     }

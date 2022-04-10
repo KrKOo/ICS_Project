@@ -131,7 +131,7 @@ public class DbContextCarTests : DbContextTestsBase
         var entityBase = CarSeeds.CarDelete;
 
         //Act
-        CarPoolDbContextSUT.Carrs.Remove(entityBase);
+        CarPoolDbContextSUT.Cars.Remove(entityBase);
         await CarPoolDbContextSUT.SaveChangesAsync();
 
         //Assert
