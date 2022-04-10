@@ -21,7 +21,9 @@ namespace CarPool.Common.Tests
 			if (_seedTestingData)
 			{
 				UserSeeds.Seed(modelBuilder);
-				// TODO: Add other seeds
+				CarSeeds.Seed(modelBuilder);
+				RideSeeds.Seed(modelBuilder);
+				UserRideSeeds.Seed(modelBuilder);
 			}
 		}
 	}

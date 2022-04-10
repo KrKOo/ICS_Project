@@ -20,7 +20,7 @@ public class DbContextTestingInMemoryFactory : IDbContextFactory<CarPoolDbContex
 		contextOptionsBuilder.UseInMemoryDatabase(_databaseName);
 
 		// contextOptionsBuilder.LogTo(System.Console.WriteLine); //Enable in case you want to see tests details, enabled may cause some inconsistencies in tests
-		// builder.EnableSensitiveDataLogging();
+		contextOptionsBuilder.EnableSensitiveDataLogging();
 
 		return new CarPoolTestingDbContext(contextOptionsBuilder.Options, _seedTestingData);
 	}
