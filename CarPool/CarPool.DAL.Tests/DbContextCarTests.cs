@@ -22,13 +22,13 @@ public class DbContextCarTests : DbContextTestsBase
         // Arrange
         var entity = CarSeeds.EmptyCarEntity with
         {
-            Id: Guid.Parse(input: "210d0e64-c7a7-4227-84d4-85af8a59fec9"),
-            Manufacturer: "Audi",
-            Model: "AA",
-            LicensePlate: "PLATE12",
-            DateOfRegistration: DateOnly(2020, 2, 2),
-            PhotoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Skoda_Fabia_II_front_20091209.jpg/1280px-Skoda_Fabia_II_front_20091209.jpg",
-            NumberOfSeats: 3
+            Id= Guid.Parse(input: "210d0e64-c7a7-4227-84d4-85af8a59fec9"),
+            Manufacturer= "Audi",
+            Model= "AA",
+            LicensePlate= "PLATE12",
+            DateOfRegistration= DateOnly(2020, 2, 2),
+            PhotoUrl= "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Skoda_Fabia_II_front_20091209.jpg/1280px-Skoda_Fabia_II_front_20091209.jpg",
+            NumberOfSeats= 3
         };
 
         // Act
@@ -47,23 +47,23 @@ public class DbContextCarTests : DbContextTestsBase
         // Arrange
         var entity = CarSeeds.EmptyCarEntity with
         {
-            Id: Guid.Parse(input: "210d0e64-c7a7-4227-84d4-85af8a59fec8"),
-            Manufacturer: "VW",
-            Model: "BB",
-            LicensePlate: "PLATE13",
-            DateOfRegistration: DateOnly(2020, 2, 2),
-            PhotoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Skoda_Fabia_II_front_20091209.jpg/1280px-Skoda_Fabia_II_front_20091209.jpg",
-            NumberOfSeats: 3
+            Id= Guid.Parse(input: "210d0e64-c7a7-4227-84d4-85af8a59fec8"),
+            Manufacturer= "VW",
+            Model= "BB",
+            LicensePlate= "PLATE13",
+            DateOfRegistration= DateOnly(2020, 2, 2),
+            PhotoUrl= "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Skoda_Fabia_II_front_20091209.jpg/1280px-Skoda_Fabia_II_front_20091209.jpg",
+            NumberOfSeats= 3
 
             Rides = new List<RideEntity>
             {
                 RideSeeds.EmptyRideEntity with
                 {
                     TimeOfStart = new DateTime(2022, 3, 2, 10, 10, 0),
-                    RideOrigin: "Brno",
-                    RideDestination: "Breclav",
-                    Duration: new TimeSpan(1, 10, 0),
-                    Info: "Some info"
+                    RideOrigin= "Brno",
+                    RideDestination= "Breclav",
+                    Duration= new TimeSpan(1, 10, 0),
+                    Info= "Some info"
                 }
             }
         };
