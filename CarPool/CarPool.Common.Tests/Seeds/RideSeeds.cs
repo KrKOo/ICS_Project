@@ -8,27 +8,26 @@ public static class RideSeeds
     public static readonly RideEntity EmptyRide = new(
         Id: default,
         TimeOfStart: default,
-        RideOrigin: default,
-        RideDestination: default,
+        RideOrigin: default!,
+        RideDestination: default!,
         Duration: default,
         Info: default,
-        CardId: default,
-        DriverId: default
-    )
+        CarID: default,
+        DriverId: default)
     {
-        Driver: default,
-        Car: default
+        Driver = default,
+        Car = default
     };
 
     public static readonly RideEntity RideEntity1 = new(
-        id: Guid.Parse(input: "E23ABB6D-3AFF-4FA6-95E2-B429BD599D08"),
+        Id: Guid.Parse(input: "E23ABB6D-3AFF-4FA6-95E2-B429BD599D08"),
         TimeOfStart: new DateTime(2022, 4, 2, 12, 30, 0),
         RideOrigin: "Ostrava",
         RideDestination: "Brno",
         Duration: new TimeSpan(1, 45, 00),
         Info: "Du dom, gdo chce svezu vas.",
-        CardId: CarSeeds.CarEntity.Id,
-        DriverId: CarSeeds.CarEntity.OwnerId
+        CarID: CarSeeds.CarEntity.Id,
+        DriverId: CarSeeds.CarEntity.OwnerID
     )
     {
         Driver = UserSeeds.UserEntity,
@@ -36,14 +35,14 @@ public static class RideSeeds
     };
 
     public static readonly RideEntity RideEntity2 = new(
-        id: Guid.Parse(input: "E1E35534-158A-4E7D-B084-77A70A50F65C"),
+        Id: Guid.Parse(input: "E1E35534-158A-4E7D-B084-77A70A50F65C"),
         TimeOfStart: new DateTime(2022, 3, 5, 14, 00, 0),
         RideOrigin: "Ostrava",
         RideDestination: "Praha",
         Duration: new TimeSpan(2, 55, 00),
         Info: "Miluji Rock.",
-        CardId: CarSeeds.CarEntity.Id,
-        DriverId: CarSeeds.CarEntity.OwnerId
+        CarID: CarSeeds.CarEntity.Id,
+        DriverId: CarSeeds.CarEntity.OwnerID
     )
     {
         Driver = UserSeeds.UserEntity,
@@ -58,8 +57,8 @@ public static class RideSeeds
 
     static RideSeeds()
     {
-        RideEntity1.Passengers.Add(UserSeeds.UserEntity2.Id);
-        RideEntity2.Passengers.Add(UserSeeds.UserEntity2.Id);
+        RideEntity1.Passengers.Add(UserRideSeeds.UserRideEntity1);
+        RideEntity2.Passengers.Add(UserRideSeeds.UserRideEntity2);
     }
 
     public static void Seed(this ModelBuilder modelBuilder)

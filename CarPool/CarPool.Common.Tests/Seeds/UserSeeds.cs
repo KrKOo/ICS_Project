@@ -8,11 +8,11 @@ public static class UserSeeds
 {
     public static readonly UserEntity EmptyUserEntity = new(
         Id: default,
-        Email: default,
-        FirstName: default,
-        LastName: default,
+        Email: default!,
+        FirstName: default!,
+        LastName: default!,
         PhotoUrl: default,
-        PhoneNumber: default,
+        PhoneNumber: default!,
         DateOfBirth: default,
         Info: default);
 
@@ -54,10 +54,10 @@ public static class UserSeeds
     {
         UserEntity.Cars.Add(CarSeeds.CarEntity);
 
-        UserEntity.RidesAsDriver.Add(UserRideSeeds.UserRideEntity1);
+        UserEntity.RidesAsDriver.Add(RideSeeds.RideEntity1);
         UserEntity2.RidesAsPassenger.Add(UserRideSeeds.UserRideEntity1);
 
-        UserEntity.RidesAsDriver.Add(UserRideSeeds.UserRideEntity2);
+        UserEntity.RidesAsDriver.Add(RideSeeds.RideEntity2);
         UserEntity2.RidesAsPassenger.Add(UserRideSeeds.UserRideEntity2);
     } 
 
