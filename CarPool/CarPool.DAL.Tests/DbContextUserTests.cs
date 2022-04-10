@@ -110,7 +110,8 @@ public class DbContextUserTests : DbContextTestsBase
 					DriverId = Guid.Parse(input: "210d0e64-c7a7-4227-84d4-85af8a59fee7"),
 					CarID = CarSeeds.CarEntity.Id
 				}
-			}
+			},
+			RidesAsPassenger = Array.Empty<UserRideEntity>()
 		};
 
 		//Act
@@ -124,54 +125,6 @@ public class DbContextUserTests : DbContextTestsBase
 			.SingleAsync(i => i.Id == entity.Id);
 		DeepAssert.Equal(entity, actualEntity, new string[] { "Passengers" });
 	}
-
-	// [Fact]
-	// public async Task AddNew_UserWithRidesAsPassenger_Persisted()
-	// {
-	// 	// Arrange
-	// 	var entity = UserSeeds.EmptyUserEntity with
-	// 	{
-	// 		Id = Guid.Parse(input: "210d0e64-c7a7-4227-84d4-85af8a59fee6"),
-	// 		Email = "user@email.com",
-	// 		FirstName = "Andrew",
-	// 		LastName = "Rider",
-	// 		PhotoUrl = @"https://cdn.vectorstock.com/i/1000x1000/54/17/person-gray-photo-placeholder-man-vector-24005417.webp",
-	// 		PhoneNumber = "+420 987 000 987",
-	// 		DateOfBirth = new DateOnly(2000, 5, 4),
-	// 		Info = "Sample Info",
-	// 		RidesAsPassenger = new List<UserRideEntity>
-	// 		{
-	// 			UserRideSeeds.EmptyUserRideEntity with
-	// 			{
-	// 				UserId = Guid.Parse(input: "210d0e64-c7a7-4227-84d4-85af8a59fee6"),
-
-	// 				Ride = RideSeeds.EmptyRideEntity with
-	// 				{
-	// 					Id = Guid.Parse(input: "310d0e64-c7a7-4227-84d4-85af8a59fee6"),
-	// 					TimeOfStart = new DateTime(2022,7,5,12,12,0),
-	// 					RideOrigin= "Brno",
-	// 					RideDestination= "Praha",
-	// 					Duration= new TimeSpan(3,20,0),
-	// 					Info= "Some info",
-	// 					CarID = CarSeeds.CarEntity.Id,
-	// 					DriverId = UserSeeds.UserEntity.Id
-	// 				}
-	// 			}
-	// 		}
-	// 	};
-
-	// 	//Act
-	// 	CarPoolDbContextSUT.Users.Add(entity);
-	// 	await CarPoolDbContextSUT.SaveChangesAsync();
-
-	// 	//Assert
-	// 	await using var dbx = await DbContextFactory.CreateDbContextAsync();
-	// 	var actualEntity = await dbx.Users
-	// 		.Include(i => i.RidesAsPassenger)
-	// 		.ThenInclude(i => i.Ride)
-	// 		.SingleAsync(i => i.Id == entity.Id);
-	// 	DeepAssert.Equal(entity, actualEntity);
-	// }
 
 	[Fact]
 	public async Task AddNew_UserWithJustUserRides_Persisted()

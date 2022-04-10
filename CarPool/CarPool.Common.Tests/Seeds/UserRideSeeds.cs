@@ -35,8 +35,22 @@ public static class UserRideSeeds
 		Ride = RideSeeds.RideEntity2
 	};
 
-	public static readonly UserRideEntity UserRideEntityUpdate = UserRideEntity1 with { Id = Guid.Parse("98243195-CDCA-476C-9204-D7C348E2FB1E"), User = null, Ride = null };
-	public static readonly UserRideEntity UserRideEntityDelete = UserRideEntity1 with { Id = Guid.Parse("1924A46D-3F5E-4E1E-B8F5-A548EECBA03D"), User = null, Ride = null };
+	public static readonly UserRideEntity UserRideEntityUpdate = UserRideEntity1 with
+	{
+		Id = Guid.Parse("98243195-CDCA-476C-9204-D7C348E2FB1E"),
+		User = null,
+		Ride = null,
+		UserId = UserSeeds.UserRidesAsPassengerEntityUpdate.Id,
+		RideId = RideSeeds.RideEntityPassengersUpdate.Id
+	};
+	public static readonly UserRideEntity UserRideEntityDelete = UserRideEntity1 with
+	{
+		Id = Guid.Parse("1924A46D-3F5E-4E1E-B8F5-A548EECBA03D"),
+		User = null,
+		Ride = null,
+		UserId = UserSeeds.UserRidesAsPassengerEntityDelete.Id,
+		RideId = RideSeeds.RideEntityPassengersDelete.Id
+	};
 
 	public static void Seed(this ModelBuilder modelBuilder)
 	{

@@ -7,7 +7,7 @@ public record RideEntity(
 	string RideDestination,
 	TimeSpan Duration,
 	string? Info,
-	Guid CarId,
+	Guid CarID,
 	Guid DriverId
 ) : IEntity
 {

@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using CarPool.Common.Tests.Seeds;
 using CarPool.Common.Tests;
 using CarPool.Common.Tests.Factories;
+using CarPool.Common.Tests.Seeds;
 using CarPool.DAL.Entities;
 using CarPool.DAL.Tests;
 using Microsoft.EntityFrameworkCore;
@@ -23,13 +24,14 @@ namespace CarPool.DAL.Tests
 		public async Task AddNew_RideWithoutPassengers_Persisted()
 		{
 			// Arrange
-			var ride = RideSeeds.EmptyRide with {
+			var ride = RideSeeds.EmptyRideEntity with
+			{
 				RideOrigin = "Brno",
 				RideDestination = "Praha",
-				//Driver = UserSeeds.UserEntity,
-				//Car = CarSeeds.CarEntity
+				DriverId = UserSeeds.UserEntity.Id,
+				CarID = CarSeeds.CarEntity.Id
 			};
-		
+
 
 			// Act
 			CarPoolDbContextSUT.Rides.Add(ride);
@@ -45,13 +47,16 @@ namespace CarPool.DAL.Tests
 		public async Task AddNew_RideWithPassengers_Persisted()
 		{
 			//Arrange
-			var ride = RideSeeds.EmptyRide with
+			var ride = RideSeeds.EmptyRideEntity with
 			{
 				RideOrigin = "Praha",
 				RideDestination = "Brno",
+				DriverId = UserSeeds.UserEntity.Id,
+				CarID = CarSeeds.CarEntity.Id,
 				Passengers = new List<UserRideEntity> {
 					UserRideSeeds.EmptyUserRideEntity with
 					{
+						RideId = Guid.Parse(input: "400d0e64-c7a7-4227-84d4-85af8a59fee4"),
 						User = UserSeeds.EmptyUserEntity with
 						{
 							Email = "mrkvicak@gmail.com",
@@ -62,6 +67,7 @@ namespace CarPool.DAL.Tests
 					},
 					UserRideSeeds.EmptyUserRideEntity with
 					{
+						RideId = Guid.Parse(input: "400d0e64-c7a7-4227-84d4-85af8a59fee4"),
 						User = UserSeeds.EmptyUserEntity with
 						{
 							Email = "mrkvicka@gmail.com",
@@ -92,17 +98,21 @@ namespace CarPool.DAL.Tests
 		public async Task AddNew_RideWithJustPassengers_Persisted()
 		{
 			//Arrange
-			var ride = RideSeeds.EmptyRide with
+			var ride = RideSeeds.EmptyRideEntity with
 			{
 				RideOrigin = "Praha",
 				RideDestination = "Brno",
+				DriverId = UserSeeds.UserEntity.Id,
+				CarID = CarSeeds.CarEntity.Id,
 				Passengers = new List<UserRideEntity> {
 					UserRideSeeds.EmptyUserRideEntity with
 					{
+						RideId = Guid.Parse(input: "500d0e64-c7a7-4227-84d4-85af8a59fee4"),
 						UserId = UserSeeds.UserEntity.Id
 					},
 					UserRideSeeds.EmptyUserRideEntity with
 					{
+						RideId = Guid.Parse(input: "500d0e64-c7a7-4227-84d4-85af8a59fee4"),
 						UserId = UserSeeds.UserEntity2.Id
 					}
 				}
@@ -129,7 +139,12 @@ namespace CarPool.DAL.Tests
 				.SingleAsync(i => i.Id == RideSeeds.RideEntity1.Id);
 
 			//Assert
-			DeepAssert.Equal(RideSeeds.RideEntity1 with {Passengers = Array.Empty<UserRideEntity>() }, entity);
+			DeepAssert.Equal(RideSeeds.RideEntity1 with
+			{
+				Car = null,
+				Driver = null,
+				Passengers = Array.Empty<UserRideEntity>()
+			}, entity);
 		}
 
 		[Fact]
@@ -137,12 +152,12 @@ namespace CarPool.DAL.Tests
 		{
 			//Act
 			var entity = await CarPoolDbContextSUT.Rides
-				.Include(i=>i.Passengers)
-				.ThenInclude(i=>i.User)
+				.Include(i => i.Passengers)
+				.ThenInclude(i => i.User)
 				.SingleAsync(i => i.Id == RideSeeds.RideEntity1.Id);
 
 			//Assert
-			DeepAssert.Equal(RideSeeds.RideEntity1, entity);
+			DeepAssert.Equal(RideSeeds.RideEntity1, entity, new string[] { "RidesAsPassenger", "Driver", "Car" });
 		}
 
 		[Fact]
@@ -191,13 +206,13 @@ namespace CarPool.DAL.Tests
 			var baseEntity = RideSeeds.RideEntityDelete;
 
 			//Act
-			CarPoolDbContextSUT.Remove(CarPoolDbContextSUT.Rides.Single(i => i.Id == baseEntity.Id));
+			CarPoolDbContextSUT.Remove(await CarPoolDbContextSUT.Rides.SingleAsync(i => i.Id == baseEntity.Id));
 			await CarPoolDbContextSUT.SaveChangesAsync();
 
 			//Assert
 			Assert.False(await CarPoolDbContextSUT.Rides.AnyAsync(i => i.Id == baseEntity.Id));
 		}
 
-	
+
 	}
 }
