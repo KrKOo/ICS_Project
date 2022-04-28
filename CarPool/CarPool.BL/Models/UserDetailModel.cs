@@ -27,10 +27,10 @@ namespace CarPool.BL.Models
 			public MapperProfile()
 			{
 				CreateMap<UserEntity, UserDetailModel>()
-					.ForMember(dto => dto.RidesAsPassenger, opt => opt.MapFrom(x => x.RidesAsPassenger.Select(y => y.Ride).ToList()))
 					.ReverseMap()
+					.ForMember(entity => entity.Cars, expression => expression.Ignore())
 					.ForMember(entity => entity.RidesAsDriver, expression => expression.Ignore())
-					.ForMember(entity => entity.Cars, expression => expression.Ignore());
+					.ForMember(entity => entity.RidesAsPassenger, expression => expression.Ignore());
 			}
 		}
 	}

@@ -16,5 +16,10 @@
     <ProjectReference Include="..\CarPool.Common\CarPool.Common.csproj" />
     <ProjectReference Include="..\CarPool.DAL\CarPool.DAL.csproj" />
   </ItemGroup>
+  
+  	<!-- https://github.com/microsoft/vscode-azurefunctions/issues/3051 -->
+	<PropertyGroup>
+		<ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
+	</PropertyGroup>
 
 </Project>

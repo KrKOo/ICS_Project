@@ -1,5 +1,6 @@
 using System;
 using AutoMapper;
+using AutoMapper.Execution;
 using CarPool.DAL.Entities;
 
 namespace CarPool.BL.Models

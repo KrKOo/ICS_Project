@@ -31,6 +31,9 @@ public class CarPoolDbContext : DbContext
 		modelBuilder.Entity<UserEntity>(builder =>
 		{
 			builder.Property(x => x.DateOfBirth).HasConversion<DateOnlyConverter>();
+			builder.HasMany(e => e.Cars)
+				.WithOne(e => e.Owner)
+				.OnDelete(DeleteBehavior.Cascade);
 		});
 
 		if (_seedDemoData)

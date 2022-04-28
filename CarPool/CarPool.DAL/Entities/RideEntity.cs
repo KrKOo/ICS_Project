@@ -11,6 +11,7 @@ public record RideEntity(
 	Guid DriverId
 ) : IEntity
 {
+
 	public ICollection<UserRideEntity> Passengers { get; init; } = new List<UserRideEntity>();
 	public UserEntity? Driver { get; init; }
 	public CarEntity? Car { get; init; }

@@ -11,6 +11,10 @@ public record UserEntity(
 	string? Info
 ) : IEntity
 {
+	//Automapper requires parameter less constructor for collection synchronization for now
+#nullable disable
+	public UserEntity() : this(default, default, default, default, default, default, default, default) { }
+#nullable enable
 	public ICollection<CarEntity> Cars { get; init; } = new List<CarEntity>();
 	public ICollection<RideEntity> RidesAsDriver { get; init; } = new List<RideEntity>();
 	public ICollection<UserRideEntity> RidesAsPassenger { get; init; } = new List<UserRideEntity>();

@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  	<!-- https://github.com/microsoft/vscode-azurefunctions/issues/3051 -->
+	<PropertyGroup>
+		<ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
+	</PropertyGroup>
+
 </Project>

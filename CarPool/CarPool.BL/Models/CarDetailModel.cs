@@ -18,7 +18,7 @@ namespace CarPool.BL.Models
 		public DateOnly DateOfRegistration { get; set; } = DateOfRegistration;
 		public string PhotoUrl { get; set; } = PhotoUrl;
 		public int NumberOfSeats { get; set; } = NumberOfSeats;
-		public UserDetailModel Owner { get; set; }
+		public UserListModel? Owner { get; set; }
 
 		public class MapperProfile : Profile
 		{

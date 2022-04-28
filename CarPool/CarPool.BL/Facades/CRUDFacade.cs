@@ -66,6 +66,4 @@ public class CRUDFacade<TEntity, TListModel, TDetailModel>
 
 		return (await GetAsync(entity.Id).ConfigureAwait(false))!;
 	}
-
-
 }

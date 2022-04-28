@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel.Design;
+using System.Linq;
 using System.Threading.Tasks;
 using CarPool.BL.Facades;
 using CarPool.BL.Models;
@@ -8,6 +10,8 @@ using CarPool.Common.Tests.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;
+
+
 
 namespace CarPool.BL.Tests
 {
@@ -22,7 +26,7 @@ namespace CarPool.BL.Tests
 		}
 
 		[Fact]
-		public async Task Create_WithWithoutPassenger_DoesNotThrowAndEqualsCreated()
+		public async Task Create_WithoutPassenger_DoesNotThrowAndEqualsCreated()
 		{
 			//Arrange
 			var model = new RideDetailModel
@@ -31,7 +35,12 @@ namespace CarPool.BL.Tests
 				Duration: TimeSpan.FromHours(2),
 				RideOrigin: "Breclav",
 				RideDestination: "Bratislava"
-			);
+			)
+			{
+				Info = "asdfasdf",
+				Driver = Mapper.Map<UserListModel>(UserSeeds.UserEntity),
+				Car = Mapper.Map<CarListModel>(CarSeeds.CarEntity)
+			};
 
 			//Act
 			var returnedModel = await _facadeSUT.SaveAsync(model);
@@ -53,7 +62,11 @@ namespace CarPool.BL.Tests
 				RideDestination: "Breclav"
 			)
 			{
-				Passengers = { new UserListModel() } //make it empty?
+				Passengers = {new UserListModel(
+					default,
+					default,
+					default
+				)}
 			};
 
 			//Act & Assert
@@ -78,24 +91,26 @@ namespace CarPool.BL.Tests
 			{
 				Info = "Ked chces ist pridaj sa",
 				Passengers = {
-					new UserListModel
-					(
-						Email: "mrkvicak@gmail.com",
-						FirstName: "Jozko",
-						LastName: "Mrkvicka"
-					)
-					{
-						PhotoUrl= @"https://cdn.vectorstock.com/i/1000x1000/54/17/person-gray-photo-placeholder-man-vector-24005445.webp",
-					}
-				}
+					Mapper.Map<UserListModel>(UserSeeds.UserEntity)
+				},
+				Driver = Mapper.Map<UserListModel>(UserSeeds.UserEntity),
+				Car = Mapper.Map<CarListModel>(CarSeeds.CarEntity)
 			};
 
 			//Act
 			var returnedModel = await _facadeSUT.SaveAsync(model);
 
 			//Assert
-			FixIds(model, returnedModel);
-			DeepAssert.Equal(model, returnedModel);
+
+			//Assert
+			await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
+			var rideFromDb = await dbxAssert.Rides.Include(i => i.Passengers)
+			.ThenInclude(i => i.User).SingleAsync(i => i.Id == returnedModel.Id);
+			var rideDetail = Mapper.Map<RideDetailModel>(rideFromDb);
+
+
+			FixIds(model, rideDetail);
+			DeepAssert.Equal(model, rideDetail, "Driver", "Car");
 		}
 
 		[Fact]
@@ -111,20 +126,17 @@ namespace CarPool.BL.Tests
 			)
 			{
 				Passengers = {
-					new UserListModel(),  //make it empty?
-
-                    Mapper.Map<UserListModel>(UserSeeds.UserEntity)
+					Mapper.Map<UserListModel>(UserSeeds.UserEntity2 with {
+						Id = Guid.Parse("91aeb75b-c918-4121-b748-d06e592cb983")
+					})
 				}
 			};
 
 			//Act & Assert
-			try
+			await Assert.ThrowsAnyAsync<Exception>(async () =>
 			{
-				await _facadeSUT.SaveAsync(model);
-				Assert.True(false, "Assert Fail");
-			}
-			catch (DbUpdateException) { }
-			catch (ArgumentException) { }
+				var returnedModel = await _facadeSUT.SaveAsync(model);
+			});
 		}
 
 		[Fact]
@@ -223,7 +235,7 @@ namespace CarPool.BL.Tests
 		public async Task DeleteById_FromSeeded_DoesNotThrow()
 		{
 			//Arrange & Act & Assert
-			await _facadeSUT.DeleteAsync(RideSeeds.RideEntity.Id);
+			await _facadeSUT.DeleteAsync(RideSeeds.RideEntity1.Id);
 		}
 
 		private static void FixIds(RideDetailModel expectedModel, RideDetailModel returnedModel)
@@ -243,7 +255,6 @@ namespace CarPool.BL.Tests
 				if (passengerDetailModel != null)
 				{
 					passengerModel.Id = passengerDetailModel.Id;
-					passengerModel.PassengerId = passengerDetailModel.PassengerId;
 				}
 			}
 		}

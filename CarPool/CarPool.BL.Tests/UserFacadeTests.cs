@@ -42,8 +42,6 @@ namespace CarPool.BL.Tests
 			DeepAssert.Equal(model, returnedModel);
 		}
 
-
-
 		[Fact]
 		public async Task GetById_FromSeeded_DoesNotThrowAndEqualsSeeded()
 		{
@@ -74,6 +72,7 @@ namespace CarPool.BL.Tests
 		public async Task Update_FromSeeded_DoesNotThrow()
 		{
 			//Arrange
+			var UserEntity = UserSeeds.UserEntity;
 			var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
 			detailModel.LastName = "Oneil";
 
@@ -85,7 +84,7 @@ namespace CarPool.BL.Tests
 		public async Task Delete_FromSeeded_DoesNotThrow()
 		{
 			//Arrange
-			var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
+			var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntityDelete);
 
 			//Act & Assert
 			await _facadeSUT.DeleteAsync(detailModel);
@@ -95,98 +94,10 @@ namespace CarPool.BL.Tests
 		public async Task Update_Name_FromSeeded_CheckUpdated()
 		{
 			//Arrange
-			var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
-			detailModel.LastName = "Gogol";
-
-			//Act
-			await _facadeSUT.SaveAsync(detailModel);
-
-			//Assert
-			var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
-			DeepAssert.Equal(detailModel, returnedModel);
-		}
-
-		[Fact]
-		public async Task Update_RemoveCar_FromSeeded_CheckUpdated()
-		{
-			//Arrange
-			var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
-			detailModel.Cars.Clear();
-
-			//Act
-			await _facadeSUT.SaveAsync(detailModel);
-
-			//Assert
-			var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
-			DeepAssert.Equal(detailModel, returnedModel);
-		}
-
-		[Fact]
-		public async Task Update_RemoveRidesAsDriver_FromSeeded_CheckUpdated()
-		{
-			//Arrange
-			var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
-			detailModel.RidesAsDriver.Clear();
-
-			//Act
-			await _facadeSUT.SaveAsync(detailModel);
-
-			//Assert
-			var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
-			DeepAssert.Equal(detailModel, returnedModel);
-		}
-
-		[Fact]
-		public async Task Update_RemoveRidesAsPassenger_FromSeeded_CheckUpdated()
-		{
-			//Arrange
-			var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
-			detailModel.RidesAsPassenger.Clear();
-
-			//Act
-			await _facadeSUT.SaveAsync(detailModel);
-
-			//Assert
-			var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
-			DeepAssert.Equal(detailModel, returnedModel);
-		}
-
-		[Fact]
-		public async Task Update_RemoveOneOfCars_FromSeeded_CheckUpdated()
-		{
-			//Arrange
-			var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
-			detailModel.Cars.Remove(detailModel.Cars.First());
-
-			//Act
-			await _facadeSUT.SaveAsync(detailModel);
-
-			//Assert
-			var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
-			DeepAssert.Equal(detailModel, returnedModel);
-		}
-
-		[Fact]
-		public async Task Update_RemoveOneOfRidesAsDriver_FromSeeded_CheckUpdated()
-		{
-			//Arrange
-			var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
-			detailModel.RidesAsDriver.Remove(detailModel.RidesAsDriver.First());
-
-			//Act
-			await _facadeSUT.SaveAsync(detailModel);
-
-			//Assert
-			var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
-			DeepAssert.Equal(detailModel, returnedModel);
-		}
-
-		[Fact]
-		public async Task Update_RemoveOneOfRidesAsPassenger_FromSeeded_CheckUpdated()
-		{
-			//Arrange
-			var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity2);
-			detailModel.RidesAsPassenger.Remove(detailModel.RidesAsPassenger.First());
+			var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity) with
+			{
+				LastName = "UpdatedName"
+			};
 
 			//Act
 			await _facadeSUT.SaveAsync(detailModel);
@@ -200,7 +111,7 @@ namespace CarPool.BL.Tests
 		public async Task DeleteById_FromSeeded_DoesNotThrow()
 		{
 			//Arrange & Act & Assert
-			await _facadeSUT.DeleteAsync(UserSeeds.UserEntity.Id);
+			await _facadeSUT.DeleteAsync(UserSeeds.UserEntityDelete.Id);
 		}
 
 
