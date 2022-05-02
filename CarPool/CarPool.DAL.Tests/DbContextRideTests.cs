@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CarPool.Common.Tests;
-using CarPool.Common.Tests.Factories;
 using CarPool.Common.Tests.Seeds;
 using CarPool.DAL.Entities;
-using CarPool.DAL.Tests;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;
@@ -56,7 +54,6 @@ namespace CarPool.DAL.Tests
 				Passengers = new List<UserRideEntity> {
 					UserRideSeeds.EmptyUserRideEntity with
 					{
-						RideId = Guid.Parse(input: "400d0e64-c7a7-4227-84d4-85af8a59fee4"),
 						User = UserSeeds.EmptyUserEntity with
 						{
 							Email = "mrkvicak@gmail.com",
@@ -67,7 +64,6 @@ namespace CarPool.DAL.Tests
 					},
 					UserRideSeeds.EmptyUserRideEntity with
 					{
-						RideId = Guid.Parse(input: "400d0e64-c7a7-4227-84d4-85af8a59fee4"),
 						User = UserSeeds.EmptyUserEntity with
 						{
 							Email = "mrkvicka@gmail.com",
@@ -107,12 +103,10 @@ namespace CarPool.DAL.Tests
 				Passengers = new List<UserRideEntity> {
 					UserRideSeeds.EmptyUserRideEntity with
 					{
-						RideId = Guid.Parse(input: "500d0e64-c7a7-4227-84d4-85af8a59fee4"),
 						UserId = UserSeeds.UserEntity.Id
 					},
 					UserRideSeeds.EmptyUserRideEntity with
 					{
-						RideId = Guid.Parse(input: "500d0e64-c7a7-4227-84d4-85af8a59fee4"),
 						UserId = UserSeeds.UserEntity2.Id
 					}
 				}

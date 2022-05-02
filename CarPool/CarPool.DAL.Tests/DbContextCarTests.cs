@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CarPool.Common.Tests;
-using CarPool.Common.Tests.Factories;
 using CarPool.Common.Tests.Seeds;
 using CarPool.DAL.Entities;
-using CarPool.DAL.Tests;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;
@@ -24,7 +22,6 @@ public class DbContextCarTests : DbContextTestsBase
 		// Arrange
 		var entity = CarSeeds.EmptyCarEntity with
 		{
-			Id = Guid.Parse(input: "210d0e64-c7a7-4227-84d4-85af8a59fec9"),
 			Manufacturer = "Audi",
 			Model = "AA",
 			LicensePlate = "PLATE12",
@@ -50,7 +47,6 @@ public class DbContextCarTests : DbContextTestsBase
 		// Arrange
 		var entity = CarSeeds.EmptyCarEntity with
 		{
-			Id = Guid.Parse(input: "210d0e64-c7a7-4227-84d4-85af8a59fec8"),
 			Manufacturer = "VW",
 			Model = "BB",
 			LicensePlate = "PLATE13",
@@ -83,7 +79,7 @@ public class DbContextCarTests : DbContextTestsBase
 		var actualEntity = await dbx.Cars
 			.Include(i => i.Rides)
 			.SingleAsync(i => i.Id == entity.Id);
-		DeepAssert.Equal(entity, actualEntity, new string[] { "Passengers" });
+		DeepAssert.Equal(entity, actualEntity, "Passengers");
 	}
 
 	[Fact]
@@ -110,7 +106,7 @@ public class DbContextCarTests : DbContextTestsBase
 			.SingleAsync(i => i.Id == CarSeeds.CarEntity.Id);
 
 		//Assert
-		DeepAssert.Equal(CarSeeds.CarEntity, entity, new string[] { "Owner", "Passengers", "Driver" });
+		DeepAssert.Equal(CarSeeds.CarEntity, entity, "Passengers", "Driver", "Owner");
 	}
 
 	[Fact]

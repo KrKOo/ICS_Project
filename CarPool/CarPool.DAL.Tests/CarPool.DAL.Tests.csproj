@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
-
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -29,4 +28,8 @@
     <ProjectReference Include="..\CarPool.Common.Tests\CarPool.Common.Tests.csproj" />
   </ItemGroup>
 
+  <!-- https://github.com/microsoft/vscode-azurefunctions/issues/3051 -->
+  <PropertyGroup>
+    <ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
+  </PropertyGroup>
 </Project>

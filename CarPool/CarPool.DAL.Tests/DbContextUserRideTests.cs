@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CarPool.Common.Tests;
-using CarPool.Common.Tests.Factories;
 using CarPool.Common.Tests.Seeds;
-using CarPool.DAL.Entities;
-using CarPool.DAL.Tests;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;

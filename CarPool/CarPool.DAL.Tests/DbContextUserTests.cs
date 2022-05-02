@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CarPool.Common.Tests;
-using CarPool.Common.Tests.Factories;
 using CarPool.Common.Tests.Seeds;
 using CarPool.DAL.Entities;
-using CarPool.DAL.Tests;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;
@@ -24,14 +22,15 @@ public class DbContextUserTests : DbContextTestsBase
 		// Arrange
 		var entity = UserSeeds.EmptyUserEntity with
 		{
-			Id = Guid.Parse(input: "210d0e64-c7a7-4227-84d4-85af8a59fee9"),
 			Email = "user@email.com",
 			FirstName = "Chris",
 			LastName = "High",
 			PhotoUrl = @"https://cdn.vectorstock.com/i/1000x1000/54/17/person-gray-photo-placeholder-man-vector-24005417.webp",
 			PhoneNumber = "+420 987 987 987",
 			DateOfBirth = new DateOnly(2000, 5, 4),
-			Info = "Sample Info"
+			Info = "Sample Info",
+			RidesAsPassenger = Array.Empty<UserRideEntity>(),
+			RidesAsDriver = Array.Empty<RideEntity>()
 		};
 
 		// Act
@@ -50,7 +49,6 @@ public class DbContextUserTests : DbContextTestsBase
 		// Arrange
 		var entity = UserSeeds.EmptyUserEntity with
 		{
-			Id = Guid.Parse(input: "210d0e64-c7a7-4227-84d4-85af8a59fee8"),
 			Email = "user@email.com",
 			FirstName = "Christopher",
 			LastName = "Pratt",
@@ -90,7 +88,6 @@ public class DbContextUserTests : DbContextTestsBase
 		// Arrange
 		var entity = UserSeeds.EmptyUserEntity with
 		{
-			Id = Guid.Parse(input: "210d0e64-c7a7-4227-84d4-85af8a59fee7"),
 			Email = "user@email.com",
 			FirstName = "Peon",
 			LastName = "Warcraft",
@@ -132,7 +129,6 @@ public class DbContextUserTests : DbContextTestsBase
 		// Arrange
 		var entity = UserSeeds.EmptyUserEntity with
 		{
-			Id = Guid.Parse(input: "210d0e64-c7a7-4227-84d4-85af8a59fee4"),
 			Email = "user@email.com",
 			FirstName = "Andrew",
 			LastName = "Rider",
@@ -144,7 +140,7 @@ public class DbContextUserTests : DbContextTestsBase
 			{
 				UserRideSeeds.EmptyUserRideEntity with
 				{
-					RideId = RideSeeds.RideEntity1.Id
+					RideId = RideSeeds.RideEntity1.Id,
 				}
 			}
 		};
