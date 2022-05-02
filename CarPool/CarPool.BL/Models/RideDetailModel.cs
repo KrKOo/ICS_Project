@@ -29,8 +29,6 @@ namespace CarPool.BL.Models
 				.ForMember(dest => dest.Passengers, opt => opt.MapFrom(x => x.Passengers.Select(s => s.User)));
 
 				CreateMap<RideDetailModel, RideEntity>()
-				.ForMember(entity => entity.CarID, expression => expression.MapFrom(s => s.Car!.Id))
-				.ForMember(entity => entity.DriverId, expression => expression.MapFrom(s => s.Driver!.Id))
 				.ForMember(entity => entity.Car, expression => expression.Ignore())
 				.ForMember(entity => entity.Driver, expression => expression.Ignore())
 				.ForMember(entity => entity.Passengers, expression => expression.MapFrom(ride => ride.Passengers

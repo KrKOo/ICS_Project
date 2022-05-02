@@ -114,7 +114,7 @@ namespace CarPool.BL.Tests
 		}
 
 		[Fact]
-		public async Task Create_WithExistingAndNotExistingPassenger_Throws()
+		public async Task Create_WithNotExistingPassenger_Throws()
 		{
 			//Arrange
 			var model = new RideDetailModel
@@ -222,6 +222,22 @@ namespace CarPool.BL.Tests
 			//Arrange
 			var detailModel = Mapper.Map<RideDetailModel>(RideSeeds.RideEntity1);
 			detailModel.Passengers.Remove(detailModel.Passengers.First());
+
+			//Act
+			await _facadeSUT.SaveAsync(detailModel);
+
+			//Assert
+			var returnedModel = await _facadeSUT.GetAsync(detailModel.Id);
+			DeepAssert.Equal(detailModel, returnedModel);
+		}
+
+		[Fact]
+
+		public async Task Update_AddPassenger_FromSeeded_ChcekUpdated()
+		{
+			//Arrange
+			var detailModel = Mapper.Map<RideDetailModel>(RideSeeds.RideEntity1);
+			detailModel.Passengers.Add(Mapper.Map<UserListModel>(UserSeeds.UserRidesAsPassengerEntityUpdate));
 
 			//Act
 			await _facadeSUT.SaveAsync(detailModel);
