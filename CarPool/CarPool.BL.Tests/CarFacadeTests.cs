@@ -153,6 +153,7 @@ namespace CarPool.BL.Tests
 		[Fact]
 		public async Task SeededCarEntity_InsertOrUpdate_CarUpdated()
 		{
+			//Arrange
 			var car = Mapper.Map<CarDetailModel>(CarSeeds.CarEntityUpdate);
 			car.LicensePlate += "NEW LCNS";
 			car.NumberOfSeats += 1;
@@ -164,6 +165,28 @@ namespace CarPool.BL.Tests
 			await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
 			var carFromDb = await dbxAssert.Cars.SingleAsync(i => i.Id == car.Id);
 			DeepAssert.Equal(car, Mapper.Map<CarDetailModel>(carFromDb), "Owner");
+		}
+
+		[Fact]
+		public async Task Delete_Car_When_UserDeleted()
+		{
+			//Arrange
+			var car = Mapper.Map<CarDetailModel>(CarSeeds.CarEntity with
+			{
+				Id = default,
+				Owner = UserSeeds.UserEntityWithNothing
+			});
+
+			// Act
+			car = await _carFacadeSUT.SaveAsync(car);
+
+			var userFacade = new UserFacade(UnitOfWorkFactory, Mapper);
+
+			await userFacade.DeleteAsync(Mapper.Map<UserDetailModel>(UserSeeds.UserEntityWithNothing));
+
+			//Assert
+			await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
+			Assert.False(await dbxAssert.Cars.AnyAsync(i => i.Id == car.Id));
 		}
 	}
 }
