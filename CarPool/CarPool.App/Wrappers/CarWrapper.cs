@@ -1,0 +1,87 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using CarPool.BL.Models;
+
+
+namespace CarPool.App.Wrappers
+{
+    public class CarWrapper : ModelWrapper<CarDetailModel>
+    {
+        public CarWrapper(CarDetailModel model) : base(model)
+        {
+
+        }
+
+        public string Manufacturer
+        {
+            get => GetValue<string>();
+            set => SetValue(value);
+        }
+
+        public string Model
+        {
+            get => GetValue<string>();
+            set => SetValue(value);
+        }
+
+        public string LicensePlate
+        {
+            get => GetValue<string>();
+            set => SetValue(value);
+        }
+
+        public DateOnly DateOfRegistration
+        {
+            get => GetValue<DateOnly>();
+            set => SetValue(value);
+        }
+
+        public string PhotoUrl
+        {
+            get => GetValue<string>();
+            set => SetValue(value);
+        }
+
+        public int NumberOfSeats
+        {
+            get => GetValue<int>();
+            set => SetValue(value);
+        }
+
+        public UserWrapper Owner
+        {
+            get => GetValue<UserWrapper>();
+            set => SetValue(value);
+        }
+
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (string.IsNullOrWhiteSpace(Manufacturer))
+            {
+                yield return new ValidationResult($"{nameof(Manufacturer)} is required", new[] { nameof(Manufacturer) });
+            }
+
+            if (string.IsNullOrWhiteSpace(Model))
+            {
+                yield return new ValidationResult($"{nameof(Model)} is required", new[] { nameof(Model) });
+            }
+
+            if (string.IsNullOrWhiteSpace(LicensePlate))
+            {
+                yield return new ValidationResult($"{nameof(LicensePlate)} is required", new[] { nameof(LicensePlate) });
+            }
+
+            if (string.IsNullOrWhiteSpace(PhotoUrl))
+            {
+                yield return new ValidationResult($"{nameof(PhotoUrl)} is required", new[] { nameof(PhotoUrl) });
+            }
+        }
+
+        public static implicit operator CarWrapper(CarDetailModel detailModel)
+            => new CarWrapper(detailModel);
+
+        public static implicit operator CarDetailModel(CarWrapper wrapper)
+            => wrapper.Model;
+    }
+}
