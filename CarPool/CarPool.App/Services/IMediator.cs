@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using CarPool.App.Messages;
 
 namespace CarPool.App.Services
@@ -7,12 +7,9 @@ namespace CarPool.App.Services
     {
         void Register<TMessage>(Action<TMessage> action)
             where TMessage : IMessage;
-
         void Send<TMessage>(TMessage message)
             where TMessage : IMessage;
-
         void UnRegister<TMessage>(Action<TMessage> action)
             where TMessage : IMessage;
     }
 }
-

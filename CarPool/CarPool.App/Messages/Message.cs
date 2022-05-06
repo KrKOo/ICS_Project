@@ -11,7 +11,7 @@ namespace CarPool.App.Messages
         public Guid? Id
         {
             get => _id ?? Model?.Id;
-            set => _id = value;
+            init => _id = value;
         }
 
         public Guid? TargetId { get; init; }

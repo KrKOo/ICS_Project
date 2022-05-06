@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using CarPool.BL.Models;
-
+using CarPool.App.Wrappers;
 
 namespace CarPool.App.Wrappers
 {
@@ -13,19 +13,19 @@ namespace CarPool.App.Wrappers
 
         }
 
-        public string Manufacturer
+        public string? Manufacturer
         {
             get => GetValue<string>();
             set => SetValue(value);
         }
 
-        public string Model
+        public string? CarModel
         {
             get => GetValue<string>();
             set => SetValue(value);
         }
 
-        public string LicensePlate
+        public string? LicensePlate
         {
             get => GetValue<string>();
             set => SetValue(value);
@@ -37,7 +37,7 @@ namespace CarPool.App.Wrappers
             set => SetValue(value);
         }
 
-        public string PhotoUrl
+        public string? PhotoUrl
         {
             get => GetValue<string>();
             set => SetValue(value);
@@ -49,7 +49,7 @@ namespace CarPool.App.Wrappers
             set => SetValue(value);
         }
 
-        public UserWrapper Owner
+        public UserWrapper? Owner
         {
             get => GetValue<UserWrapper>();
             set => SetValue(value);
@@ -62,7 +62,7 @@ namespace CarPool.App.Wrappers
                 yield return new ValidationResult($"{nameof(Manufacturer)} is required", new[] { nameof(Manufacturer) });
             }
 
-            if (string.IsNullOrWhiteSpace(Model))
+            if (string.IsNullOrWhiteSpace(CarModel))
             {
                 yield return new ValidationResult($"{nameof(Model)} is required", new[] { nameof(Model) });
             }

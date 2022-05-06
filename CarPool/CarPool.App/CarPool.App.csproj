@@ -15,6 +15,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CarPool.BL\CarPool.BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Resources\Texts\CarDetailResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

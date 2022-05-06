@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using CarPool.BL.Models;
+using CarPool.App.Wrappers;
 
 namespace CarPool.App.Wrappers
 {
@@ -25,13 +26,13 @@ namespace CarPool.App.Wrappers
             set => SetValue(value);
         }
 
-        public string RideOrigin
+        public string? RideOrigin
         {
             get => GetValue<string>();
             set => SetValue(value);
         }
 
-        public string RideDestination
+        public string? RideDestination
         {
             get => GetValue<string>();
             set => SetValue(value);
@@ -55,7 +56,7 @@ namespace CarPool.App.Wrappers
             set => SetValue(value);
         }
 
-        public UserWrapper Passengers
+        public UserWrapper? Passengers
         {
             get => GetValue<UserWrapper>();
             set => SetValue(value);
@@ -73,7 +74,7 @@ namespace CarPool.App.Wrappers
                 yield return new ValidationResult($"{nameof(RideDestination)} is required", new[] { nameof(RideDestination) });
             }
 
-            if (TimeOfStart == null)
+            if (TimeOfStart == default)
             {
                 yield return new ValidationResult($"{nameof(TimeOfStart)} is required", new[] { nameof(TimeOfStart) });
             }

@@ -1,4 +1,4 @@
-namespace CarPool.App.Services.MessageDialog
+﻿namespace CarPool.App.Services.MessageDialog
 {
     public enum MessageDialogButtonConfiguration
     {
@@ -7,6 +7,4 @@ namespace CarPool.App.Services.MessageDialog
         YesNoCancel,
         YesNo,
     }
-    // TODO Name of Buttons, change in MessageDialog.xaml.cs too
 }
-

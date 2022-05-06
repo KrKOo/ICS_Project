@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Windows;
 using CarPool.BL.Models;
+using CarPool.App.Wrappers;
 
 namespace CarPool.App.Wrappers
 {
@@ -12,55 +13,55 @@ namespace CarPool.App.Wrappers
 
         }
 
-        public string Email
+        public string? Email
         {
             get => GetValue<string>();
             set => SetValue(value);
         }
 
-        public string FirstName
+        public string? FirstName
         {
             get => GetValue<string>();
             set => SetValue(value);
         }
 
-        public string LastName
+        public string? LastName
         {
             get => GetValue<string>();
             set => SetValue(value);
         }
 
-        public string PhoneNumber
+        public string? PhoneNumber
         {
             get => GetValue<string>();
             set => SetValue(value);
         }
 
-        public string PhotoUrl?
+        public string? PhotoUrl
         {
             get => GetValue<string>();
             set => SetValue(value);
         }
 
-        public string Info?
+        public string? Info
         {
             get => GetValue<string>();
             set => SetValue(value);
         }
 
-        public CarWrapper Cars
+        public CarWrapper? Cars
         {
             get => GetValue<CarWrapper>();
             set => SetValue(value);
         }
 
-        public RideWrapper RideAsPassenger
+        public RideWrapper? RideAsPassenger
         {
             get => GetValue<RideWrapper>();
             set => SetValue(value);
         }
 
-        public RideWrapper RideAsDriver
+        public RideWrapper? RideAsDriver
         {
             get => GetValue<RideWrapper>();
             set => SetValue(value);

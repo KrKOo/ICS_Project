@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using CarPool.App.ViewModels;
 using CarPool.BL.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using CarPool.App.ViewModels;
 
-namespace CookBook.App.Wrappers
+namespace CarPool.App.Wrappers
 {
     public abstract class ModelWrapper<T> : ViewModelBase, IModel, IValidatableObject
         where T : IModel

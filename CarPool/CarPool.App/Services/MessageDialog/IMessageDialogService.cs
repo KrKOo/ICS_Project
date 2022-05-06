@@ -1,4 +1,4 @@
-namespace CarPool.App.Services.MessageDialog
+﻿namespace CarPool.App.Services.MessageDialog
 {
     public interface IMessageDialogService
     {

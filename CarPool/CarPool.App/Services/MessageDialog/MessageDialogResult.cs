@@ -1,13 +1,10 @@
-namespace CookBook.App.Services.MessageDialog
+﻿namespace CarPool.App.Services.MessageDialog
 {
     public enum MessageDialogResult
     {
         OK,
-        Yes,`s
+        Yes,
         No,
         Cancel
     }
 }
-
-
-// TODO Name of Results, change in MessageDialog.xaml.cs too

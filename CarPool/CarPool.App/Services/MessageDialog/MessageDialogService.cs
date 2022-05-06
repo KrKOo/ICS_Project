@@ -1,13 +1,13 @@
-using System.Windows;
+﻿using System.Windows;
 
 namespace CarPool.App.Services.MessageDialog
 {
     public class MessageDialogService : IMessageDialogService
     {
         public MessageDialogResult Show(
-            string title,
-            string caption,
-            MessageDialogButtonConfiguration buttonConfiguration,
+            string title, 
+            string caption, 
+            MessageDialogButtonConfiguration buttonConfiguration, 
             MessageDialogResult defaultResult)
         {
             var messageDialog = new MessageDialog(title, caption, defaultResult, buttonConfiguration)
