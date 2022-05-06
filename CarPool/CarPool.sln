@@ -1,19 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.1.32210.238
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarPool.DAL", "CarPool.DAL\CarPool.DAL.csproj", "{AE86B432-B3A7-4196-A04B-E275F08BCCD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPool.DAL", "CarPool.DAL\CarPool.DAL.csproj", "{AE86B432-B3A7-4196-A04B-E275F08BCCD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarPool.Common", "CarPool.Common\CarPool.Common.csproj", "{A5B05096-5A58-4EFC-84CB-05910DAF7774}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPool.Common", "CarPool.Common\CarPool.Common.csproj", "{A5B05096-5A58-4EFC-84CB-05910DAF7774}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarPool.Common.Tests", "CarPool.Common.Tests\CarPool.Common.Tests.csproj", "{FD6CEAD3-364A-413E-AAE0-8D2C14288512}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPool.Common.Tests", "CarPool.Common.Tests\CarPool.Common.Tests.csproj", "{FD6CEAD3-364A-413E-AAE0-8D2C14288512}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarPool.DAL.Tests", "CarPool.DAL.Tests\CarPool.DAL.Tests.csproj", "{585A2A30-D57E-4E89-A6E4-5472E37A5EEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPool.DAL.Tests", "CarPool.DAL.Tests\CarPool.DAL.Tests.csproj", "{585A2A30-D57E-4E89-A6E4-5472E37A5EEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarPool.BL", "CarPool.BL\CarPool.BL.csproj", "{74A92A01-4585-471D-9449-F305C577D404}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPool.BL", "CarPool.BL\CarPool.BL.csproj", "{74A92A01-4585-471D-9449-F305C577D404}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarPool.BL.Tests", "CarPool.BL.Tests\CarPool.BL.Tests.csproj", "{77E8ACA9-AC39-45D3-9118-7ABEA2E41BDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPool.BL.Tests", "CarPool.BL.Tests\CarPool.BL.Tests.csproj", "{77E8ACA9-AC39-45D3-9118-7ABEA2E41BDA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarPool.App", "CarPool.App\CarPool.App.csproj", "{69A0995F-CE2C-4B6D-894E-B98B8CD1A8EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{77E8ACA9-AC39-45D3-9118-7ABEA2E41BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77E8ACA9-AC39-45D3-9118-7ABEA2E41BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77E8ACA9-AC39-45D3-9118-7ABEA2E41BDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69A0995F-CE2C-4B6D-894E-B98B8CD1A8EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69A0995F-CE2C-4B6D-894E-B98B8CD1A8EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69A0995F-CE2C-4B6D-894E-B98B8CD1A8EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69A0995F-CE2C-4B6D-894E-B98B8CD1A8EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

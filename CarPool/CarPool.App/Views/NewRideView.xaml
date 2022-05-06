@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="CarPool.App.Views.NewRideView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CarPool.App.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" x:Name="BackButton" Content="BACK"/>
+            <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Text="CREATE A NEW RIDE!" Style="{StaticResource H2}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="From"/>
+            <TextBox Grid.Row="0" Grid.Column="1"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="To"/>
+            <TextBox Grid.Row="1" Grid.Column="1"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="When"/>
+            <TextBox Grid.Row="2" Grid.Column="1"/>
+        </Grid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Label Content="Expected duration of the ride"/>
+            <TextBox HorizontalAlignment="Stretch"/>
+        </StackPanel>
+        <TextBlock Grid.Row="3" Text="ADD SOME DESCRIPTION"/>
+        <TextBox Grid.Row="4"/>
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Which car?"/>
+            <Grid Grid.Column="1"></Grid>
+            <Button Grid.Column="2" x:Name="CreateRideButton" Content="CREATE"/>
+        </Grid>
+    </Grid>
+</UserControl>

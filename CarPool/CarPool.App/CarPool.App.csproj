@@ -1,0 +1,104 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Resources\Text\**" />
+    <EmbeddedResource Remove="Resources\Text\**" />
+    <None Remove="Resources\Text\**" />
+    <Page Remove="Resources\Text\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\Texts\CarDetailResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CarDetailResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Texts\EditProfileResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EditProfileResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Texts\LoginResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LoginResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Texts\NewEditCar.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NewEditCar.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Texts\NewRideResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NewRideResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Texts\RegisterResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RegisterResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Texts\RideListingResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RideListingResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Texts\Ride_Detail_Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Ride_Detail_Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Texts\UserProfileResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UserProfileResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Texts\CarDetailResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CarDetailResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\EditProfileResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EditProfileResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\LoginResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoginResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\NewEditCar.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NewEditCar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\NewRideResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NewRideResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\RegisterResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegisterResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\RideListingResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RideListingResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\Ride_Detail_Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Ride_Detail_Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Texts\UserProfileResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserProfileResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
