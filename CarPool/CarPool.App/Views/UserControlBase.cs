@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-//using CarPool.App.ViewModels;
+﻿using CarPool.App.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,10 +13,10 @@ namespace CarPool.App.Views
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            /*if (DataContext is IListViewModel viewModel)
+            if (DataContext is IListViewModel viewModel)
             {
                 await viewModel.LoadAsync();
-            }*/
+            }
         }
     }
 }
