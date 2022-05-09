@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace CarPool.App.ViewModels
 {
-    class RideListViewModel : ViewModelBase, IRideListViewModel
+    public class RideListViewModel : ViewModelBase, IRideListViewModel
     {
         private readonly RideFacade _rideFacade;
         private readonly IMediator _mediator;

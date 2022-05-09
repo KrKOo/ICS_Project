@@ -33,5 +33,7 @@ namespace CarPool.BL.Models
 					.ForMember(entity => entity.RidesAsPassenger, expression => expression.Ignore());
 			}
 		}
+
+		public static UserDetailModel Empty => new(string.Empty, string.Empty, string.Empty, string.Empty, default);
 	}
 }

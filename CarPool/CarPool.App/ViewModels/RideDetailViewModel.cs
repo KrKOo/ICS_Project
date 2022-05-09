@@ -1,4 +1,4 @@
-using CarPool.App.Messages;
+﻿using CarPool.App.Messages;
 using CarPool.App.Services;
 using CarPool.App.Services.MessageDialog;
 using CarPool.App.Wrappers;
@@ -11,18 +11,18 @@ using CarPool.BL.Facades;
 
 namespace CarPool.App.ViewModels
 {
-    public class CarDetailViewModel : ViewModelBase, ICarDetailViewModel
+    public class RideDetailViewModel : ViewModelBase, IRideDetailViewModel
     {
         private readonly IMediator _mediator;
-        private readonly CarFacade _CarFacade;
+        private readonly RideFacade _RideFacade;
         private readonly IMessageDialogService _messageDialogService;
 
-        public CarDetailViewModel(
-            CarFacade CarFacade,
+        public RideDetailViewModel(
+            RideFacade RideFacade,
             IMessageDialogService messageDialogService,
             IMediator mediator)
         {
-            _CarFacade = CarFacade;
+            _RideFacade = RideFacade;
             _messageDialogService = messageDialogService;
             _mediator = mediator;
 
@@ -30,14 +30,14 @@ namespace CarPool.App.ViewModels
             DeleteCommand = new AsyncRelayCommand(DeleteAsync);
         }
 
-        public CarWrapper? Model { get; private set; }
+        public RideWrapper? Model { get; private set; }
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
 
 
         public async Task LoadAsync(Guid id)
         {
-            Model = await _CarFacade.GetAsync(id) ?? CarDetailModel.Empty;
+            Model = await _RideFacade.GetAsync(id) ?? RideDetailModel.Empty;
         }
 
         public async Task SaveAsync()
@@ -47,8 +47,8 @@ namespace CarPool.App.ViewModels
                 throw new InvalidOperationException("Null model cannot be saved");
             }
 
-            Model = await _CarFacade.SaveAsync(Model.Model);
-            _mediator.Send(new UpdateMessage<CarWrapper> { Model = Model });
+            Model = await _RideFacade.SaveAsync(Model.Model);
+            _mediator.Send(new UpdateMessage<RideWrapper> { Model = Model });
         }
 
         private bool CanSave() => Model?.IsValid ?? false;
@@ -64,7 +64,7 @@ namespace CarPool.App.ViewModels
             {
                 var delete = _messageDialogService.Show(
                     $"Delete",
-                    $"Do you want to delete {Model?.LicensePlate}?.",
+                    $"Do you want to delete {Model?.Id}?.",
                     MessageDialogButtonConfiguration.YesNo,
                     MessageDialogResult.No);
 
@@ -72,18 +72,18 @@ namespace CarPool.App.ViewModels
 
                 try
                 {
-                    await _CarFacade.DeleteAsync(Model!.Id);
+                    await _RideFacade.DeleteAsync(Model!.Id);
                 }
                 catch
                 {
                     var _ = _messageDialogService.Show(
-                        $"Deleting of {Model?.LicensePlate} failed!",
+                        $"Deleting of {Model?.Id} failed!",
                         "Deleting failed",
                         MessageDialogButtonConfiguration.OK,
                         MessageDialogResult.OK);
                 }
 
-                _mediator.Send(new DeleteMessage<CarWrapper>
+                _mediator.Send(new DeleteMessage<RideWrapper>
                 {
                     Model = Model
                 });
@@ -93,14 +93,14 @@ namespace CarPool.App.ViewModels
         public override void LoadInDesignMode()
         {
             base.LoadInDesignMode();
-            Model = new CarWrapper(new CarDetailModel(
-                Manufacturer: "Volvo",
-                Model: "V40",
-                LicensePlate: "BL340UZ",
-                DateOfRegistration: new DateOnly(2000, 12, 3),
-                PhotoUrl: @"https://img.tipcars.com/fotky_velke/18083317_1/1636098034/E/volvo-v40-2-0-d2-kinetic.jpg",
-                NumberOfSeats: 4
-            ));
+            Model = new RideWrapper(new RideDetailModel(
+                TimeOfStart: new DateTime(2022, 6, 3, 16, 18, 0),
+                Duration: new TimeSpan(2, 30, 0),
+                RideOrigin: "Bratislava",
+                RideDestination: "Brno")
+            {
+                Info = "Dont worry, I got my license yesterday :)"
+            }) ;
         }
     }
 }

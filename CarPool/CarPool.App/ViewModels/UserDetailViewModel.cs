@@ -1,4 +1,4 @@
-using CarPool.App.Messages;
+﻿using CarPool.App.Messages;
 using CarPool.App.Services;
 using CarPool.App.Services.MessageDialog;
 using CarPool.App.Wrappers;
@@ -11,18 +11,18 @@ using CarPool.BL.Facades;
 
 namespace CarPool.App.ViewModels
 {
-    public class CarDetailViewModel : ViewModelBase, ICarDetailViewModel
+    public class UserDetailViewModel : ViewModelBase, IUserDetailViewModel
     {
         private readonly IMediator _mediator;
-        private readonly CarFacade _CarFacade;
+        private readonly UserFacade _UserFacade;
         private readonly IMessageDialogService _messageDialogService;
 
-        public CarDetailViewModel(
-            CarFacade CarFacade,
+        public UserDetailViewModel(
+            UserFacade UserFacade,
             IMessageDialogService messageDialogService,
             IMediator mediator)
         {
-            _CarFacade = CarFacade;
+            _UserFacade = UserFacade;
             _messageDialogService = messageDialogService;
             _mediator = mediator;
 
@@ -30,14 +30,14 @@ namespace CarPool.App.ViewModels
             DeleteCommand = new AsyncRelayCommand(DeleteAsync);
         }
 
-        public CarWrapper? Model { get; private set; }
+        public UserWrapper? Model { get; private set; }
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
 
 
         public async Task LoadAsync(Guid id)
         {
-            Model = await _CarFacade.GetAsync(id) ?? CarDetailModel.Empty;
+            Model = await _UserFacade.GetAsync(id) ?? UserDetailModel.Empty;
         }
 
         public async Task SaveAsync()
@@ -47,8 +47,8 @@ namespace CarPool.App.ViewModels
                 throw new InvalidOperationException("Null model cannot be saved");
             }
 
-            Model = await _CarFacade.SaveAsync(Model.Model);
-            _mediator.Send(new UpdateMessage<CarWrapper> { Model = Model });
+            Model = await _UserFacade.SaveAsync(Model.Model);
+            _mediator.Send(new UpdateMessage<UserWrapper> { Model = Model });
         }
 
         private bool CanSave() => Model?.IsValid ?? false;
@@ -64,7 +64,7 @@ namespace CarPool.App.ViewModels
             {
                 var delete = _messageDialogService.Show(
                     $"Delete",
-                    $"Do you want to delete {Model?.LicensePlate}?.",
+                    $"Do you want to delete {Model?.FirstName} {Model?.LastName}?.",
                     MessageDialogButtonConfiguration.YesNo,
                     MessageDialogResult.No);
 
@@ -72,18 +72,18 @@ namespace CarPool.App.ViewModels
 
                 try
                 {
-                    await _CarFacade.DeleteAsync(Model!.Id);
+                    await _UserFacade.DeleteAsync(Model!.Id);
                 }
                 catch
                 {
                     var _ = _messageDialogService.Show(
-                        $"Deleting of {Model?.LicensePlate} failed!",
+                        $"Deleting of {Model?.FirstName} {Model?.LastName} failed!",
                         "Deleting failed",
                         MessageDialogButtonConfiguration.OK,
                         MessageDialogResult.OK);
                 }
 
-                _mediator.Send(new DeleteMessage<CarWrapper>
+                _mediator.Send(new DeleteMessage<UserWrapper>
                 {
                     Model = Model
                 });
@@ -93,14 +93,16 @@ namespace CarPool.App.ViewModels
         public override void LoadInDesignMode()
         {
             base.LoadInDesignMode();
-            Model = new CarWrapper(new CarDetailModel(
-                Manufacturer: "Volvo",
-                Model: "V40",
-                LicensePlate: "BL340UZ",
-                DateOfRegistration: new DateOnly(2000, 12, 3),
-                PhotoUrl: @"https://img.tipcars.com/fotky_velke/18083317_1/1636098034/E/volvo-v40-2-0-d2-kinetic.jpg",
-                NumberOfSeats: 4
-            ));
+            Model = new UserWrapper(new UserDetailModel(
+                Email: "user@email.com",
+                FirstName: "John",
+                LastName: "Doe",
+                PhoneNumber: "1234567890",
+                DateOfBirth: new DateOnly(2000, 7, 23))
+            {
+                PhotoUrl = @"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
+                Info = "I just bought a new car. Yaaiii."
+            });
         }
     }
 }

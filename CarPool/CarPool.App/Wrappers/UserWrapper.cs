@@ -95,5 +95,11 @@ namespace CarPool.App.Wrappers
                 yield return new ValidationResult($"{nameof(PhoneNumber)} is required", new[] { nameof(PhoneNumber) });
             }
         }
+
+        public static implicit operator UserWrapper(UserDetailModel detailModel)
+            => new(detailModel);
+
+        public static implicit operator UserDetailModel(UserWrapper wrapper)
+            => wrapper.Model;
     }
 }

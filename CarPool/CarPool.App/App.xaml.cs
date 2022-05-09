@@ -60,14 +60,22 @@ namespace CarPool.App
             services.AddSingleton<IMediator, Mediator>();
 
             services.AddSingleton<MainViewModel>();
+
             services.AddSingleton<IRideListViewModel, RideListViewModel>();
+            services.AddFactory<IRideDetailViewModel, RideDetailViewModel>();
+
+            services.AddSingleton<ICarListViewModel, CarListViewModel>();
+            services.AddFactory<ICarDetailViewModel, CarDetailViewModel>();
+
+            services.AddSingleton<IUserListViewModel, UserListViewModel>();
+            services.AddFactory<IUserDetailViewModel, UserDetailViewModel>();
         }
 
         protected override async void OnStartup(StartupEventArgs e)
         {
             await _host.StartAsync();
 
-            /*var dbContextFactory = _host.Services.GetRequiredService<IDbContextFactory<CarPoolDbContext>>();
+            var dbContextFactory = _host.Services.GetRequiredService<IDbContextFactory<CarPoolDbContext>>();
 
             var dalSettings = _host.Services.GetRequiredService<IOptions<DALSettings>>().Value;
 
@@ -82,7 +90,7 @@ namespace CarPool.App
                 {
                     await dbx.Database.MigrateAsync();
                 }
-            }*/
+            }
 
             var mainWindow = _host.Services.GetRequiredService<MainWindow>();
             mainWindow.Show();
