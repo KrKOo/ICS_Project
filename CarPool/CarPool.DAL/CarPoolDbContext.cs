@@ -45,10 +45,10 @@ public class CarPoolDbContext : DbContext
 
 		if (_seedDemoData)
 		{
-			UserSeeds.Seed(modelBuilder);
-			// RideSeeds.Seed(modelBuilder);
-			// CarSeeds.Seed(modelBuilder);
-			// UserRideSeeds.Seed(modelBuilder);
+			UserSeeds.Seed(modelBuilder);	
+			CarSeeds.Seed(modelBuilder);
+			RideSeeds.Seed(modelBuilder);
+			UserRideSeeds.Seed(modelBuilder);
 		}
 	}
 }
