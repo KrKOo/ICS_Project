@@ -7,18 +7,19 @@
     xmlns:views="clr-namespace:CarPool.App.Views"
     xmlns:viewModels="clr-namespace:CarPool.App.ViewModels"
     mc:Ignorable="d"
-    Title="CarPool" Width="800" Height="550" >
-    <Grid>
-        <views:IntroPageLoginView Visibility="Visible"/>
-        <views:IntroPageRegistrationView Visibility="Hidden"/>
-        <views:AddCarView Visibility="Hidden"/>
-        <views:CarDetailView Visibility="Hidden"/>
-        <views:EditCarView Visibility="Hidden"/>
-        <views:NewRideView Visibility="Hidden"/>
-        <views:ProfileView Visibility="Hidden"/>
-        <views:EditProfileView Visibility="Hidden"/>
-        <views:RideDetailView Visibility="Hidden"/>
-        <views:RideListView Visibility="Hidden"/>
+    Title="CarPool" Width="800" Height="550" 
+    d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
 
+    <Grid>
+        <views:IntroPageLoginView Visibility="Hidden" DataContext="{Binding UserDetailViewModel}"/>
+        <views:IntroPageRegistrationView Visibility="Hidden" DataContext="{Binding UserDetailViewModel}"/>
+        <views:AddCarView Visibility="Hidden" DataContext="{Binding SelectedCarDetailViewModel}"/>
+        <views:CarDetailView Visibility="Hidden" DataContext="{Binding CarDetailViewModel}"/>
+        <views:EditCarView Visibility="Visible" DataContext="{Binding CarDetailViewModel}"/>
+        <views:NewRideView Visibility="Hidden" DataContext="{Binding RideDetailViewModel}"/>
+        <views:ProfileView Visibility="Hidden" DataContext="{Binding UserDetailViewModel}"/>
+        <views:EditProfileView Visibility="Hidden" DataContext="{Binding UserDetailViewModel}"/>
+        <views:RideDetailView Visibility="Hidden" DataContext="{Binding RideDetailViewModel}"/>
+        <views:RideListView Visibility="Hidden" DataContext="{Binding RideListViewModel}"/>
     </Grid>
 </Window>

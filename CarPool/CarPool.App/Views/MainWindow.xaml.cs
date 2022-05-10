@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarPool.App.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +18,10 @@ namespace CarPool.App.Views
 {
     public partial class MainWindow
     {
-        public MainWindow()
+        public MainWindow(MainViewModel mainViewModel)
         {
             InitializeComponent();
-        }
-
-        private void RideListView_Loaded(object sender, RoutedEventArgs e)
-        {
-
+            DataContext = mainViewModel;
         }
     }
 }

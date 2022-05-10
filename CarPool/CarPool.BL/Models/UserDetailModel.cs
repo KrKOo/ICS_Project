@@ -16,6 +16,7 @@ namespace CarPool.BL.Models
 		public string FirstName { get; set; } = FirstName;
 		public string LastName { get; set; } = LastName;
 		public string PhoneNumber { get; set; } = PhoneNumber;
+        public DateOnly DateOfBirth { get; set; } = DateOfBirth;
 		public string? PhotoUrl { get; set; }
 		public string? Info { get; set; }
 		public List<CarListModel> Cars { get; set; } = new();

@@ -21,8 +21,8 @@ namespace CarPool.App.Wrappers
 
         public string? CarModel
         {
-            get => GetValue<string>();
-            set => SetValue(value);
+            get => GetValue<string>("Model");
+            set => SetValue(value, "Model");
         }
 
         public string? LicensePlate

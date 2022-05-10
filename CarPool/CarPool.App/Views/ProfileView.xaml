@@ -7,8 +7,8 @@
                        xmlns:texts="clr-namespace:CarPool.App.Resources.Texts"
                        xmlns:viewModels="clr-namespace:CarPool.App.ViewModels"
                        mc:Ignorable="d" 
-                       d:DesignHeight="1200" d:DesignWidth="800">
-
+                       d:DesignHeight="1200" d:DesignWidth="800"
+                       d:DataContext="{d:DesignInstance viewModels:UserDetailViewModel}">
     <ScrollViewer>
         <Grid Background="{StaticResource DefaultBackGroundColor}">
             <Grid.RowDefinitions>
@@ -60,7 +60,14 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="{x:Static texts:UserProfileResources.Name_Content}" ContentStringFormat="{}{0}:" />
-                    <TextBlock Grid.Column="1" Text=""/>
+                    <TextBlock Grid.Column="1">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="Model.FirstName"/>
+                                <Binding Path="Model.LastName"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
                 </Grid>
 
                 <Grid Grid.Column="0" Grid.Row="1" Style="{StaticResource BasicRowSpacing}" >
@@ -69,7 +76,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="{x:Static texts:UserProfileResources.Phone_Content}" ContentStringFormat="{}{0}:" />
-                    <TextBlock Grid.Column="1" Text=""/>
+                    <TextBlock Grid.Column="1" Text="{Binding Model.PhoneNumber}"/>
                 </Grid>
 
                 <Grid Grid.Column="0" Grid.Row="2" Style="{StaticResource BasicRowSpacing}" >
@@ -78,11 +85,8 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="{x:Static texts:UserProfileResources.Email_Content}" ContentStringFormat="{}{0}:"/>
-                    <TextBlock Grid.Column="1" Text="" />
+                    <TextBlock Grid.Column="1" Text="{Binding Model.Email}" />
                 </Grid>
-
-
-
 
                 <Grid Grid.Column="0" Grid.Row="3" Style="{StaticResource BasicRowSpacing}" >
                     <Grid.ColumnDefinitions>
@@ -90,7 +94,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="{x:Static texts:UserProfileResources.Date_Content}" ContentStringFormat="{}{0}:"/>
-                    <TextBlock Grid.Column="1" />
+                    <TextBlock Grid.Column="1" Text="{Binding Model.DateOfBirth}"/>
                 </Grid>
 
                 <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" 
@@ -100,14 +104,14 @@
                 <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Text="{x:Static texts:Ride_Detail_Resources.About_Content}"  Style="{StaticResource H3}"/>
 
                 <Border Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1" Width="600" Height="Auto" Margin="0,5">
-                    <TextBlock Text=""/>
+                    <TextBlock Text="{Binding Model.Info}"/>
                 </Border>
             </Grid>
 
 
 
             <TextBlock Grid.Column="0" Grid.Row="4" Text="{x:Static texts:UserProfileResources.Cars_Content}"  Style="{StaticResource H3}"/>
-            <ListBox HorizontalAlignment="Stretch" Grid.Row="5" MaxWidth ="450" Height="150" Margin="200,10"  ItemsSource="{Binding Users}">
+            <ListBox HorizontalAlignment="Stretch" Grid.Row="5" MaxWidth ="450" Height="150" Margin="200,10"  ItemsSource="{Binding Model.Cars}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="Black" BorderThickness="3" Width="300" Height="Auto" Background="{StaticResource DefaultButtonForegroundColor}">
@@ -122,11 +126,11 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:CarDetailResources.Manufacturer_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="0" Grid.Column="1" Text="" />
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Manufacturer}" />
                                 <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:CarDetailResources.Model_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="" />
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CarModel}" />
                                 <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:CarDetailResources.Plate_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="2" Grid.Column="1" Text="" />
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding LicensePlate}" />
                             </Grid>
                         </Border>
                     </DataTemplate>
@@ -134,7 +138,7 @@
             </ListBox>
 
             <TextBlock Grid.Column="0" Grid.Row="6" Text="{x:Static texts:UserProfileResources.Rides_Content}"  Style="{StaticResource H3}"/>
-            <ListBox Grid.Row="7"  HorizontalAlignment="Stretch" MaxWidth ="450" Height="150" Margin="200,10" ItemsSource="{Binding Users}">
+            <ListBox Grid.Row="7"  HorizontalAlignment="Stretch" MaxWidth ="450" Height="150" Margin="200,10" ItemsSource="{Binding Model.RidesAsPassenger}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="Black" BorderThickness="3" Width="300" Height="Auto" Background="{StaticResource DefaultButtonForegroundColor}">
@@ -149,11 +153,11 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:Ride_Detail_Resources.From_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="0" Grid.Column="1" Text="" />
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding RideOrigin}" />
                                 <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:Ride_Detail_Resources.To_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="" />
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RideDestination}" />
                                 <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:Ride_Detail_Resources.When_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="2" Grid.Column="1" Text="" />
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TimeOfStart}" />
                             </Grid>
                         </Border>
                     </DataTemplate>
@@ -162,7 +166,7 @@
 
 
             <TextBlock Grid.Column="0" Grid.Row="8" Text="{x:Static texts:UserProfileResources.Drives_Content}"  Style="{StaticResource H3}"/>
-            <ListBox Grid.Row="9" HorizontalAlignment="Stretch" MaxWidth ="450" Height="150" Margin="200,10" ItemsSource="{Binding Users}">
+            <ListBox Grid.Row="9" HorizontalAlignment="Stretch" MaxWidth ="450" Height="150" Margin="200,10" ItemsSource="{Binding Model.RidesAsDriver}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="Black" BorderThickness="3" Width="300" Height="Auto" Background="{StaticResource DefaultButtonForegroundColor}">
@@ -177,11 +181,11 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:Ride_Detail_Resources.From_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="0" Grid.Column="1" Text="" />
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding RideOrigin}" />
                                 <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:Ride_Detail_Resources.To_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="" />
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RideDestination}" />
                                 <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:Ride_Detail_Resources.When_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="2" Grid.Column="1" Text="" />
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TimeOfStart}" />
                             </Grid>
                         </Border>
                     </DataTemplate>

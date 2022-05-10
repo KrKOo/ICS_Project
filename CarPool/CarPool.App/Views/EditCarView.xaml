@@ -7,7 +7,8 @@
                        xmlns:texts="clr-namespace:CarPool.App.Resources.Texts"
                        xmlns:viewModels="clr-namespace:CarPool.App.ViewModels"
                        mc:Ignorable="d" 
-                       d:DesignHeight="500" d:DesignWidth="800">
+                       d:DesignHeight="500" d:DesignWidth="800"
+                       d:DataContext="{d:DesignInstance viewModels:CarDetailViewModel}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -41,7 +42,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="{x:Static texts:NewEditCarResources.Plate_Content}"/>
-                    <TextBox Grid.Column="1" />
+                    <TextBox Grid.Column="1" Text="{Binding Model.LicensePlate}"/>
                 </Grid>
 
                 <Grid Grid.Row="1" Style="{StaticResource BasicRowSpacing}">
@@ -50,7 +51,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="{x:Static texts:NewEditCarResources.Manufacturer_Content}"/>
-                    <TextBox Grid.Column="1" />
+                    <TextBox Grid.Column="1" Text="{Binding Model.Manufacturer}"/>
                 </Grid>
 
                 <Grid Grid.Row="2" Style="{StaticResource BasicRowSpacing}">
@@ -59,7 +60,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="{x:Static texts:NewEditCarResources.Model_Content}"/>
-                    <TextBox Grid.Column="1" />
+                    <TextBox Grid.Column="1" Text="{Binding Model.CarModel}"/>
                 </Grid>
 
                 <Grid Grid.Row="3" Style="{StaticResource BasicRowSpacing}">
@@ -68,7 +69,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="{x:Static texts:NewEditCarResources.Date_Content}"/>
-                    <TextBox Grid.Column="1" />
+                    <TextBox Grid.Column="1" Text="{Binding Model.DateOfRegistration, Converter={StaticResource DateConverter}}"/>
                 </Grid>
 
                 <Grid Grid.Row="4" Style="{StaticResource BasicRowSpacing}">
@@ -77,7 +78,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="{x:Static texts:NewEditCarResources.Photo_Content}"/>
-                    <TextBox Grid.Column="1" />
+                    <TextBox Grid.Column="1" Text="{Binding Model.PhotoUrl}"/>
                 </Grid>
 
                 <Grid Grid.Row = "5" Style="{StaticResource BasicRowSpacing}">
@@ -87,9 +88,11 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="{x:Static texts:NewEditCarResources.Seats_Content}"/>
-                    <TextBox Grid.Column="1" />
+                    <TextBox Grid.Column="1" Text="{Binding Model.NumberOfSeats}"/>
                 </Grid>
-                <Button Grid.Row ="5" HorizontalAlignment="Right" Grid.RowSpan="2" x:Name="SaveButton" Content="{x:Static texts:NewEditCarResources.Save_Button}" Style="{StaticResource ButtonType2}"/>
+                <Button Grid.Row ="5" HorizontalAlignment="Right" Grid.RowSpan="2" x:Name="SaveButton" 
+                        Content="{x:Static texts:NewEditCarResources.Save_Button}" Style="{StaticResource ButtonType2}"
+                        Command="{Binding SaveCommand}"/>
             </Grid>
         </Grid>
     </Grid>

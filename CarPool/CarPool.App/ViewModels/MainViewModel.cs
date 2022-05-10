@@ -39,16 +39,22 @@ namespace CarPool.App.ViewModels
 
             mediator.Register<NewMessage<RideWrapper>>(OnRideNewMessage);
             mediator.Register<SelectedMessage<RideWrapper>>(OnRideSelected);
-            mediator.Register<DeleteMessage<RideWrapper>>(OnRideDeleted);
+            //mediator.Register<DeleteMessage<RideWrapper>>(OnRideDeleted);
 
             mediator.Register<NewMessage<CarWrapper>>(OnCarNewMessage);
             mediator.Register<SelectedMessage<CarWrapper>>(OnCarSelected);
-            mediator.Register<DeleteMessage<CarWrapper>>(OnCarDeleted);
+            //mediator.Register<DeleteMessage<CarWrapper>>(OnCarDeleted);
 
             mediator.Register<NewMessage<UserWrapper>>(OnUserNewMessage);
             mediator.Register<SelectedMessage<UserWrapper>>(OnUserSelected);
-            mediator.Register<DeleteMessage<UserWrapper>>(OnUserDeleted);
+            //mediator.Register<DeleteMessage<UserWrapper>>(OnUserDeleted);
 
+
+
+            //UserDetailViewModel.LoadAsync(Guid.Parse("06a8a2cf-ea03-4095-a3e4-aa0291fe9c75"));
+            //RideDetailViewModel.LoadAsync(Guid.Parse("0c3693ae-70bf-48a1-bfc4-7aa9bc42bbc4"));
+            CarDetailViewModel.LoadAsync(Guid.Parse("4ebd0208-8328-5d69-8c44-ec50939c0967"));
+            //SelectCar(Guid.Empty);
         }
 
         public IRideListViewModel RideListViewModel { get; }
@@ -60,16 +66,10 @@ namespace CarPool.App.ViewModels
         public IUserListViewModel UserListViewModel { get; }
         public IUserDetailViewModel UserDetailViewModel { get; }
 
-        public ObservableCollection<IRideDetailViewModel> RideDetailViewModels { get; } =
-          new ObservableCollection<IRideDetailViewModel>();
-        public ObservableCollection<ICarDetailViewModel> CarDetailViewModels { get; } =
-          new ObservableCollection<ICarDetailViewModel>();
-        public ObservableCollection<IUserDetailViewModel> UserDetailViewModels { get; } =
-          new ObservableCollection<IUserDetailViewModel>();
-
         public IRideDetailViewModel? SelectedRideDetailViewModel { get; set; }
         public ICarDetailViewModel? SelectedCarDetailViewModel { get; set; }
         public IUserDetailViewModel? SelectedUserDetailViewModel { get; set; }
+
         public void OnRideNewMessage(NewMessage<RideWrapper> _) {
             SelectRide(Guid.Empty);
         }
@@ -92,14 +92,8 @@ namespace CarPool.App.ViewModels
             }
             else
             {
-                var rideDetailViewModel = RideDetailViewModels.SingleOrDefault(vm => vm.Model?.Id == id);
-                if (rideDetailViewModel == null)
-                {
-                    rideDetailViewModel = _rideDetailViewModelFactory.Create();
-                    RideDetailViewModels.Add(rideDetailViewModel);
-                    rideDetailViewModel.LoadAsync(id.Value);
-                }
-
+                var rideDetailViewModel = _rideDetailViewModelFactory.Create();
+                rideDetailViewModel.LoadAsync(id.Value);
                 SelectedRideDetailViewModel = rideDetailViewModel;
             }
         }
@@ -112,14 +106,8 @@ namespace CarPool.App.ViewModels
             }
             else
             {
-                var carDetailViewModel = CarDetailViewModels.SingleOrDefault(vm => vm.Model?.Id == id);
-                if (carDetailViewModel == null)
-                {
-                    carDetailViewModel = _carDetailViewModelFactory.Create();
-                    CarDetailViewModels.Add(carDetailViewModel);
-                    carDetailViewModel.LoadAsync(id.Value);
-                }
-
+                var carDetailViewModel = _carDetailViewModelFactory.Create();
+                carDetailViewModel.LoadAsync(id.Value);
                 SelectedCarDetailViewModel = carDetailViewModel;
             }
         }
@@ -132,42 +120,9 @@ namespace CarPool.App.ViewModels
             }
             else
             {
-                var userDetailViewModel = UserDetailViewModels.SingleOrDefault(vm => vm.Model?.Id == id);
-                if (userDetailViewModel == null)
-                {
-                    userDetailViewModel = _userDetailViewModelFactory.Create();
-                    UserDetailViewModels.Add(userDetailViewModel);
-                    userDetailViewModel.LoadAsync(id.Value);
-                }
-
+                var userDetailViewModel = _userDetailViewModelFactory.Create();    
+                userDetailViewModel.LoadAsync(id.Value);
                 SelectedUserDetailViewModel = userDetailViewModel;
-            }
-        }
-
-        private void OnRideDeleted(DeleteMessage<RideWrapper> message)
-        {
-            var ride = RideDetailViewModels.SingleOrDefault(i => i.Model?.Id == message.Id);
-            if (ride != null)
-            {
-                RideDetailViewModels.Remove(ride);
-            }
-        }
-
-        private void OnCarDeleted(DeleteMessage<CarWrapper> message)
-        {
-            var ride = RideDetailViewModels.SingleOrDefault(i => i.Model?.Id == message.Id);
-            if (ride != null)
-            {
-                RideDetailViewModels.Remove(ride);
-            }
-        }
-
-        private void OnUserDeleted(DeleteMessage<UserWrapper> message)
-        {
-            var ride = RideDetailViewModels.SingleOrDefault(i => i.Model?.Id == message.Id);
-            if (ride != null)
-            {
-                RideDetailViewModels.Remove(ride);
             }
         }
 

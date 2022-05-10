@@ -35,8 +35,8 @@ public static class RideSeeds
 
     static RideSeeds()
     {
-        Ride1.Passengers.Add(UserRideSeeds.UserRide1);
-        Ride2.Passengers.Add(UserRideSeeds.UserRide2);
+        Ride1.Passengers.Add(UserRideSeeds.UserRide2);
+        Ride2.Passengers.Add(UserRideSeeds.UserRide1);
     }
 
 	public static void Seed(this ModelBuilder modelBuilder)

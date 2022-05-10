@@ -7,7 +7,8 @@
                        xmlns:texts="clr-namespace:CarPool.App.Resources.Texts"
                        xmlns:viewModels="clr-namespace:CarPool.App.ViewModels"
                        mc:Ignorable="d" 
-                       d:DesignHeight="500" d:DesignWidth="800">
+                       d:DesignHeight="500" d:DesignWidth="800"
+                       d:DataContext="{d:DesignInstance viewModels:CarDetailViewModel}">
     <ScrollViewer>
     <Grid>
         <Grid.RowDefinitions>
@@ -44,7 +45,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="{x:Static texts:CarDetailResources.Model_Content}" ContentStringFormat="{}{0}:" />
-                    <TextBlock Grid.Column="1" />
+                    <TextBlock Grid.Column="1" Text="{Binding Model.CarModel}"/>
                 </Grid>
                 <Grid Grid.Row="1" Style="{StaticResource BasicRowSpacing}" >
                     <Grid.ColumnDefinitions>
@@ -52,7 +53,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="{x:Static texts:CarDetailResources.Manufacturer_Content}" ContentStringFormat="{}{0}:" />
-                    <TextBlock Grid.Column="1" />
+                    <TextBlock Grid.Column="1" Text="{Binding Model.Manufacturer}"/>
                 </Grid>
 
                 <Grid Grid.Row="2" Style="{StaticResource BasicRowSpacing}" >
@@ -61,7 +62,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="{x:Static texts:CarDetailResources.Seats_Content}" ContentStringFormat="{}{0}:"/>
-                    <TextBlock Grid.Column="1" />
+                    <TextBlock Grid.Column="1" Text="{Binding Model.NumberOfSeats}"/>
                 </Grid>
 
                 <Grid Grid.Row="3" Style="{StaticResource BasicRowSpacing}" >
@@ -70,7 +71,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="{x:Static texts:CarDetailResources.Date_Content}" ContentStringFormat="{}{0}:"/>
-                    <TextBlock Grid.Column="1" />
+                    <TextBlock Grid.Column="1" Text="{Binding Model.DateOfRegistration}"/>
                 </Grid>
 
                 <Grid Grid.Row="4" Style="{StaticResource BasicRowSpacing}" >
@@ -79,16 +80,14 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="{x:Static texts:CarDetailResources.Plate_Content}" ContentStringFormat="{}{0}:"/>
-                    <TextBlock Grid.Column="1" />
+                    <TextBlock Grid.Column="1" Text="{Binding Model.LicensePlate}"/>
                 </Grid>
             </Grid>
         </Border>
 
         <Image Grid.Row="1" Grid.Column="1"
-               Source="https://www.afrik21.africa/wp-content/uploads/2018/06/voiture-solaire-1.jpg"
-               Margin="0,0,5,0"/>
- 
-
+            Source="{Binding Model.PhotoUrl}"
+            Margin="0,0,5,0"/>
     </Grid>
     </ScrollViewer>
 </local:UserControlBase>
