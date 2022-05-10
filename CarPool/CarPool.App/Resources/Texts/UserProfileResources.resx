@@ -121,7 +121,7 @@
     <value>ABOUT</value>
   </data>
   <data name="Back_Button" xml:space="preserve">
-    <value>Go Back</value>
+    <value>GO BACK</value>
   </data>
   <data name="Cars_Content" xml:space="preserve">
     <value>Your Cars</value>
@@ -129,8 +129,11 @@
   <data name="Date_Content" xml:space="preserve">
     <value>Date of Birth</value>
   </data>
-  <data name="Drive_Button" xml:space="preserve">
-    <value>DRIVE</value>
+  <data name="Drives_Content" xml:space="preserve">
+    <value>Your Drives</value>
+  </data>
+  <data name="Edit_Button" xml:space="preserve">
+    <value>EDIT</value>
   </data>
   <data name="Email_Content" xml:space="preserve">
     <value>E-mail</value>
@@ -139,22 +142,19 @@
     <value>From</value>
   </data>
   <data name="Heading_Content" xml:space="preserve">
-    <value>Your Profile</value>
+    <value>PROFILE</value>
   </data>
   <data name="Name_Content" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="New_Car_Button" xml:space="preserve">
-    <value>+</value>
+    <value>ADD CAR</value>
   </data>
   <data name="Phone_Content" xml:space="preserve">
     <value>Phone Number</value>
   </data>
   <data name="Rides_Content" xml:space="preserve">
     <value>Your Rides</value>
-  </data>
-  <data name="Ride_Button" xml:space="preserve">
-    <value>RIDE</value>
   </data>
   <data name="To_Content" xml:space="preserve">
     <value>To</value>

@@ -57,10 +57,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>LoginResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Texts\NewEditCar.Designer.cs">
+    <Compile Update="Resources\Texts\NewEditCarResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>NewEditCar.resx</DependentUpon>
+      <DependentUpon>NewEditCarResources.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\Texts\NewRideResources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -91,23 +91,23 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Resources\Texts\CarDetailResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CarDetailResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\EditProfileResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>EditProfileResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\LoginResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LoginResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Texts\NewEditCar.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>NewEditCar.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="Resources\Texts\NewEditCarResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NewEditCarResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\NewRideResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>NewRideResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\RegisterResources.resx">
@@ -115,15 +115,15 @@
       <LastGenOutput>RegisterResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\RideListingResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RideListingResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\Ride_Detail_Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Ride_Detail_Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Texts\UserProfileResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserProfileResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

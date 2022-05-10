@@ -16,18 +16,14 @@ using System.Windows.Shapes;
 namespace CarPool.App.Views
 {
     /// <summary>
-    /// Interaction logic for RideListView.xaml
+    /// Interaction logic for EditProfileView.xaml
     /// </summary>
-    public partial class RideListView : UserControlBase
+    public partial class EditProfileView 
     {
-        public RideListView()
+        public EditProfileView()
         {
             InitializeComponent();
         }
 
-        private void CreateRideButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

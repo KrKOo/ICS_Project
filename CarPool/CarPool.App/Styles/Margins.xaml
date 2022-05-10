@@ -7,4 +7,12 @@
     <Style TargetType="FrameworkElement" x:Key="BasicTopBottomMargin">
         <Setter Property="Margin" Value="0,10,0,10"/>
     </Style>
+
+    <Style TargetType="FrameworkElement" x:Key="BasicSidesMargin">
+        <Setter Property="Margin" Value="20,0,20,0"/>
+    </Style>
+
+    <Style TargetType="FrameworkElement" x:Key="SidesMargin2">
+        <Setter Property="Margin" Value="40,0,40,0"/>
+    </Style>
 </ResourceDictionary>

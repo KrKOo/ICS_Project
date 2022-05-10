@@ -18,11 +18,16 @@ namespace CarPool.App.Views
     /// <summary>
     /// Interaction logic for NewRideView.xaml
     /// </summary>
-    public partial class NewRideView : UserControl
+    public partial class NewRideView 
     {
         public NewRideView()
         {
             InitializeComponent();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

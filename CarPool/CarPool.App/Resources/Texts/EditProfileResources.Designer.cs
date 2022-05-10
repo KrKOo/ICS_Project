@@ -22,7 +22,7 @@ namespace CarPool.App.Resources.Texts {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class EditProfileResources {
+    public class EditProfileResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace CarPool.App.Resources.Texts {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CarPool.App.Resources.Texts.EditProfileResources", typeof(EditProfileResources).Assembly);
@@ -51,7 +51,7 @@ namespace CarPool.App.Resources.Texts {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,16 +63,16 @@ namespace CarPool.App.Resources.Texts {
         /// <summary>
         ///   Looks up a localized string similar to ABOUT.
         /// </summary>
-        internal static string About_Content {
+        public static string About_Content {
             get {
                 return ResourceManager.GetString("About_Content", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Go Back.
+        ///   Looks up a localized string similar to GO BACK.
         /// </summary>
-        internal static string Back_Button {
+        public static string Back_Button {
             get {
                 return ResourceManager.GetString("Back_Button", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace CarPool.App.Resources.Texts {
         /// <summary>
         ///   Looks up a localized string similar to Date of Birth.
         /// </summary>
-        internal static string Date_Content {
+        public static string Date_Content {
             get {
                 return ResourceManager.GetString("Date_Content", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace CarPool.App.Resources.Texts {
         /// <summary>
         ///   Looks up a localized string similar to E-mail.
         /// </summary>
-        internal static string Email_Content {
+        public static string Email_Content {
             get {
                 return ResourceManager.GetString("Email_Content", resourceCulture);
             }
@@ -99,16 +99,16 @@ namespace CarPool.App.Resources.Texts {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        internal static string First_Name_Content {
+        public static string First_Name_Content {
             get {
                 return ResourceManager.GetString("First_Name_Content", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit your Profile.
+        ///   Looks up a localized string similar to EDIT YOUR PROFILE.
         /// </summary>
-        internal static string Heading_Content {
+        public static string Heading_Content {
             get {
                 return ResourceManager.GetString("Heading_Content", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace CarPool.App.Resources.Texts {
         /// <summary>
         ///   Looks up a localized string similar to Surname.
         /// </summary>
-        internal static string Last_Name_Content {
+        public static string Last_Name_Content {
             get {
                 return ResourceManager.GetString("Last_Name_Content", resourceCulture);
             }
@@ -126,16 +126,25 @@ namespace CarPool.App.Resources.Texts {
         /// <summary>
         ///   Looks up a localized string similar to Phone Number.
         /// </summary>
-        internal static string Phone_Content {
+        public static string Phone_Content {
             get {
                 return ResourceManager.GetString("Phone_Content", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Photo URL.
+        /// </summary>
+        public static string Photo_Content {
+            get {
+                return ResourceManager.GetString("Photo_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SAVE.
         /// </summary>
-        internal static string Save_Button {
+        public static string Save_Button {
             get {
                 return ResourceManager.GetString("Save_Button", resourceCulture);
             }

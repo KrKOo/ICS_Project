@@ -18,7 +18,7 @@ namespace CarPool.App.Views
     /// <summary>
     /// Interaction logic for RegisterView.xaml
     /// </summary>
-    public partial class RegisterView : UserControl
+    public partial class RegisterView 
     {
         public RegisterView()
         {

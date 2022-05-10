@@ -22,7 +22,7 @@ namespace CarPool.App.Resources.Texts {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class RideListingResources {
+    public class RideListingResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace CarPool.App.Resources.Texts {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CarPool.App.Resources.Texts.RideListingResources", typeof(RideListingResources).Assembly);
@@ -51,12 +51,93 @@ namespace CarPool.App.Resources.Texts {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ABOUT.
+        /// </summary>
+        public static string About_Content {
+            get {
+                return ResourceManager.GetString("About_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to APPLY.
+        /// </summary>
+        public static string Apply_Button {
+            get {
+                return ResourceManager.GetString("Apply_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to +.
+        /// </summary>
+        public static string Create_Button {
+            get {
+                return ResourceManager.GetString("Create_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        public static string Duration_Content {
+            get {
+                return ResourceManager.GetString("Duration_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From.
+        /// </summary>
+        public static string From_Content {
+            get {
+                return ResourceManager.GetString("From_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LOG OUT.
+        /// </summary>
+        public static string LogOut_Button {
+            get {
+                return ResourceManager.GetString("LogOut_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \[T]/.
+        /// </summary>
+        public static string Profile_Button {
+            get {
+                return ResourceManager.GetString("Profile_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        public static string To_Content {
+            get {
+                return ResourceManager.GetString("To_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When.
+        /// </summary>
+        public static string When_Content {
+            get {
+                return ResourceManager.GetString("When_Content", resourceCulture);
             }
         }
     }

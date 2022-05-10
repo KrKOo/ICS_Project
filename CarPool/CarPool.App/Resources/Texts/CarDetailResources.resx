@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Back_Button" xml:space="preserve">
-    <value>Go Back</value>
+    <value>GO BACK</value>
   </data>
   <data name="Date_Content" xml:space="preserve">
     <value>Date of Registration</value>
@@ -126,8 +126,11 @@
   <data name="Delete_Button" xml:space="preserve">
     <value>DELETE</value>
   </data>
+  <data name="Edit_Button" xml:space="preserve">
+    <value>EDIT</value>
+  </data>
   <data name="Heading_Content" xml:space="preserve">
-    <value>Manu</value>
+    <value>CAR DETAILS</value>
   </data>
   <data name="Manufacturer_Content" xml:space="preserve">
     <value>Manufacturer</value>

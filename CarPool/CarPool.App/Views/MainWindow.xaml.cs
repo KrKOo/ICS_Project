@@ -22,7 +22,7 @@ namespace CarPool.App.Views
             InitializeComponent();
         }
 
-        private void IntroPageView_Loaded(object sender, RoutedEventArgs e)
+        private void RideListView_Loaded(object sender, RoutedEventArgs e)
         {
 
         }

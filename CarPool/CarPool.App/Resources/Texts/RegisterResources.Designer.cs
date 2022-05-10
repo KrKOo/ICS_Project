@@ -70,7 +70,7 @@ namespace CarPool.App.Resources.Texts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Complete.
+        ///   Looks up a localized string similar to COMPLETE.
         /// </summary>
         public static string Button_Content {
             get {

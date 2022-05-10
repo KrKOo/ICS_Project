@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Back_Button" xml:space="preserve">
-    <value>Go Back</value>
+    <value>GO BACK</value>
   </data>
   <data name="Car_Content" xml:space="preserve">
     <value>Choose a car</value>
@@ -130,7 +130,7 @@
     <value>Add some description</value>
   </data>
   <data name="Duration_Content" xml:space="preserve">
-    <value>Expected duration of ride</value>
+    <value>Expected duration</value>
   </data>
   <data name="From_Content" xml:space="preserve">
     <value>From</value>

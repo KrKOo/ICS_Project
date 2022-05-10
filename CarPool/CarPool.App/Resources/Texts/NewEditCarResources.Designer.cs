@@ -22,24 +22,24 @@ namespace CarPool.App.Resources.Texts {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class NewEditCar {
+    public class NewEditCarResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal NewEditCar() {
+        internal NewEditCarResources() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CarPool.App.Resources.Texts.NewEditCar", typeof(NewEditCar).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CarPool.App.Resources.Texts.NewEditCarResources", typeof(NewEditCarResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace CarPool.App.Resources.Texts {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,18 +61,18 @@ namespace CarPool.App.Resources.Texts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add your Car.
+        ///   Looks up a localized string similar to ADD YOUR CAR.
         /// </summary>
-        internal static string Add_Heading_Content {
+        public static string Add_Heading_Content {
             get {
                 return ResourceManager.GetString("Add_Heading_Content", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Go Back.
+        ///   Looks up a localized string similar to GO BACK.
         /// </summary>
-        internal static string Back_Button {
+        public static string Back_Button {
             get {
                 return ResourceManager.GetString("Back_Button", resourceCulture);
             }
@@ -81,16 +81,16 @@ namespace CarPool.App.Resources.Texts {
         /// <summary>
         ///   Looks up a localized string similar to Date of Registration.
         /// </summary>
-        internal static string Date_Content {
+        public static string Date_Content {
             get {
                 return ResourceManager.GetString("Date_Content", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit your Car.
+        ///   Looks up a localized string similar to EDIT YOUR CAR.
         /// </summary>
-        internal static string Edit_Heading_Content {
+        public static string Edit_Heading_Content {
             get {
                 return ResourceManager.GetString("Edit_Heading_Content", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace CarPool.App.Resources.Texts {
         /// <summary>
         ///   Looks up a localized string similar to Manufacturer.
         /// </summary>
-        internal static string Manufacturer_Content {
+        public static string Manufacturer_Content {
             get {
                 return ResourceManager.GetString("Manufacturer_Content", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace CarPool.App.Resources.Texts {
         /// <summary>
         ///   Looks up a localized string similar to Model.
         /// </summary>
-        internal static string Model_Content {
+        public static string Model_Content {
             get {
                 return ResourceManager.GetString("Model_Content", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace CarPool.App.Resources.Texts {
         /// <summary>
         ///   Looks up a localized string similar to Photo URL.
         /// </summary>
-        internal static string Photo_Content {
+        public static string Photo_Content {
             get {
                 return ResourceManager.GetString("Photo_Content", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace CarPool.App.Resources.Texts {
         /// <summary>
         ///   Looks up a localized string similar to Licence Plate.
         /// </summary>
-        internal static string Plate_Content {
+        public static string Plate_Content {
             get {
                 return ResourceManager.GetString("Plate_Content", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace CarPool.App.Resources.Texts {
         /// <summary>
         ///   Looks up a localized string similar to SAVE.
         /// </summary>
-        internal static string Save_Button {
+        public static string Save_Button {
             get {
                 return ResourceManager.GetString("Save_Button", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace CarPool.App.Resources.Texts {
         /// <summary>
         ///   Looks up a localized string similar to Number of Seats.
         /// </summary>
-        internal static string Seats_Content {
+        public static string Seats_Content {
             get {
                 return ResourceManager.GetString("Seats_Content", resourceCulture);
             }

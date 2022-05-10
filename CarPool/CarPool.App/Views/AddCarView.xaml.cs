@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CarPool.App.Views
 {
     /// <summary>
-    /// Interaction logic for IntroPageView.xaml
+    /// Interaction logic for AddCarView.xaml
     /// </summary>
-    public partial class IntroPageView : UserControl
+    public partial class AddCarView
     {
-        public IntroPageView()
+        public AddCarView()
         {
             InitializeComponent();
         }

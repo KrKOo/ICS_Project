@@ -8,14 +8,14 @@
              mc:Ignorable="d" 
              xmlns:viewModels="clr-namespace:CarPool.App.ViewModels"
              d:DataContext="{d:DesignInstance viewModels:RideListViewModel}"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="500" d:DesignWidth="800">
+    <Grid Background="{StaticResource DefaultBackGroundColor}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.09*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0"  Background="{StaticResource HeaderColor}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition/>
@@ -23,53 +23,59 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" FontSize="30" HorizontalAlignment="Stretch">TEAM 31 CAR RIDE SHARE</TextBlock>
-            <Button x:Name="CreateRideButton" Grid.Column="1" Content="Create" />
-            <Button x:Name="ProfileButton" Grid.Column="2" Content="Profile" />
-            <Button x:Name="LogOutButton" Grid.Column="3" Content="LogOut" />
+            <TextBlock Grid.Column="0" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"><Bold>TEAM 31</Bold> CAR RIDE SHARE</TextBlock>
+            <Button x:Name="CreateRideButton" Grid.Column="1" Content="{x:Static texts:RideListingResources.Create_Button}" Style="{StaticResource ButtonType3Add}" Click="CreateRideButton_Click"/>
+            <Button x:Name="ProfileButton" Grid.Column="2" Content="{x:Static texts:RideListingResources.Profile_Button}" Style="{StaticResource ButtonType3}" />
+            <Button x:Name="LogOutButton" Grid.Column="3" Content="{x:Static texts:RideListingResources.LogOut_Button}" Style="{StaticResource ButtonType3}" />
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Background="{StaticResource HeaderColor}" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition  Width="*"/>
+                <ColumnDefinition  Width="2*"/>
                 <ColumnDefinition  Width="*"/>
+                <ColumnDefinition  Width="2*"/>
                 <ColumnDefinition  Width="*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <TextBlock Text="From:" />
-                <TextBox Width="220"/>
-            </StackPanel>
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Text="To:" />
-                <TextBox Width="220" />
-            </StackPanel>
-            <Button x:Name="ApplyButton" Grid.Column="2" Content="Apply"/>
+            <Label Grid.Column="0" Content="{x:Static texts:RideListingResources.From_Content}" Margin="15,0" />
+            <TextBox Grid.Column="1" HorizontalAlignment="Stretch" />
+
+            <Label Grid.Column="2" Content="{x:Static texts:RideListingResources.To_Content}" Margin="15,0"/>
+            <TextBox Grid.Column="3" HorizontalAlignment="Stretch"/>
+
+            <Button x:Name="ApplyButton" Grid.Column="4" Content="{x:Static texts:RideListingResources.Apply_Button}" Style="{StaticResource ButtonType4}"/>
         </Grid>
 
         <ListBox HorizontalAlignment="Stretch" Margin="10" Grid.Row="2" ItemsSource="{Binding Rides}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label>From:</Label>
-                            <TextBlock Text="{Binding RideOrigin}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label>To:</Label>
-                            <TextBlock Text="{Binding RideDestination}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock>When</TextBlock>
-                            <TextBlock Text="{Binding TimeOfStart}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock>Duration:</TextBlock>
-                            <TextBlock Text="{Binding Duration}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock>ABOUT:</TextBlock>
-                            <TextBlock Text="{Binding Info}"/>
-                        </StackPanel>
-                    </StackPanel>
+                    <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="Auto" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:RideListingResources.From_Content}"  ContentStringFormat="{}{0}:"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding RideOrigin}"/>
+
+                            <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:RideListingResources.To_Content}"  ContentStringFormat="{}{0}:"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding RideDestination}"/>
+
+                            <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:RideListingResources.When_Content}"  ContentStringFormat="{}{0}:"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding TimeOfStart}"/>
+
+                            <Label Grid.Row="3" Grid.Column="0" Content="{x:Static texts:RideListingResources.Duration_Content}"  ContentStringFormat="{}{0}:"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Duration}"/>
+
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

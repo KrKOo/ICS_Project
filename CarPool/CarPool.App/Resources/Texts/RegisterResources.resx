@@ -121,7 +121,7 @@
     <value>Day of Birth</value>
   </data>
   <data name="Button_Content" xml:space="preserve">
-    <value>Complete</value>
+    <value>COMPLETE</value>
   </data>
   <data name="Email_Content" xml:space="preserve">
     <value>E-mail</value>

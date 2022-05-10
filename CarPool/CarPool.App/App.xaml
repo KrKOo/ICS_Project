@@ -8,7 +8,10 @@
                 <ResourceDictionary Source="Styles/Headings.xaml"/>
                 <ResourceDictionary Source="Styles/Buttons.xaml"/>
                 <ResourceDictionary Source="Styles/Margins.xaml"/>
+                <ResourceDictionary Source="Styles/TextElements.xaml"/>
                 <ResourceDictionary Source="Styles/GridSpacing.xaml"/>
+                <ResourceDictionary Source="Styles/Label.xaml"/>
+                <ResourceDictionary Source="Styles/Colors.xaml"/>
              </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Brush x:Key="DefaultBackGroundColor">Gray</Brush>
+    <Brush x:Key="DefaultForegroundColor">White</Brush>
+    <Brush x:Key="DefaultButtonBackgroundColor">Black</Brush>
+    <Brush x:Key="DefaultButtonForegroundColor">White</Brush>
+    <Brush x:Key="HeaderColor">LightSlateGray</Brush>
+</ResourceDictionary>

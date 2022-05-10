@@ -10,4 +10,10 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="40"/>
     </Style>
+
+    <Style TargetType="TextBlock" x:Key="H3">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="25"/>
+    </Style>
 </ResourceDictionary>
