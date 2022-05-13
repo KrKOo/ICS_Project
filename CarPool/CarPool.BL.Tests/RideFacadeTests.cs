@@ -11,8 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;
 
-
-
 namespace CarPool.BL.Tests
 {
 
@@ -254,6 +252,19 @@ namespace CarPool.BL.Tests
 			await _facadeSUT.DeleteAsync(RideSeeds.RideEntity1.Id);
 		}
 
+		[Fact]
+		public async Task GetRideByOriginAndDestination_DoesNotThrowAndEqualsSeeded()
+		{
+			//Arrange
+			var detailModel = Mapper.Map<RideListModel>(RideSeeds.RideEntity1);
+
+			//Act
+			var returnedModel = await _facadeSUT.GetRideByOriginAndDestinationAsync(detailModel.RideOrigin, detailModel.RideDestination);
+
+			//Assert
+			Assert.Contains(detailModel, returnedModel);
+		}
+
 		private static void FixIds(RideDetailModel expectedModel, RideDetailModel returnedModel)
 		{
 			returnedModel.Id = expectedModel.Id;
@@ -275,15 +286,4 @@ namespace CarPool.BL.Tests
 			}
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-
 }
