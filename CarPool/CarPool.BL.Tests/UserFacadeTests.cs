@@ -115,6 +115,19 @@ namespace CarPool.BL.Tests
 		}
 
 
+		[Fact]
+		public async Task GetUserByEmailAsync_DoesNotThrowAndEqualsSeeded()
+		{
+			//Arrange
+			var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
+
+			//Act
+			var returnedModel = await _facadeSUT.GetUserByEmailAsync(detailModel.Email);
+
+			//Assert
+			DeepAssert.Equal(detailModel, returnedModel);
+		}
+
 		private static void FixIds(UserDetailModel expectedModel, UserDetailModel returnedModel)
 		{
 			returnedModel.Id = expectedModel.Id;

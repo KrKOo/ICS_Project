@@ -24,8 +24,8 @@ public class UserFacade : CRUDFacade<UserEntity, UserListModel, UserDetailModel>
 		var query = uow
 			.GetRepository<UserEntity>()
 			.Get()
-			.Where(e => e.Email.Contains(Email));
+			.Where(e => e.Email.Equals(Email));
 
-		return await _mapper.ProjectTo<UserDetailModel>(query).SingleOrDefaultAsync().ConfigureAwait(false); // ??
+		return await _mapper.ProjectTo<UserDetailModel>(query).FirstOrDefaultAsync().ConfigureAwait(false);
 	}
 }
