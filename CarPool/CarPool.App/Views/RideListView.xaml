@@ -26,7 +26,7 @@
 
             <TextBlock Grid.Column="0" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"><Bold>TEAM 31</Bold> CAR RIDE SHARE</TextBlock>
             <Button x:Name="CreateRideButton" Grid.Column="1" Content="{x:Static texts:RideListingResources.Create_Button}" Style="{StaticResource ButtonType3Add}" Click="CreateRideButton_Click"/>
-            <Button x:Name="ProfileButton" Grid.Column="2" Content="{x:Static texts:RideListingResources.Profile_Button}" Style="{StaticResource ButtonType3}" />
+            <Button x:Name="ProfileButton" Grid.Column="2" Content="{x:Static texts:RideListingResources.Profile_Button}" Style="{StaticResource ButtonType3}" Command="{Binding RedirectToProfileScreenCommand}" />
             <Button x:Name="LogOutButton" Grid.Column="3" Content="{x:Static texts:RideListingResources.LogOut_Button}" Style="{StaticResource ButtonType3}" />
         </Grid>
 

@@ -21,7 +21,5 @@ namespace CarPool.App.ViewModels
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         public virtual void LoadInDesignMode() { }
-
-        public UserWrapper LoggedUser;
     }
 }

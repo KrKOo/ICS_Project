@@ -14,6 +14,7 @@ using System.Threading;
 using System.Windows;
 using CarPool.App.Factories;
 using CarPool.App.Settings;
+using CarPool.App.ViewModels.Interfaces;
 using CarPool.BL;
 using CarPool.BL.Facades;
 using CarPool.DAL.Factories;
@@ -62,13 +63,17 @@ namespace CarPool.App
             services.AddSingleton<MainViewModel>();
 
             services.AddSingleton<IRideListViewModel, RideListViewModel>();
-            services.AddFactory<IRideDetailViewModel, RideDetailViewModel>();
+            services.AddSingleton<IRideDetailViewModel, RideDetailViewModel>();
 
             services.AddSingleton<ICarListViewModel, CarListViewModel>();
-            services.AddFactory<ICarDetailViewModel, CarDetailViewModel>();
+            services.AddSingleton<ICarDetailViewModel, CarDetailViewModel>();
 
             services.AddSingleton<IUserListViewModel, UserListViewModel>();
-            services.AddFactory<IUserDetailViewModel, UserDetailViewModel>();
+            services.AddSingleton<IUserDetailViewModel, UserDetailViewModel>();
+
+            services.AddSingleton<ILoginViewModel, LoginViewModel>();
+            services.AddSingleton<IRegisterViewModel, RegisterViewModel>();
+            services.AddSingleton<IUserProfileViewModel, UserProfileViewModel>();
         }
 
         protected override async void OnStartup(StartupEventArgs e)

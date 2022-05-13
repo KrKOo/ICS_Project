@@ -24,6 +24,7 @@ namespace CarPool.App.ViewModels
             _mediator = mediator;
 
             RideSelectedCommand = new RelayCommand<RideListModel>(RideSelected);
+            RedirectToProfileScreenCommand = new RelayCommand(RedirectToProfileScreen);
             RideNewCommand = new RelayCommand(RideNew);
 
             mediator.Register<UpdateMessage<RideWrapper>>(RideUpdated);
@@ -34,6 +35,8 @@ namespace CarPool.App.ViewModels
         public ICommand RideNewCommand { get; }
 
         public ICommand RideSelectedCommand { get; }
+
+        public ICommand RedirectToProfileScreenCommand { get; set; }
 
         private void RideSelected(RideListModel? rideListModel)
         {
@@ -57,17 +60,9 @@ namespace CarPool.App.ViewModels
             Rides.AddRange(rides);
         }
 
-        public override void LoadInDesignMode()
+        public void RedirectToProfileScreen()
         {
-            Rides.Add(new RideListModel(
-                TimeOfStart: new DateTime(2021, 12, 3, 17, 18, 19),
-                Duration: new TimeSpan(3, 12, 34),
-                RideOrigin: "Bratislava",
-                RideDestination: "Brno"
-            )
-            {
-                Info= "Yeah.. back to FIT again :smiling_face_with_tear:"
-            });
-        }       
+            _mediator.Send(new RedirectToProfileScreenMessage());
+        }
     }
 }

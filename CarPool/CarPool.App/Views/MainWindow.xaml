@@ -10,16 +10,49 @@
     Title="CarPool" Width="800" Height="550" 
     d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
 
+       <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
+            <views:IntroPageLoginView DataContext="{Binding }"/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:RegisterViewModel}">
+            <views:IntroPageRegistrationView  DataContext="{Binding }"/>
+        </DataTemplate>
+
+        <!--<DataTemplate DataType="{x:Type viewModels:AddCarViewModel}">
+            <views:AddCarView  DataContext="{Binding }"/>
+        </DataTemplate>-->
+
+        <DataTemplate DataType="{x:Type viewModels:CarDetailViewModel}">
+            <views:CarDetailView  DataContext="{Binding }"/>
+        </DataTemplate>
+
+        <!--<DataTemplate DataType="{x:Type viewModels:EditCarViewModel}">
+            <views:EditCarView DataContext="{Binding }"/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:NewRideViewModel}">
+            <views:NewRideView  DataContext="{Binding }"/>
+        </DataTemplate>-->
+
+        <DataTemplate DataType="{x:Type viewModels:UserProfileViewModel}">
+            <views:ProfileView DataContext="{Binding }"/>
+        </DataTemplate>
+
+        <!--<DataTemplate DataType="{x:Type viewModels:EditUserDetailViewModel}">
+            <views:EditProfileView DataContext="{Binding }"/>
+        </DataTemplate>-->
+
+        <DataTemplate DataType="{x:Type viewModels:RideDetailViewModel}">
+            <views:RideDetailView DataContext="{Binding }"/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:RideListViewModel}">
+            <views:RideListView DataContext="{Binding }"/>
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
-        <views:IntroPageLoginView Visibility="Hidden" DataContext="{Binding UserDetailViewModel}"/>
-        <views:IntroPageRegistrationView Visibility="Hidden" DataContext="{Binding UserDetailViewModel}"/>
-        <views:AddCarView Visibility="Hidden" DataContext="{Binding SelectedCarDetailViewModel}"/>
-        <views:CarDetailView Visibility="Hidden" DataContext="{Binding CarDetailViewModel}"/>
-        <views:EditCarView Visibility="Visible" DataContext="{Binding CarDetailViewModel}"/>
-        <views:NewRideView Visibility="Hidden" DataContext="{Binding RideDetailViewModel}"/>
-        <views:ProfileView Visibility="Hidden" DataContext="{Binding UserDetailViewModel}"/>
-        <views:EditProfileView Visibility="Hidden" DataContext="{Binding UserDetailViewModel}"/>
-        <views:RideDetailView Visibility="Hidden" DataContext="{Binding RideDetailViewModel}"/>
-        <views:RideListView Visibility="Hidden" DataContext="{Binding RideListViewModel}"/>
+        <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>
