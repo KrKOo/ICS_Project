@@ -2,7 +2,7 @@
 
 namespace CarPool.App.ViewModels
 {
-    public interface IUserDetailViewModel : IDetailViewModel<UserWrapper>
+    public interface IAddCarViewModel : IDetailViewModel<CarWrapper>
     {
     }
 }

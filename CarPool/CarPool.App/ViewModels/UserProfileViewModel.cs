@@ -28,9 +28,15 @@ namespace CarPool.App.ViewModels
             _mediator = mediator;
             Model = UserDetailModel.Empty;
             mediator.Register<UserLoggedMessage>(UserLogged);
+            mediator.Register<UpdateMessage<UserWrapper>>(UserUpdated);
 
+            RedirectToRideListCommand = new RelayCommand(RedirectToRideListScreen);
+            RedirectToUserEditCommand = new RelayCommand(RedirectToUserEditScreen);
+            RedirectToAddCarScreenCommand = new RelayCommand(RedirectToAddCarScreen);
         }
-
+        public ICommand RedirectToRideListCommand { get; set; }
+        public ICommand RedirectToUserEditCommand { get; set; }
+        public ICommand RedirectToAddCarScreenCommand { get; set; }
         public UserWrapper? Model { get; private set; }
 
         public Task DeleteAsync()
@@ -43,17 +49,31 @@ namespace CarPool.App.ViewModels
             throw new NotImplementedException();
         }
 
-        public Task LoadAsync(Guid id)
+        public async Task LoadAsync(Guid id)
         {
-            throw new NotImplementedException();
+            Model = await _UserFacade.GetAsync(id) ?? UserDetailModel.Empty;
         }
+
+        private async void UserUpdated(UpdateMessage<UserWrapper> obj) => await LoadAsync(Model?.Id ?? Guid.Empty);
 
         public void UserLogged(UserLoggedMessage userLoggedMessage)
         {
             if (userLoggedMessage.User == null) return;
-            Model = userLoggedMessage.User;
+            _ = LoadAsync(userLoggedMessage.User.Id);
+        }
+        public void RedirectToRideListScreen()
+        {
+            _mediator.Send(new RedirectToRideListScreenMessage());
+        }
+        public void RedirectToAddCarScreen()
+        {
+            _mediator.Send(new RedirectToAddCarScreenMessage());
         }
 
+        public void RedirectToUserEditScreen()
+        {
+            _mediator.Send(new RedirectToUserEditScreenMessage());
+        }
 
     }
 }

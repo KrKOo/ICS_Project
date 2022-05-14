@@ -11,9 +11,9 @@ namespace CarPool.App.Converters
         {
             if ((DateOnly)value == DateOnly.MinValue)
             {
-                return "-";
+                return "//";
             }
-            return value.ToString() ?? "-";
+            return value.ToString() ?? "//";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

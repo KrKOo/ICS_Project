@@ -25,7 +25,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"><Bold>TEAM 31</Bold> CAR RIDE SHARE</TextBlock>
-            <Button x:Name="CreateRideButton" Grid.Column="1" Content="{x:Static texts:RideListingResources.Create_Button}" Style="{StaticResource ButtonType3Add}" Click="CreateRideButton_Click"/>
+            <Button x:Name="CreateRideButton" Grid.Column="1" Content="{x:Static texts:RideListingResources.Create_Button}" Style="{StaticResource ButtonType3Add}"/>
             <Button x:Name="ProfileButton" Grid.Column="2" Content="{x:Static texts:RideListingResources.Profile_Button}" Style="{StaticResource ButtonType3}" Command="{Binding RedirectToProfileScreenCommand}" />
             <Button x:Name="LogOutButton" Grid.Column="3" Content="{x:Static texts:RideListingResources.LogOut_Button}" Style="{StaticResource ButtonType3}" />
         </Grid>
@@ -41,15 +41,15 @@
                 <ColumnDefinition  Width="12*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Content="{x:Static texts:RideListingResources.From_Content}" Margin="15,0" />
-            <TextBox Grid.Column="1" HorizontalAlignment="Stretch" />
+            <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding Origin}"/>
 
             <Label Grid.Column="2" Content="{x:Static texts:RideListingResources.To_Content}" Margin="15,0"/>
-            <TextBox Grid.Column="3" HorizontalAlignment="Stretch"/>
+            <TextBox Grid.Column="3" HorizontalAlignment="Stretch" Text="{Binding Destination}"/>
 
             <Label Grid.Column="4" Content="{x:Static texts:RideListingResources.When_Content}" Margin="15,0"/>
             <TextBox Grid.Column="5" HorizontalAlignment="Stretch"/>
 
-            <Button x:Name="ApplyButton" Grid.Column="6" Content="{x:Static texts:RideListingResources.Apply_Button}" Style="{StaticResource ButtonType4}"/>
+            <Button x:Name="ApplyButton" Grid.Column="6" Content="{x:Static texts:RideListingResources.Apply_Button}" Style="{StaticResource ButtonType4}" Command="{Binding ReloadRidesCommand}"/>
         </Grid>
 
         <ListBox HorizontalAlignment="Stretch" Margin="10" Grid.Row="2" ItemsSource="{Binding Rides}">

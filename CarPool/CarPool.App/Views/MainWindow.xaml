@@ -19,19 +19,19 @@
             <views:IntroPageRegistrationView  DataContext="{Binding }"/>
         </DataTemplate>
 
-        <!--<DataTemplate DataType="{x:Type viewModels:AddCarViewModel}">
+        <DataTemplate DataType="{x:Type viewModels:AddCarViewModel}">
             <views:AddCarView  DataContext="{Binding }"/>
-        </DataTemplate>-->
+        </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModels:CarDetailViewModel}">
             <views:CarDetailView  DataContext="{Binding }"/>
         </DataTemplate>
 
-        <!--<DataTemplate DataType="{x:Type viewModels:EditCarViewModel}">
+        <DataTemplate DataType="{x:Type viewModels:EditCarViewModel}">
             <views:EditCarView DataContext="{Binding }"/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModels:NewRideViewModel}">
+        <!--DataTemplate DataType="{x:Type viewModels:NewRideViewModel}">
             <views:NewRideView  DataContext="{Binding }"/>
         </DataTemplate>-->
 
@@ -39,9 +39,9 @@
             <views:ProfileView DataContext="{Binding }"/>
         </DataTemplate>
 
-        <!--<DataTemplate DataType="{x:Type viewModels:EditUserDetailViewModel}">
+        <DataTemplate DataType="{x:Type viewModels:UserEditViewModel}">
             <views:EditProfileView DataContext="{Binding }"/>
-        </DataTemplate>-->
+        </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModels:RideDetailViewModel}">
             <views:RideDetailView DataContext="{Binding }"/>

@@ -58,14 +58,5 @@ namespace CarPool.App.ViewModels
             var cars = await _CarFacade.GetAsync();
             Cars.AddRange(cars);
         }
-
-        public override void LoadInDesignMode()
-        {
-            Cars.Add(new CarListModel(
-                LicensePlate: "BA340UZ")
-            {
-                PhotoUrl = @"https://img.tipcars.com/fotky_velke/18083317_1/1636098034/E/volvo-v40-2-0-d2-kinetic.jpg"
-            });
-        }
     }
 }

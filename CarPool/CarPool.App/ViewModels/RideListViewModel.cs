@@ -26,17 +26,24 @@ namespace CarPool.App.ViewModels
             RideSelectedCommand = new RelayCommand<RideListModel>(RideSelected);
             RedirectToProfileScreenCommand = new RelayCommand(RedirectToProfileScreen);
             RideNewCommand = new RelayCommand(RideNew);
+            ReloadRidesCommand = new RelayCommand(ReloadRides);
 
             mediator.Register<UpdateMessage<RideWrapper>>(RideUpdated);
             mediator.Register<DeleteMessage<RideWrapper>>(RideDeleted);
         }
+
         public ObservableCollection<RideListModel> Rides { get; } = new();
+
+        public string Origin { get; set; }
+        public string Destination { get; set; }
 
         public ICommand RideNewCommand { get; }
 
         public ICommand RideSelectedCommand { get; }
 
         public ICommand RedirectToProfileScreenCommand { get; set; }
+
+        public ICommand ReloadRidesCommand { get; set; }
 
         private void RideSelected(RideListModel? rideListModel)
         {
@@ -56,13 +63,18 @@ namespace CarPool.App.ViewModels
         public async Task LoadAsync()
         {
             Rides.Clear();
-            var rides = await _rideFacade.GetAsync();
+            var rides = await _rideFacade.GetRideByOriginAndDestinationAsync(Origin ?? "", Destination ?? "");
             Rides.AddRange(rides);
         }
 
         public void RedirectToProfileScreen()
         {
             _mediator.Send(new RedirectToProfileScreenMessage());
+        }
+
+        public void ReloadRides()
+        {
+            _ = LoadAsync();
         }
     }
 }

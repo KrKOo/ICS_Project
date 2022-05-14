@@ -1,6 +1,5 @@
 using CarPool.App.Messages;
 using CarPool.App.Services;
-using CarPool.App.Services.MessageDialog;
 using CarPool.App.Wrappers;
 using CarPool.BL.Models;
 using System;
@@ -11,24 +10,22 @@ using CarPool.BL.Facades;
 
 namespace CarPool.App.ViewModels
 {
-    public class CarDetailViewModel : ViewModelBase, ICarDetailViewModel
+    public class EditCarViewModel : ViewModelBase, IEditCarViewModel
     {
         private readonly IMediator _mediator;
         private readonly CarFacade _CarFacade;
-        private readonly IMessageDialogService _messageDialogService;
-
-        public CarDetailViewModel(
+        public EditCarViewModel(
             CarFacade CarFacade,
-            IMessageDialogService messageDialogService,
             IMediator mediator)
         {
             _CarFacade = CarFacade;
-            _messageDialogService = messageDialogService;
             _mediator = mediator;
 
+            SaveCommand = new AsyncRelayCommand(SaveAsync, CanSave);
         }
 
         public CarWrapper? Model { get; private set; }
+        public ICommand SaveCommand { get; }
 
         public Task DeleteAsync()
         {
@@ -40,9 +37,17 @@ namespace CarPool.App.ViewModels
             Model = await _CarFacade.GetAsync(id) ?? CarDetailModel.Empty;
         }
 
-        public Task SaveAsync()
+        public async Task SaveAsync()
         {
-            throw new NotImplementedException();
+            if (Model == null)
+            {
+                throw new InvalidOperationException("Null model cannot be saved");
+            }
+
+            Model = await _CarFacade.SaveAsync(Model.Model);
+            _mediator.Send(new UpdateMessage<CarWrapper> { Model = Model });
         }
+
+        private bool CanSave() => Model?.IsValid ?? false;
     }
 }

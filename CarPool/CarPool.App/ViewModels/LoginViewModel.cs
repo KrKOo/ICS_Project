@@ -42,7 +42,7 @@ namespace CarPool.App.ViewModels
                 return;
             }
             
-            _mediator.Send(new RedirectToRideListMessage());
+            _mediator.Send(new RedirectToRideListScreenMessage());
             _mediator.Send(new UserLoggedMessage { User = userFromDb });
         }
 

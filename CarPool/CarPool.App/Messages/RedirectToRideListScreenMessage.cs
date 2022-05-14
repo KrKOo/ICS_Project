@@ -7,7 +7,7 @@ using CarPool.BL.Models;
 
 namespace CarPool.App.Messages
 {
-    public record RedirectToRideListMessage : IMessage
+    public record RedirectToRideListScreenMessage : IMessage
     {
     }
 }

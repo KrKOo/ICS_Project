@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarPool.App.Messages
 {
-    public record RedirectToLoginScreenMessage : IMessage
+    public class RedirectToAddCarScreenMessage : IMessage
     {
     }
 }

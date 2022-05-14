@@ -47,7 +47,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="{x:Static texts:RegisterResources.First_Name_Content}" />
-                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding Model.FirstName}"/>
                 </Grid>
                 <Grid Grid.Row="1" Style="{StaticResource BasicRowSpacing}" >
                     <Grid.ColumnDefinitions>
@@ -55,7 +55,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="{x:Static texts:RegisterResources.Last_Name_Content}" />
-                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding Model.LastName}"/>
                 </Grid>
                 <Grid Grid.Row="2" Style="{StaticResource BasicRowSpacing}" >
                     <Grid.ColumnDefinitions>
@@ -63,7 +63,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="{x:Static texts:RegisterResources.Email_Content}" />
-                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding Model.Email}"/>
                 </Grid>
                 <Grid Grid.Row="3"  Style="{StaticResource BasicRowSpacing}">
                     <Grid.ColumnDefinitions>
@@ -71,18 +71,27 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="{x:Static texts:RegisterResources.Phone_Content}" />
-                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding Model.PhoneNumber}"/>
                 </Grid>
                 <Grid Grid.Row="4"  Style="{StaticResource BasicRowSpacing}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="{x:Static texts:RegisterResources.Photo_Content}" />
-                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch"/>
+                    <Label Content="{x:Static texts:RegisterResources.Birthdate_Content}" />
+                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding Model.DateOfBirth, Converter={StaticResource DateConverter}}"/>
                 </Grid>
 
-                <Button Grid.Row="6"  x:Name="FinishRegistrationButton" Style="{StaticResource ButtonType2}" Content="{x:Static texts:RegisterResources.Button_Content}"/>
+                <Grid Grid.Row="5"  Style="{StaticResource BasicRowSpacing}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{x:Static texts:RegisterResources.Photo_Content}" />
+                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding Model.PhotoUrl}"/>
+                </Grid>
+
+                <Button Grid.Row="6"  x:Name="FinishRegistrationButton" Style="{StaticResource ButtonType2}" Content="{x:Static texts:RegisterResources.Button_Content}" Command="{Binding SaveCommand}"/>
             </Grid>
         </Border>
     </Grid>

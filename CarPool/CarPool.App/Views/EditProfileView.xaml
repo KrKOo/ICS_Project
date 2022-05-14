@@ -7,7 +7,8 @@
                        xmlns:texts="clr-namespace:CarPool.App.Resources.Texts"
                        xmlns:viewModels="clr-namespace:CarPool.App.ViewModels"
                        mc:Ignorable="d" 
-                       d:DesignHeight="500" d:DesignWidth="800">
+                       d:DesignHeight="500" d:DesignWidth="800"
+                       d:DataContext="{d:DesignInstance viewModels:UserEditViewModel}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -20,7 +21,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" x:Name="BackButton" Content="{x:Static texts:EditProfileResources.Back_Button}" Style="{StaticResource ButtonType2}"/>
+            <Button Grid.Column="0" x:Name="BackButton" Content="{x:Static texts:EditProfileResources.Back_Button}" Style="{StaticResource ButtonType2}" Command="{Binding RedirectToProfileScreenCommand}"/>
             <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Text="{x:Static texts:EditProfileResources.Heading_Content}" Style="{StaticResource H2}"/>
         </Grid>
         <Grid Grid.Row="1">
@@ -42,7 +43,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="{x:Static texts:EditProfileResources.First_Name_Content}"/>
-                    <TextBox Grid.Column="1" />
+                    <TextBox Grid.Column="1" Text="{Binding Model.FirstName}" />
                 </Grid>
 
                 <Grid Grid.Row="1" Style="{StaticResource BasicRowSpacing}">
@@ -51,7 +52,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="{x:Static texts:EditProfileResources.Last_Name_Content}"/>
-                    <TextBox Grid.Column="1" />
+                    <TextBox Grid.Column="1" Text="{Binding Model.LastName}"/>
                 </Grid>
 
                 <Grid Grid.Row="2" Style="{StaticResource BasicRowSpacing}">
@@ -60,7 +61,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="{x:Static texts:EditProfileResources.Email_Content}"/>
-                    <TextBox Grid.Column="1" />
+                    <TextBox Grid.Column="1" Text="{Binding Model.Email}"/>
                 </Grid>
 
                 <Grid Grid.Row="3" Style="{StaticResource BasicRowSpacing}">
@@ -69,7 +70,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="{x:Static texts:EditProfileResources.Date_Content}"/>
-                    <TextBox Grid.Column="1" />
+                    <TextBox Grid.Column="1" Text="{Binding Model.DateOfBirth, Converter={StaticResource DateConverter}}"/>
                 </Grid>
 
                 <Grid Grid.Row="4" Style="{StaticResource BasicRowSpacing}">
@@ -78,7 +79,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="{x:Static texts:EditProfileResources.Phone_Content}"/>
-                    <TextBox Grid.Column="1" />
+                    <TextBox Grid.Column="1" Text="{Binding Model.PhoneNumber}"/>
                 </Grid>
 
                 <Grid Grid.Row="5" Style="{StaticResource BasicRowSpacing}">
@@ -87,7 +88,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="{x:Static texts:EditProfileResources.Photo_Content}"/>
-                    <TextBox Grid.Column="1" />
+                    <TextBox Grid.Column="1" Text="{Binding Model.PhotoUrl}"/>
                 </Grid>
 
                 <Grid Grid.Row = "6" Style="{StaticResource BasicRowSpacing}">
@@ -97,10 +98,10 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Content="{x:Static texts:EditProfileResources.About_Content}"/>
-                    <TextBox Grid.Column="1" Style="{StaticResource Description}"/>
+                    <TextBox Grid.Column="1" Style="{StaticResource Description}" Text="{Binding Model.Info}"/>
                 </Grid>
 
-                <Button Grid.Row ="6" HorizontalAlignment="Right"  x:Name="SaveButton" Content="{x:Static texts:EditProfileResources.Save_Button}" Style="{StaticResource ButtonType2}"/>
+                <Button Grid.Row ="6" HorizontalAlignment="Right"  x:Name="SaveButton" Content="{x:Static texts:EditProfileResources.Save_Button}" Style="{StaticResource ButtonType2}" Command="{Binding SaveCommand}"/>
             </Grid>
         </Grid>
     </Grid>

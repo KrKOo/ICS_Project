@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarPool.App.ViewModels.Interfaces
 {
-    public interface IRegisterViewModel
+    public interface IRegisterViewModel : IViewModel
     {
     }
 }

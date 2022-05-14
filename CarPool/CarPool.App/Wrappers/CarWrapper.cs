@@ -49,9 +49,9 @@ namespace CarPool.App.Wrappers
             set => SetValue(value);
         }
 
-        public UserWrapper? Owner
+        public UserListWrapper? Owner
         {
-            get => GetValue<UserWrapper>();
+            get => GetValue<UserListWrapper>();
             set => SetValue(value);
         }
 

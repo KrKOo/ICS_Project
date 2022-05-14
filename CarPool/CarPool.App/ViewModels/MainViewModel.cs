@@ -13,17 +13,18 @@ namespace CarPool.App.ViewModels
     public class MainViewModel : ViewModelBase
     {
         public MainViewModel(
-
             IRideListViewModel rideListViewModel,
             ICarListViewModel carListViewModel,
             IUserListViewModel userListViewModel,
             ILoginViewModel loginViewModel,
             IRegisterViewModel registerViewModel,
             IUserProfileViewModel profileViewModel,
-            IMediator mediator,
             IRideDetailViewModel rideDetailViewModel,
             ICarDetailViewModel carDetailViewModel,
-            IUserDetailViewModel userDetailViewModel)
+            IAddCarViewModel addCarViewModel,
+            IEditCarViewModel editCarViewModel,
+            IUserEditViewModel userEditViewModel,
+            IMediator mediator)
         {
 
             RideListViewModel = rideListViewModel;
@@ -31,9 +32,11 @@ namespace CarPool.App.ViewModels
 
             CarListViewModel = carListViewModel;
             CarDetailViewModel = carDetailViewModel;
+            AddCarViewModel = addCarViewModel;
+            EditCarViewModel = editCarViewModel;
 
             UserListViewModel = userListViewModel;
-            UserDetailViewModel = userDetailViewModel;
+            UserEditViewModel = userEditViewModel;
 
             LoginViewModel = loginViewModel;
             RegisterViewModel = registerViewModel;
@@ -52,47 +55,43 @@ namespace CarPool.App.ViewModels
             mediator.Register<SelectedMessage<UserWrapper>>(OnUserSelected);
             //mediator.Register<DeleteMessage<UserWrapper>>(OnUserDeleted);
 
-            mediator.Register<RedirectToRegisterScreenMessage>(OnRedirectToRegisterPage);
-            mediator.Register<RedirectToLoginScreenMessage>(OnRedirectToLoginPage);
-            mediator.Register<RedirectToRideListMessage>(OnRedirectToRideList);
+            mediator.Register<RedirectToRegisterScreenMessage>(OnRedirectToRegisterScreen);
+            mediator.Register<RedirectToLoginScreenMessage>(OnRedirectToLoginScreen);
+            mediator.Register<RedirectToRideListScreenMessage>(OnRedirectToRideListScreen);
             mediator.Register<RedirectToProfileScreenMessage>(OnRedirectToProfileScreen);
+            mediator.Register<RedirectToAddCarScreenMessage>(OnRedirectToAddCarScreen);
+            mediator.Register<RedirectToUserEditScreenMessage>(OnRedirectToUserEditScreen);
 
             //UserDetailViewModel.LoadAsync(Guid.Parse("06a8a2cf-ea03-4095-a3e4-aa0291fe9c75"));
             //RideDetailViewModel.LoadAsync(Guid.Parse("0c3693ae-70bf-48a1-bfc4-7aa9bc42bbc4"));
-            CarDetailViewModel.LoadAsync(Guid.Parse("4ebd0208-8328-5d69-8c44-ec50939c0967"));
+            // CarDetailViewModel.LoadAsync(Guid.Parse("4ebd0208-8328-5d69-8c44-ec50939c0967"));
             //SelectCar(Guid.Empty);
 
-            CurrentViewModel = (IViewModel) LoginViewModel; //TODO
+            CurrentViewModel = (IViewModel) LoginViewModel;
         }
 
         public IViewModel _currentViewModel;
-        public IViewModel CurrentViewModel
-        {
-            get { return _currentViewModel; }
-            set
-            {
-                _currentViewModel = value;
-                OnPropertyChanged(nameof(CurrentViewModel));
-            }
-        }
+        public IViewModel CurrentViewModel { get; set; }
 
         public IRideListViewModel RideListViewModel { get; }
         public IRideDetailViewModel RideDetailViewModel { get; }
 
         public ICarListViewModel CarListViewModel { get; }
         public ICarDetailViewModel CarDetailViewModel { get; }
+        public IAddCarViewModel AddCarViewModel { get; }
+        public IEditCarViewModel EditCarViewModel { get; }
 
         public IUserListViewModel UserListViewModel { get; }
-        public IUserDetailViewModel UserDetailViewModel { get; }
-        public ILoginViewModel LoginViewModel { get; }
-
-        public IRegisterViewModel RegisterViewModel { get; }
-
+        public IUserEditViewModel UserEditViewModel { get; }
         public IUserProfileViewModel UserProfileViewModel { get; }
+
+        public ILoginViewModel LoginViewModel { get; }
+        public IRegisterViewModel RegisterViewModel { get; }
+        
 
         public IRideDetailViewModel? SelectedRideDetailViewModel { get; set; }
         public ICarDetailViewModel? SelectedCarDetailViewModel { get; set; }
-        public IUserDetailViewModel? SelectedUserDetailViewModel { get; set; }
+        public IUserProfileViewModel? SelectedProfileViewModel { get; set; }
 
         public void OnRideNewMessage(NewMessage<RideWrapper> _) {
             SelectRide(Guid.Empty);
@@ -108,16 +107,16 @@ namespace CarPool.App.ViewModels
             SelectUser(Guid.Empty);
         }
 
-        public void OnRedirectToRegisterPage(RedirectToRegisterScreenMessage _)
+        public void OnRedirectToRegisterScreen(RedirectToRegisterScreenMessage _)
         {
             CurrentViewModel = (IViewModel) RegisterViewModel;
         }
 
-        public void OnRedirectToLoginPage(RedirectToLoginScreenMessage _)
+        public void OnRedirectToLoginScreen(RedirectToLoginScreenMessage _)
         {
             CurrentViewModel = (IViewModel) LoginViewModel;
         }
-        public void OnRedirectToRideList(RedirectToRideListMessage _)
+        public void OnRedirectToRideListScreen(RedirectToRideListScreenMessage _)
         {
             CurrentViewModel = (IViewModel) RideListViewModel;
         }
@@ -125,6 +124,16 @@ namespace CarPool.App.ViewModels
         public void OnRedirectToProfileScreen(RedirectToProfileScreenMessage _)
         {
             CurrentViewModel = (IViewModel)UserProfileViewModel;
+        }
+
+        public void OnRedirectToAddCarScreen(RedirectToAddCarScreenMessage _)
+        {
+            CurrentViewModel = (IViewModel)AddCarViewModel;
+        }
+
+        public void OnRedirectToUserEditScreen(RedirectToUserEditScreenMessage _)
+        {
+            CurrentViewModel = (IViewModel)UserEditViewModel;
         }
 
         private void SelectRide(Guid? id)
@@ -157,12 +166,12 @@ namespace CarPool.App.ViewModels
         {
             if (id is null)
             {
-                SelectedUserDetailViewModel = null;
+                SelectedProfileViewModel = null;
             }
             else
             {
-                UserDetailViewModel.LoadAsync(id.Value);
-                SelectedUserDetailViewModel = UserDetailViewModel;
+                UserProfileViewModel.LoadAsync(id.Value);
+                SelectedProfileViewModel = UserProfileViewModel;
             }
         }
 
