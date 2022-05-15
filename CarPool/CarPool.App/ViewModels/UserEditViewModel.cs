@@ -15,15 +15,12 @@ namespace CarPool.App.ViewModels
     {
         private readonly IMediator _mediator;
         private readonly UserFacade _UserFacade;
-        private readonly IMessageDialogService _messageDialogService;
 
         public UserEditViewModel(
             UserFacade UserFacade,
-            IMessageDialogService messageDialogService,
             IMediator mediator)
         {
             _UserFacade = UserFacade;
-            _messageDialogService = messageDialogService;
             _mediator = mediator;
 
             SaveCommand = new AsyncRelayCommand(SaveAsync, CanSave);

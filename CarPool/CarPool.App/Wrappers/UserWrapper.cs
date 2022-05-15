@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Windows;
 using CarPool.BL.Models;
-using CarPool.App.Wrappers;
 using System;
 using System.Collections.ObjectModel;
 using CarPool.App.Extensions;

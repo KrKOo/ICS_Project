@@ -47,11 +47,10 @@ namespace CarPool.App.ViewModels
             mediator.Register<NewMessage<CarWrapper>>(OnCarNewMessage);
 
             mediator.Register<SelectedMessage<CarListWrapper>>(OnCarSelected);
-            //mediator.Register<DeleteMessage<CarWrapper>>(OnCarDeleted);
 
             mediator.Register<NewMessage<UserWrapper>>(OnUserNewMessage);
             mediator.Register<SelectedMessage<UserListWrapper>>(OnUserSelected);
-            //mediator.Register<DeleteMessage<UserWrapper>>(OnUserDeleted);
+            mediator.Register<EditMessage<CarWrapper>>(OnCarEdit);
 
             mediator.Register<RedirectToRegisterScreenMessage>(OnRedirectToRegisterScreen);
             mediator.Register<RedirectToLoginScreenMessage>(OnRedirectToLoginScreen);
@@ -59,14 +58,6 @@ namespace CarPool.App.ViewModels
             mediator.Register<RedirectToAddCarScreenMessage>(OnRedirectToAddCarScreen);
             mediator.Register<RedirectToUserEditScreenMessage>(OnRedirectToUserEditScreen);
             mediator.Register<RedirectToAddRideScreenMessage>(OnRedirectToAddRideScreen);
-
-            mediator.Register<EditMessage<CarWrapper>>(OnCarEdit);
-
-
-            //UserDetailViewModel.LoadAsync(Guid.Parse("06a8a2cf-ea03-4095-a3e4-aa0291fe9c75"));
-            //RideDetailViewModel.LoadAsync(Guid.Parse("0c3693ae-70bf-48a1-bfc4-7aa9bc42bbc4"));
-            // CarDetailViewModel.LoadAsync(Guid.Parse("4ebd0208-8328-5d69-8c44-ec50939c0967"));
-            //SelectCar(Guid.Empty);
 
             CurrentViewModel = LoginViewModel;
         }
@@ -188,6 +179,5 @@ namespace CarPool.App.ViewModels
         {
             RideListViewModel.LoadAsync();
         }
-
     }
 }

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using CarPool.BL.Models;
-using CarPool.App.Wrappers;
 
 namespace CarPool.App.Wrappers
 {

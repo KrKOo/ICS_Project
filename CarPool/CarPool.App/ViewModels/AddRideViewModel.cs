@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CarPool.App.ViewModels;
 using CarPool.App.Wrappers;
 using CarPool.BL.Facades;
 using CarPool.App.Services;

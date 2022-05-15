@@ -1,6 +1,5 @@
 using CarPool.App.Messages;
 using CarPool.App.Services;
-using CarPool.App.Services.MessageDialog;
 using CarPool.App.Wrappers;
 using CarPool.BL.Models;
 using System;

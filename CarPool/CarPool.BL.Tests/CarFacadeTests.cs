@@ -166,27 +166,5 @@ namespace CarPool.BL.Tests
 			var carFromDb = await dbxAssert.Cars.SingleAsync(i => i.Id == car.Id);
 			DeepAssert.Equal(car, Mapper.Map<CarDetailModel>(carFromDb), "Owner");
 		}
-
-		[Fact]
-		public async Task Delete_Car_When_UserDeleted()
-		{
-			//Arrange
-			var car = Mapper.Map<CarDetailModel>(CarSeeds.CarEntity with
-			{
-				Id = default,
-				Owner = UserSeeds.UserEntityWithNothing
-			});
-
-			// Act
-			car = await _carFacadeSUT.SaveAsync(car);
-
-			var userFacade = new UserFacade(UnitOfWorkFactory, Mapper);
-
-			await userFacade.DeleteAsync(Mapper.Map<UserDetailModel>(UserSeeds.UserEntityWithNothing));
-
-			//Assert
-			await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
-			Assert.False(await dbxAssert.Cars.AnyAsync(i => i.Id == car.Id));
-		}
 	}
 }

@@ -47,6 +47,7 @@ namespace CarPool.App.ViewModels
         public bool IsJoinButtonVisible { get; private set; }
         public bool IsLeaveButtonVisible { get; private set; }
         public bool IsDeleteButtonVisible { get; private set; }
+
         public ICommand JoinCommand { get; }
         public ICommand LeaveCommand { get; }
         public ICommand DeleteCommand { get; }
@@ -235,19 +236,6 @@ namespace CarPool.App.ViewModels
 
             _mediator.Send(new UpdateMessage<UserWrapper> { Model = LoggedUser });
             await LoadAsync(Model.Id);
-        }
-
-        public override void LoadInDesignMode()
-        {
-            base.LoadInDesignMode();
-            Model = new RideWrapper(new RideDetailModel(
-                TimeOfStart: new DateTime(2022, 6, 3, 16, 18, 0),
-                Duration: new TimeSpan(2, 30, 0),
-                RideOrigin: "Bratislava",
-                RideDestination: "Brno")
-            {
-                Info = "Dont worry, I got my license yesterday :)"
-            }) ;
         }
 
         public Task SaveAsync()

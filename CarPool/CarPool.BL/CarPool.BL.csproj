@@ -13,7 +13,6 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\CarPool.Common\CarPool.Common.csproj" />
     <ProjectReference Include="..\CarPool.DAL\CarPool.DAL.csproj" />
   </ItemGroup>
   

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using CarPool.BL.Models;
-using CarPool.App.Wrappers;
+﻿using CarPool.BL.Models;
 
 namespace CarPool.App.Wrappers
 {

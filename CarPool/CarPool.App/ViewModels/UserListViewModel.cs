@@ -54,17 +54,5 @@ namespace CarPool.App.ViewModels
             var sers = await _UserFacade.GetAsync();
             Users.AddRange(sers);
         }
-
-        public override void LoadInDesignMode()
-        {
-            Users.Add(new UserListModel(
-                Email: "user@email.com",
-                FirstName: "John",
-                LastName: "Doe"
-            )
-            {
-                PhotoUrl = @"https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
-            });
-        }
     }
 }

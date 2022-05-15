@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using System.Windows.Input;
 using CarPool.App.Commands;
 using CarPool.App.Messages;
@@ -7,7 +6,6 @@ using CarPool.App.ViewModels.Interfaces;
 using CarPool.App.Wrappers;
 using CarPool.BL.Facades;
 using CarPool.BL.Models;
-
 
 namespace CarPool.App.ViewModels
 {
@@ -44,8 +42,6 @@ namespace CarPool.App.ViewModels
             
             _mediator.Send(new RedirectToRideListScreenMessage());
             _mediator.Send(new UserLoggedMessage { User = userFromDb });
-            
-
         }
 
         public void RedirectToRegisterScreen()
