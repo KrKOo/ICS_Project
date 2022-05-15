@@ -46,9 +46,11 @@ namespace CarPool.App.ViewModels
                 throw new InvalidOperationException("Null model cannot be saved");
             }
 
+            Model.Id = Guid.Empty;
             Model = await _UserFacade.SaveAsync(Model.Model);
             _mediator.Send(new UserLoggedMessage { User = Model });
             _mediator.Send(new RedirectToRideListScreenMessage());
+            Model = UserDetailModel.Empty;
         }
 
         private bool CanSave() => Model?.IsValid ?? false;

@@ -25,7 +25,7 @@
 
         <Grid Grid.Row="1" Grid.Column="0" >
             <StackPanel VerticalAlignment="Center">
-                <Button x:Name="LoginButton" Style="{StaticResource ButtonType1}" Content="LOGIN"/>
+                <Button x:Name="LoginButton" Style="{StaticResource ButtonType1}" Content="LOGIN" IsEnabled="False"/>
                 <Button x:Name="RegisterButton" Style="{StaticResource ButtonType1}" Content="REGISTER" Command="{Binding RedirectToRegisterScreenCommand}"/>
             </StackPanel>
         </Grid>

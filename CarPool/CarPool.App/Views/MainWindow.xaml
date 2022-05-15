@@ -7,6 +7,7 @@
     xmlns:views="clr-namespace:CarPool.App.Views"
     xmlns:viewModels="clr-namespace:CarPool.App.ViewModels"
     mc:Ignorable="d"
+    ResizeMode="NoResize"
     Title="CarPool" Width="850" Height="550" 
     d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
 

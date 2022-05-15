@@ -142,13 +142,20 @@
                                             CommandParameter="{Binding ElementName=PassengersListBox, Path=SelectedItem}" />
                     </interactions:EventTrigger>
                 </interactions:Interaction.Triggers>
+
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
                 <ListBox.ItemTemplate>
                     <DataTemplate >
-                        <Border BorderBrush="Black" BorderThickness="3" Width="350" Height="Auto" Background="{StaticResource DefaultButtonForegroundColor}">
+                        <Border BorderBrush="Black" BorderThickness="1.5" Width="Auto" Height="Auto" Background="{StaticResource DefaultButtonForegroundColor}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Grid.Column="0" HorizontalAlignment="Center">

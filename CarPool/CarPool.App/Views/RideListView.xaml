@@ -57,7 +57,7 @@
 
         <ListBox HorizontalAlignment="Stretch" Margin="10" Grid.Row="2" 
                  ItemsSource="{Binding Rides}" 
-                 x:Name="RidesListBox" 
+                 x:Name="RidesListBox"  
                  ScrollViewer.CanContentScroll="False">
             <interactions:Interaction.Triggers>
                 <interactions:EventTrigger EventName="SelectionChanged">
@@ -65,9 +65,15 @@
                                             CommandParameter="{Binding ElementName=RidesListBox, Path=SelectedItem}" />
                 </interactions:EventTrigger>
             </interactions:Interaction.Triggers>
+
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="Auto" >
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" Width="Auto" Height="Auto" >
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition />
@@ -77,7 +83,7 @@
                             </Grid.RowDefinitions>
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
