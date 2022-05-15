@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarPool.DAL.Migrations
 {
     [DbContext(typeof(CarPoolDbContext))]
-    [Migration("20220408214909_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220515042301_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -162,7 +162,7 @@ namespace CarPool.DAL.Migrations
                     b.HasOne("CarPool.DAL.Entities.UserEntity", "Owner")
                         .WithMany("Cars")
                         .HasForeignKey("OwnerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Owner");
@@ -198,7 +198,7 @@ namespace CarPool.DAL.Migrations
                     b.HasOne("CarPool.DAL.Entities.UserEntity", "User")
                         .WithMany("RidesAsPassenger")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Ride");

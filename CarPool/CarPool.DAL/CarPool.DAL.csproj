@@ -21,6 +21,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
   <!-- https://github.com/microsoft/vscode-azurefunctions/issues/3051 -->
   <PropertyGroup>
     <ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>

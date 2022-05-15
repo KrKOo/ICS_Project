@@ -15,31 +15,41 @@ namespace CarPool.App.ViewModels
     {
         private readonly IMediator _mediator;
         private readonly RideFacade _RideFacade;
+        private readonly UserFacade _UserFacade;
         public AddRideViewModel(
             RideFacade RideFacade,
+            UserFacade UserFacade,
             IMediator mediator)
         {
             _RideFacade = RideFacade;
+            _UserFacade = UserFacade;
             _mediator = mediator;
 
             SaveCommand = new AsyncRelayCommand(SaveAsync, CanSave);
-
-            mediator.Register<UserLoggedMessage>(UserLogged);
+            RedirectToRideListScreenCommand = new RelayCommand(RedirectToRideListScreen);
             CarSelectedCommand = new RelayCommand<CarListWrapper>(CarSelected);
 
+            mediator.Register<UserLoggedMessage>(UserLogged);
+            mediator.Register<UpdateMessage<UserWrapper>>(UserUpdated);
+            
             LoggedUser = UserDetailModel.Empty;
-            RedirectToRideListScreenCommand = new RelayCommand(RedirectToRideListScreen);
+            
             ClearModel();
         }
 
         public RideWrapper? Model { get; private set; }
         public UserWrapper? LoggedUser { get; private set; }
+        public UserWrapper? User { get; private set; }
         public CarListWrapper? Car { get; private set; }
 
         public ICommand SaveCommand { get; }
         public ICommand CarSelectedCommand { get; }
         public ICommand RedirectToRideListScreenCommand { get; }
 
+        public async Task LoadAsync(Guid id)
+        {
+            User = await _UserFacade.GetAsync(id) ?? UserDetailModel.Empty;
+        }
         public Task DeleteAsync()
         {
             throw new NotImplementedException();
@@ -69,11 +79,7 @@ namespace CarPool.App.ViewModels
         {
             if (userLoggedMessage.User == null) return;
             LoggedUser = userLoggedMessage.User;
-        }
-
-        public Task LoadAsync(Guid id)
-        {
-            throw new NotImplementedException();
+            _ = LoadAsync(LoggedUser?.Id ?? Guid.Empty);
         }
 
         private void RedirectToRideListScreen()
@@ -96,5 +102,6 @@ namespace CarPool.App.ViewModels
             }
         }
 
+        private async void UserUpdated(UpdateMessage<UserWrapper> _) => await LoadAsync(LoggedUser?.Id ?? Guid.Empty);
     }
 }

@@ -120,9 +120,13 @@
                 </Border>
             </Grid>
 
-
             <TextBlock Grid.Column="0" Grid.Row="4" Text="{x:Static texts:UserProfileResources.Cars_Content}"  Style="{StaticResource H3}" />
-            <ListBox HorizontalAlignment="Stretch" Grid.Row="5" MaxWidth ="450" Height="150" Margin="200,10"  ItemsSource="{Binding Model.Cars}" x:Name="CarsListBox">
+            
+            <ListBox HorizontalAlignment="Stretch" 
+                     Grid.Row="5" MaxWidth ="450" Height="200" Margin="200,10"  
+                     ItemsSource="{Binding Model.Cars}"
+                     x:Name="CarsListBox" 
+                     ScrollViewer.CanContentScroll="False">
                 <interactions:Interaction.Triggers>
                     <interactions:EventTrigger EventName="SelectionChanged">
                         <interactions:InvokeCommandAction Command="{Binding CarSelectedCommand}"
@@ -157,11 +161,13 @@
                        Visibility="{Binding Path=IsLoggedUser, Converter={StaticResource BoolToVisibility}}"
                        Text="{x:Static texts:UserProfileResources.Rides_Content}"  
                        Style="{StaticResource H3}"/>
+            
             <ListBox Grid.Row="7" HorizontalAlignment="Stretch" 
                      Visibility="{Binding Path=IsLoggedUser, Converter={StaticResource BoolToVisibility}}"
-                     MaxWidth ="450" Height="150" Margin="200,10" 
+                     MaxWidth ="450" Height="200" Margin="200,10" 
                      x:Name="RidesListBox" 
-                     ItemsSource="{Binding Model.RidesAsPassenger}">
+                     ItemsSource="{Binding Model.RidesAsPassenger}"
+                     ScrollViewer.CanContentScroll="False">
                 <interactions:Interaction.Triggers>
                     <interactions:EventTrigger EventName="SelectionChanged">
                         <interactions:InvokeCommandAction Command="{Binding RideSelectedCommand}"
@@ -198,11 +204,13 @@
                        Visibility="{Binding Path=IsLoggedUser, Converter={StaticResource BoolToVisibility}}"
                        Text="{x:Static texts:UserProfileResources.Drives_Content}"  
                        Style="{StaticResource H3}"/>
+            
             <ListBox Grid.Row="9" HorizontalAlignment="Stretch" 
                      Visibility="{Binding Path=IsLoggedUser, Converter={StaticResource BoolToVisibility}}"
-                     MaxWidth ="450" Height="150" Margin="200,10" 
+                     MaxWidth ="450" Height="200" Margin="200,10" 
                      x:Name="DrivesListBox" 
-                     ItemsSource="{Binding Model.RidesAsDriver}">
+                     ItemsSource="{Binding Model.RidesAsDriver}"
+                     ScrollViewer.CanContentScroll="False">
                 <interactions:Interaction.Triggers>
                     <interactions:EventTrigger EventName="SelectionChanged">
                         <interactions:InvokeCommandAction Command="{Binding RideSelectedCommand}"

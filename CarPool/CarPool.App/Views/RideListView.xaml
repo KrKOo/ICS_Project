@@ -49,10 +49,16 @@
             <Label Grid.Column="4" Content="{x:Static texts:RideListingResources.When_Content}" Margin="15,0"/>
             <TextBox Grid.Column="5" HorizontalAlignment="Stretch" Text="{Binding RideDate, Converter={StaticResource DateConverter}}"/>
 
-            <Button x:Name="ApplyButton" Grid.Column="6" Content="{x:Static texts:RideListingResources.Apply_Button}" Style="{StaticResource ButtonType4}" Command="{Binding ReloadRidesCommand}"/>
+            <Button x:Name="ApplyButton" Grid.Column="6" 
+                    Content="{x:Static texts:RideListingResources.Apply_Button}" 
+                    Style="{StaticResource ButtonType4}"
+                    Command="{Binding ReloadRidesCommand}"/>
         </Grid>
 
-        <ListBox HorizontalAlignment="Stretch" Margin="10" Grid.Row="2" ItemsSource="{Binding Rides}" x:Name="RidesListBox">
+        <ListBox HorizontalAlignment="Stretch" Margin="10" Grid.Row="2" 
+                 ItemsSource="{Binding Rides}" 
+                 x:Name="RidesListBox" 
+                 ScrollViewer.CanContentScroll="False">
             <interactions:Interaction.Triggers>
                 <interactions:EventTrigger EventName="SelectionChanged">
                     <interactions:InvokeCommandAction Command="{Binding RideSelectedCommand}"
