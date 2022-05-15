@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:CarPool.App.Views"
              xmlns:texts="clr-namespace:CarPool.App.Resources.Texts"
              mc:Ignorable="d" 
-             xmlns:viewModels="clr-namespace:CarPool.App.ViewModels"
-             d:DataContext="{d:DesignInstance viewModels:RideListViewModel}"
+             xmlns:viewModels="clr-namespace:CarPool.App.ViewModels" xmlns:interactions="http://schemas.microsoft.com/xaml/behaviors"
+                       d:DataContext="{d:DesignInstance viewModels:RideListViewModel}"
              d:DesignHeight="500" d:DesignWidth="800">
     <Grid Background="{StaticResource DefaultBackGroundColor}">
         <Grid.RowDefinitions>
@@ -25,9 +25,9 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"><Bold>TEAM 31</Bold> CAR RIDE SHARE</TextBlock>
-            <Button x:Name="CreateRideButton" Grid.Column="1" Content="{x:Static texts:RideListingResources.Create_Button}" Style="{StaticResource ButtonType3Add}"/>
+            <Button x:Name="CreateRideButton" Grid.Column="1" Content="{x:Static texts:RideListingResources.Create_Button}" Style="{StaticResource ButtonType3Add}" Command="{Binding RedirectToAddRideScreenCommand}"/>
             <Button x:Name="ProfileButton" Grid.Column="2" Content="{x:Static texts:RideListingResources.Profile_Button}" Style="{StaticResource ButtonType3}" Command="{Binding RedirectToProfileScreenCommand}" />
-            <Button x:Name="LogOutButton" Grid.Column="3" Content="{x:Static texts:RideListingResources.LogOut_Button}" Style="{StaticResource ButtonType3}" />
+            <Button x:Name="LogOutButton" Grid.Column="3" Content="{x:Static texts:RideListingResources.LogOut_Button}" Style="{StaticResource ButtonType3}" Command="{Binding LogOutCommand}"/>
         </Grid>
 
         <Grid Grid.Row="1" Background="{StaticResource HeaderColor}" >
@@ -47,12 +47,18 @@
             <TextBox Grid.Column="3" HorizontalAlignment="Stretch" Text="{Binding Destination}"/>
 
             <Label Grid.Column="4" Content="{x:Static texts:RideListingResources.When_Content}" Margin="15,0"/>
-            <TextBox Grid.Column="5" HorizontalAlignment="Stretch"/>
+            <TextBox Grid.Column="5" HorizontalAlignment="Stretch" Text="{Binding RideDate, Converter={StaticResource DateConverter}}"/>
 
             <Button x:Name="ApplyButton" Grid.Column="6" Content="{x:Static texts:RideListingResources.Apply_Button}" Style="{StaticResource ButtonType4}" Command="{Binding ReloadRidesCommand}"/>
         </Grid>
 
-        <ListBox HorizontalAlignment="Stretch" Margin="10" Grid.Row="2" ItemsSource="{Binding Rides}">
+        <ListBox HorizontalAlignment="Stretch" Margin="10" Grid.Row="2" ItemsSource="{Binding Rides}" x:Name="RidesListBox">
+            <interactions:Interaction.Triggers>
+                <interactions:EventTrigger EventName="SelectionChanged">
+                    <interactions:InvokeCommandAction Command="{Binding RideSelectedCommand}"
+                                            CommandParameter="{Binding ElementName=RidesListBox, Path=SelectedItem}" />
+                </interactions:EventTrigger>
+            </interactions:Interaction.Triggers>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1" Width="Auto" Height="Auto" >
@@ -76,7 +82,7 @@
                             <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding RideDestination}"/>
 
                             <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:RideListingResources.When_Content}"  ContentStringFormat="{}{0}:"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding TimeOfStart}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding TimeOfStart, Converter={StaticResource DateTimeConverter}}"/>
 
                             <Label Grid.Row="3" Grid.Column="0" Content="{x:Static texts:RideListingResources.Duration_Content}"  ContentStringFormat="{}{0}:"/>
                             <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Duration}"/>

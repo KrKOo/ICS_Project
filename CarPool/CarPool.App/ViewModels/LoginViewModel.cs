@@ -44,6 +44,8 @@ namespace CarPool.App.ViewModels
             
             _mediator.Send(new RedirectToRideListScreenMessage());
             _mediator.Send(new UserLoggedMessage { User = userFromDb });
+            
+
         }
 
         public void RedirectToRegisterScreen()

@@ -79,6 +79,15 @@ namespace CarPool.App.Resources.Texts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CAR DETAILS.
+        /// </summary>
+        public static string Car_Button {
+            get {
+                return ResourceManager.GetString("Car_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DELETE.
         /// </summary>
         public static string Delete_Button {
@@ -88,11 +97,20 @@ namespace CarPool.App.Resources.Texts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CAR DETAILS.
+        ///   Looks up a localized string similar to DRIVER DETAILS.
         /// </summary>
-        public static string Details_Button {
+        public static string Driver_Button {
             get {
-                return ResourceManager.GetString("Details_Button", resourceCulture);
+                return ResourceManager.GetString("Driver_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Driver.
+        /// </summary>
+        public static string Driver_Content {
+            get {
+                return ResourceManager.GetString("Driver_Content", resourceCulture);
             }
         }
         
@@ -147,6 +165,15 @@ namespace CarPool.App.Resources.Texts {
         public static string Riders_Content {
             get {
                 return ResourceManager.GetString("Riders_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SHOW.
+        /// </summary>
+        public static string Show_Button {
+            get {
+                return ResourceManager.GetString("Show_Button", resourceCulture);
             }
         }
         

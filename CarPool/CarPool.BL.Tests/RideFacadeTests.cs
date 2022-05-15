@@ -253,13 +253,26 @@ namespace CarPool.BL.Tests
 		}
 
 		[Fact]
-		public async Task GetRideByOriginAndDestination_DoesNotThrowAndEqualsSeeded()
+		public async Task GetRideByOriginAndDestionation_DoesNotThrowAndEqualsSeeded()
 		{
 			//Arrange
 			var detailModel = Mapper.Map<RideListModel>(RideSeeds.RideEntity1);
 
 			//Act
-			var returnedModel = await _facadeSUT.GetRideByOriginAndDestinationAsync(detailModel.RideOrigin, detailModel.RideDestination);
+			var returnedModel = await _facadeSUT.GetRideByFilterAsync(detailModel.RideOrigin, detailModel.RideDestination);
+
+			//Assert
+			Assert.Contains(detailModel, returnedModel);
+		}
+
+		[Fact]
+		public async Task GetRideByDate_DoesNotThrowAndEqualsSeeded()
+		{
+			//Arrange
+			var detailModel = Mapper.Map<RideListModel>(RideSeeds.RideEntity2);
+
+			//Act
+			var returnedModel = await _facadeSUT.GetRideByFilterAsync(Date: new DateOnly(2022, 3, 5));
 
 			//Assert
 			Assert.Contains(detailModel, returnedModel);

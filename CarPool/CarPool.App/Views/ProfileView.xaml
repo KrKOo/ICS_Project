@@ -5,7 +5,8 @@
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                        xmlns:local="clr-namespace:CarPool.App.Views"
                        xmlns:texts="clr-namespace:CarPool.App.Resources.Texts"
-                       xmlns:viewModels="clr-namespace:CarPool.App.ViewModels"
+                       xmlns:viewModels="clr-namespace:CarPool.App.ViewModels" 
+                       xmlns:interactions="http://schemas.microsoft.com/xaml/behaviors"
                        mc:Ignorable="d" 
                        d:DesignHeight="1200" d:DesignWidth="800"
                        d:DataContext="{d:DesignInstance viewModels:UserProfileViewModel}">
@@ -34,8 +35,16 @@
 
                 <Button Grid.Column="0" x:Name="BackButton" Content="{x:Static texts:UserProfileResources.Back_Button}" Style="{StaticResource ButtonType2}" Command="{Binding RedirectToRideListCommand}"/>
                 <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Text="{x:Static texts:UserProfileResources.Heading_Content}" Style="{StaticResource H2}"/>
-                <Button Grid.Column="2" x:Name="JoinButton" Content="{x:Static texts:UserProfileResources.Edit_Button}" Style="{StaticResource ButtonType2}" Command="{Binding RedirectToUserEditCommand}"/>
-                <Button Grid.Column="3" x:Name="AddCarButton" Visibility="Visible" Content="{x:Static texts:UserProfileResources.New_Car_Button}" Style="{StaticResource ButtonType2}" Command="{Binding RedirectToAddCarScreenCommand}"/>
+                <Button Grid.Column="2" x:Name="JoinButton" 
+                        Visibility="{Binding Path=IsLoggedUser, Converter={StaticResource BoolToVisibility}}"
+                        Content="{x:Static texts:UserProfileResources.Edit_Button}" 
+                        Style="{StaticResource ButtonType2}" 
+                        Command="{Binding RedirectToUserEditCommand}"/>
+                <Button Grid.Column="3" x:Name="AddCarButton" 
+                        Visibility="{Binding Path=IsLoggedUser, Converter={StaticResource BoolToVisibility}}"
+                        Content="{x:Static texts:UserProfileResources.New_Car_Button}" 
+                        Style="{StaticResource ButtonType2}" 
+                        Command="{Binding RedirectToAddCarScreenCommand}"/>
             </Grid>
 
             <Grid Grid.Row="1" Margin="10,10" Background="{StaticResource DefaultForegroundColor}">
@@ -112,9 +121,14 @@
             </Grid>
 
 
-
-            <TextBlock Grid.Column="0" Grid.Row="4" Text="{x:Static texts:UserProfileResources.Cars_Content}"  Style="{StaticResource H3}"/>
-            <ListBox HorizontalAlignment="Stretch" Grid.Row="5" MaxWidth ="450" Height="150" Margin="200,10"  ItemsSource="{Binding Model.Cars}">
+            <TextBlock Grid.Column="0" Grid.Row="4" Text="{x:Static texts:UserProfileResources.Cars_Content}"  Style="{StaticResource H3}" />
+            <ListBox HorizontalAlignment="Stretch" Grid.Row="5" MaxWidth ="450" Height="150" Margin="200,10"  ItemsSource="{Binding Model.Cars}" x:Name="CarsListBox">
+                <interactions:Interaction.Triggers>
+                    <interactions:EventTrigger EventName="SelectionChanged">
+                        <interactions:InvokeCommandAction Command="{Binding CarSelectedCommand}"
+                                            CommandParameter="{Binding ElementName=CarsListBox, Path=SelectedItem}" />
+                    </interactions:EventTrigger>
+                </interactions:Interaction.Triggers>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="Black" BorderThickness="3" Width="300" Height="Auto" Background="{StaticResource DefaultButtonForegroundColor}">
@@ -128,19 +142,32 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:CarDetailResources.Plate_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding LicensePlate}" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding LicensePlate}" />
                                 <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                                       Width="170" Height="120"
-                                       Stretch="UniformToFill"
-                                       Source="{Binding Path=PhotoUrl }"/>
+                                        Width="170" Height="120"
+                                        Stretch="UniformToFill"
+                                        Source="{Binding Path=PhotoUrl }"/>
                             </Grid>
                         </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <TextBlock Grid.Column="0" Grid.Row="6" Text="{x:Static texts:UserProfileResources.Rides_Content}"  Style="{StaticResource H3}"/>
-            <ListBox Grid.Row="7"  HorizontalAlignment="Stretch" MaxWidth ="450" Height="150" Margin="200,10" ItemsSource="{Binding Model.RidesAsPassenger}">
+            <TextBlock Grid.Column="0" Grid.Row="6" 
+                       Visibility="{Binding Path=IsLoggedUser, Converter={StaticResource BoolToVisibility}}"
+                       Text="{x:Static texts:UserProfileResources.Rides_Content}"  
+                       Style="{StaticResource H3}"/>
+            <ListBox Grid.Row="7" HorizontalAlignment="Stretch" 
+                     Visibility="{Binding Path=IsLoggedUser, Converter={StaticResource BoolToVisibility}}"
+                     MaxWidth ="450" Height="150" Margin="200,10" 
+                     x:Name="RidesListBox" 
+                     ItemsSource="{Binding Model.RidesAsPassenger}">
+                <interactions:Interaction.Triggers>
+                    <interactions:EventTrigger EventName="SelectionChanged">
+                        <interactions:InvokeCommandAction Command="{Binding RideSelectedCommand}"
+                                            CommandParameter="{Binding ElementName=RidesListBox, Path=SelectedItem}" />
+                    </interactions:EventTrigger>
+                </interactions:Interaction.Triggers>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="Black" BorderThickness="3" Width="300" Height="Auto" Background="{StaticResource DefaultButtonForegroundColor}">
@@ -155,11 +182,11 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:Ride_Detail_Resources.From_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding RideOrigin}" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding RideOrigin}" />
                                 <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:Ride_Detail_Resources.To_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RideDestination}" />
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding RideDestination}" />
                                 <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:Ride_Detail_Resources.When_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TimeOfStart}" />
+                                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding TimeOfStart}" />
                             </Grid>
                         </Border>
                     </DataTemplate>
@@ -167,8 +194,21 @@
             </ListBox>
 
 
-            <TextBlock Grid.Column="0" Grid.Row="8" Text="{x:Static texts:UserProfileResources.Drives_Content}"  Style="{StaticResource H3}"/>
-            <ListBox Grid.Row="9" HorizontalAlignment="Stretch" MaxWidth ="450" Height="150" Margin="200,10" ItemsSource="{Binding Model.RidesAsDriver}">
+            <TextBlock Grid.Column="0" Grid.Row="8" 
+                       Visibility="{Binding Path=IsLoggedUser, Converter={StaticResource BoolToVisibility}}"
+                       Text="{x:Static texts:UserProfileResources.Drives_Content}"  
+                       Style="{StaticResource H3}"/>
+            <ListBox Grid.Row="9" HorizontalAlignment="Stretch" 
+                     Visibility="{Binding Path=IsLoggedUser, Converter={StaticResource BoolToVisibility}}"
+                     MaxWidth ="450" Height="150" Margin="200,10" 
+                     x:Name="DrivesListBox" 
+                     ItemsSource="{Binding Model.RidesAsDriver}">
+                <interactions:Interaction.Triggers>
+                    <interactions:EventTrigger EventName="SelectionChanged">
+                        <interactions:InvokeCommandAction Command="{Binding RideSelectedCommand}"
+                                                CommandParameter="{Binding ElementName=DrivesListBox, Path=SelectedItem}" />
+                    </interactions:EventTrigger>
+                </interactions:Interaction.Triggers>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="Black" BorderThickness="3" Width="300" Height="Auto" Background="{StaticResource DefaultButtonForegroundColor}">
@@ -183,11 +223,11 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Row="0" Grid.Column="0" Content="{x:Static texts:Ride_Detail_Resources.From_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding RideOrigin}" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding RideOrigin}" />
                                 <Label Grid.Row="1" Grid.Column="0" Content="{x:Static texts:Ride_Detail_Resources.To_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding RideDestination}" />
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding RideDestination}" />
                                 <Label Grid.Row="2" Grid.Column="0" Content="{x:Static texts:Ride_Detail_Resources.When_Content}" ContentStringFormat="{}{0}:" />
-                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TimeOfStart}" />
+                                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding TimeOfStart}" />
                             </Grid>
                         </Border>
                     </DataTemplate>

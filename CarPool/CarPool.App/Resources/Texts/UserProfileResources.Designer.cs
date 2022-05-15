@@ -79,7 +79,7 @@ namespace CarPool.App.Resources.Texts {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Cars.
+        ///   Looks up a localized string similar to Cars.
         /// </summary>
         public static string Cars_Content {
             get {

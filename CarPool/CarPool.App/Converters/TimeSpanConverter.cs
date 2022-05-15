@@ -4,26 +4,28 @@ using System.Windows.Data;
 
 namespace CarPool.App.Converters
 {
-    public class DateConverter : IValueConverter
+    public class TimeSpanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((DateOnly)value == DateOnly.MinValue)
+            var timeSpan = (TimeSpan)value;
+            if (timeSpan == TimeSpan.MinValue)
             {
                 return "";
             }
-            return value.ToString() ?? "";
+            return timeSpan.ToString(@"hh\:mm");
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                return DateOnly.Parse((string)value);
+                return TimeSpan.Parse((string)value);
             }
             catch (FormatException)
             {
-                return default(DateOnly);
+                return default(TimeSpan);
             }
         }
     }

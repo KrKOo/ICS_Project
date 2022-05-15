@@ -123,11 +123,17 @@
   <data name="Back_Button" xml:space="preserve">
     <value>GO BACK</value>
   </data>
+  <data name="Car_Button" xml:space="preserve">
+    <value>CAR DETAILS</value>
+  </data>
   <data name="Delete_Button" xml:space="preserve">
     <value>DELETE</value>
   </data>
-  <data name="Details_Button" xml:space="preserve">
-    <value>CAR DETAILS</value>
+  <data name="Driver_Button" xml:space="preserve">
+    <value>DRIVER DETAILS</value>
+  </data>
+  <data name="Driver_Content" xml:space="preserve">
+    <value>Driver</value>
   </data>
   <data name="Duration_Content" xml:space="preserve">
     <value>Expected duration</value>
@@ -146,6 +152,9 @@
   </data>
   <data name="Riders_Content" xml:space="preserve">
     <value>CO-RIDERS</value>
+  </data>
+  <data name="Show_Button" xml:space="preserve">
+    <value>SHOW</value>
   </data>
   <data name="To_Content" xml:space="preserve">
     <value>To</value>

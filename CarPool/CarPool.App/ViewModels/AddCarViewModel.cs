@@ -73,10 +73,11 @@ namespace CarPool.App.ViewModels
 
         private void RedirectToProfileScreen()
         {
-            _mediator.Send(new RedirectToProfileScreenMessage());
+            if (LoggedUser == null) return;
+            _mediator.Send(new SelectedMessage<UserListWrapper> { Id = LoggedUser.Id });
         }
         private void ClearModel() {
-            Model = CarDetailModel.Empty;
+            Model = CarDetailModel.Empty with { Owner = UserListModel.Empty};
             Model.Model.Owner = UserListModel.Empty;
         }
 

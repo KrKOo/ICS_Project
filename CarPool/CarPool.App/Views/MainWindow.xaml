@@ -31,9 +31,9 @@
             <views:EditCarView DataContext="{Binding }"/>
         </DataTemplate>
 
-        <!--DataTemplate DataType="{x:Type viewModels:NewRideViewModel}">
-            <views:NewRideView  DataContext="{Binding }"/>
-        </DataTemplate>-->
+        <DataTemplate DataType="{x:Type viewModels:AddRideViewModel}">
+            <views:AddRideView  DataContext="{Binding }"/>
+        </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModels:UserProfileViewModel}">
             <views:ProfileView DataContext="{Binding }"/>

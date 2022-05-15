@@ -4,28 +4,28 @@ using System.Windows.Data;
 
 namespace CarPool.App.Converters
 {
-    public class DateConverter : IValueConverter
+    public class DateTimeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((DateOnly)value == DateOnly.MinValue)
+            var dateTime = (DateTime)value;
+            if (dateTime == DateTime.MinValue)
             {
                 return "";
             }
-            return value.ToString() ?? "";
+            return dateTime.ToString("dd/MM/yyyy HH:mm tt");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                return DateOnly.Parse((string)value);
+                return DateTime.Parse((string)value);
             }
-            catch (FormatException)
+            catch(FormatException)
             {
-                return default(DateOnly);
+                return default(DateTime);
             }
         }
     }
 }
-

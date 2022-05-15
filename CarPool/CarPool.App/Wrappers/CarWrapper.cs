@@ -10,7 +10,7 @@ namespace CarPool.App.Wrappers
     {
         public CarWrapper(CarDetailModel model) : base(model)
         {
-
+            InitializeNavigationProperties(model);
         }
 
         public string? Manufacturer
@@ -49,10 +49,16 @@ namespace CarPool.App.Wrappers
             set => SetValue(value);
         }
 
-        public UserListWrapper? Owner
+        public UserListWrapper? Owner { get; set; }
+
+        private void InitializeNavigationProperties(CarDetailModel model)
         {
-            get => GetValue<UserListWrapper>();
-            set => SetValue(value);
+            if (model.Owner == null)
+            {
+                throw new ArgumentException("Owner cannot be null");
+            }
+
+            Owner = model.Owner;
         }
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

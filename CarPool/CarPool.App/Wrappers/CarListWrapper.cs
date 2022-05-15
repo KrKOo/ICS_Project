@@ -24,6 +24,11 @@ namespace CarPool.App.Wrappers
             get => GetValue<string>();
             set => SetValue(value);
         }
+        public int NumberOfSeats
+        {
+            get => GetValue<int>();
+            set => SetValue(value);
+        }
 
 
         public static implicit operator CarListWrapper(CarListModel listModel)

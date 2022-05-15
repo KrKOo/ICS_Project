@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using CarPool.App.Factories;
 using CarPool.App.Messages;
 using CarPool.App.Services;
 using CarPool.App.ViewModels.Interfaces;
 using CarPool.App.Wrappers;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace CarPool.App.ViewModels
 {
@@ -20,15 +16,16 @@ namespace CarPool.App.ViewModels
             IRegisterViewModel registerViewModel,
             IUserProfileViewModel profileViewModel,
             IRideDetailViewModel rideDetailViewModel,
+            IAddRideViewModel addRideViewModel,
             ICarDetailViewModel carDetailViewModel,
             IAddCarViewModel addCarViewModel,
             IEditCarViewModel editCarViewModel,
             IUserEditViewModel userEditViewModel,
             IMediator mediator)
         {
-
             RideListViewModel = rideListViewModel;
             RideDetailViewModel = rideDetailViewModel;
+            AddRideViewModel = addRideViewModel;
 
             CarListViewModel = carListViewModel;
             CarDetailViewModel = carDetailViewModel;
@@ -44,37 +41,41 @@ namespace CarPool.App.ViewModels
             UserProfileViewModel = profileViewModel;
 
             mediator.Register<NewMessage<RideWrapper>>(OnRideNewMessage);
-            mediator.Register<SelectedMessage<RideWrapper>>(OnRideSelected);
-            //mediator.Register<DeleteMessage<RideWrapper>>(OnRideDeleted);
+            mediator.Register<SelectedMessage<RideListWrapper>>(OnRideSelected);
+            mediator.Register<DeleteMessage<RideWrapper>>(OnRideDeleted);
 
             mediator.Register<NewMessage<CarWrapper>>(OnCarNewMessage);
-            mediator.Register<SelectedMessage<CarWrapper>>(OnCarSelected);
+
+            mediator.Register<SelectedMessage<CarListWrapper>>(OnCarSelected);
             //mediator.Register<DeleteMessage<CarWrapper>>(OnCarDeleted);
 
             mediator.Register<NewMessage<UserWrapper>>(OnUserNewMessage);
-            mediator.Register<SelectedMessage<UserWrapper>>(OnUserSelected);
+            mediator.Register<SelectedMessage<UserListWrapper>>(OnUserSelected);
             //mediator.Register<DeleteMessage<UserWrapper>>(OnUserDeleted);
 
             mediator.Register<RedirectToRegisterScreenMessage>(OnRedirectToRegisterScreen);
             mediator.Register<RedirectToLoginScreenMessage>(OnRedirectToLoginScreen);
             mediator.Register<RedirectToRideListScreenMessage>(OnRedirectToRideListScreen);
-            mediator.Register<RedirectToProfileScreenMessage>(OnRedirectToProfileScreen);
             mediator.Register<RedirectToAddCarScreenMessage>(OnRedirectToAddCarScreen);
             mediator.Register<RedirectToUserEditScreenMessage>(OnRedirectToUserEditScreen);
+            mediator.Register<RedirectToAddRideScreenMessage>(OnRedirectToAddRideScreen);
+
+            mediator.Register<EditMessage<CarWrapper>>(OnCarEdit);
+
 
             //UserDetailViewModel.LoadAsync(Guid.Parse("06a8a2cf-ea03-4095-a3e4-aa0291fe9c75"));
             //RideDetailViewModel.LoadAsync(Guid.Parse("0c3693ae-70bf-48a1-bfc4-7aa9bc42bbc4"));
             // CarDetailViewModel.LoadAsync(Guid.Parse("4ebd0208-8328-5d69-8c44-ec50939c0967"));
             //SelectCar(Guid.Empty);
 
-            CurrentViewModel = (IViewModel) LoginViewModel;
+            CurrentViewModel = LoginViewModel;
         }
 
-        public IViewModel _currentViewModel;
         public IViewModel CurrentViewModel { get; set; }
 
         public IRideListViewModel RideListViewModel { get; }
         public IRideDetailViewModel RideDetailViewModel { get; }
+        public IAddRideViewModel AddRideViewModel { get; }
 
         public ICarListViewModel CarListViewModel { get; }
         public ICarDetailViewModel CarDetailViewModel { get; }
@@ -87,11 +88,6 @@ namespace CarPool.App.ViewModels
 
         public ILoginViewModel LoginViewModel { get; }
         public IRegisterViewModel RegisterViewModel { get; }
-        
-
-        public IRideDetailViewModel? SelectedRideDetailViewModel { get; set; }
-        public ICarDetailViewModel? SelectedCarDetailViewModel { get; set; }
-        public IUserProfileViewModel? SelectedProfileViewModel { get; set; }
 
         public void OnRideNewMessage(NewMessage<RideWrapper> _) {
             SelectRide(Guid.Empty);
@@ -109,85 +105,88 @@ namespace CarPool.App.ViewModels
 
         public void OnRedirectToRegisterScreen(RedirectToRegisterScreenMessage _)
         {
-            CurrentViewModel = (IViewModel) RegisterViewModel;
+            CurrentViewModel = RegisterViewModel;
         }
 
         public void OnRedirectToLoginScreen(RedirectToLoginScreenMessage _)
         {
-            CurrentViewModel = (IViewModel) LoginViewModel;
+            CurrentViewModel = LoginViewModel;
         }
         public void OnRedirectToRideListScreen(RedirectToRideListScreenMessage _)
         {
-            CurrentViewModel = (IViewModel) RideListViewModel;
-        }
-
-        public void OnRedirectToProfileScreen(RedirectToProfileScreenMessage _)
-        {
-            CurrentViewModel = (IViewModel)UserProfileViewModel;
+            CurrentViewModel = RideListViewModel;
         }
 
         public void OnRedirectToAddCarScreen(RedirectToAddCarScreenMessage _)
         {
-            CurrentViewModel = (IViewModel)AddCarViewModel;
+            CurrentViewModel = AddCarViewModel;
         }
 
         public void OnRedirectToUserEditScreen(RedirectToUserEditScreenMessage _)
         {
-            CurrentViewModel = (IViewModel)UserEditViewModel;
+            CurrentViewModel = UserEditViewModel;
+        }
+
+        public void OnRedirectToCarEditScreen(RedirectToUserEditScreenMessage _)
+        {
+            CurrentViewModel = UserEditViewModel;
+        }
+
+        public void OnRedirectToAddRideScreen(RedirectToAddRideScreenMessage _)
+        {
+            CurrentViewModel = AddRideViewModel;
+        }
+
+
+        public void OnCarEdit(EditMessage<CarWrapper> message)
+        {
+            if (message.Id == null) return;
+
+            EditCarViewModel.LoadAsync((Guid)message.Id);
+            CurrentViewModel = EditCarViewModel;
         }
 
         private void SelectRide(Guid? id)
         {
-            if (id is null)
-            {
-                SelectedRideDetailViewModel = null;
-            }
-            else
-            {
-                RideDetailViewModel.LoadAsync(id.Value);
-                SelectedRideDetailViewModel = RideDetailViewModel;
-            }
+            if (id == null) return;
+            RideDetailViewModel.LoadAsync(id.Value);
+           
+            CurrentViewModel = RideDetailViewModel;
         }
 
         private void SelectCar(Guid? id)
         {
-            if (id is null)
-            {
-                SelectedCarDetailViewModel = null;
-            }
-            else
-            {
-                CarDetailViewModel.LoadAsync(id.Value);
-                SelectedCarDetailViewModel = CarDetailViewModel;
-            }
+            if (id is null) return;
+
+            CarDetailViewModel.LoadAsync(id.Value);
+            CurrentViewModel = CarDetailViewModel;
         }
 
         private void SelectUser(Guid? id)
         {
-            if (id is null)
-            {
-                SelectedProfileViewModel = null;
-            }
-            else
-            {
-                UserProfileViewModel.LoadAsync(id.Value);
-                SelectedProfileViewModel = UserProfileViewModel;
-            }
+            if (id is null) return;
+            UserProfileViewModel.LoadAsync(id.Value);
+            CurrentViewModel = UserProfileViewModel;
         }
 
-        private void OnRideSelected(SelectedMessage<RideWrapper> message)
+        private void OnRideSelected(SelectedMessage<RideListWrapper> message)
         {
             SelectRide(message.Id);
         }
 
-        private void OnCarSelected(SelectedMessage<CarWrapper> message)
+        private void OnCarSelected(SelectedMessage<CarListWrapper> message)
         {
-            SelectRide(message.Id);
+            SelectCar(message.Id);
         }
 
-        private void OnUserSelected(SelectedMessage<UserWrapper> message)
+        private void OnUserSelected(SelectedMessage<UserListWrapper> message)
         {
-            SelectRide(message.Id);
+            SelectUser(message.Id);
+        }
+
+        private void OnRideDeleted(DeleteMessage<RideWrapper> _)
+        {
+            RideListViewModel.LoadAsync();
         }
 
     }

@@ -30,9 +30,12 @@ namespace CarPool.App.ViewModels
             mediator.Register<UserLoggedMessage>(UserLogged);
 
             RedirectToProfileScreenCommand = new RelayCommand(RedirectToProfileScreen);
+
+            LoggedUser = UserDetailModel.Empty;
         }
 
         public UserWrapper? Model { get; private set; }
+        public UserWrapper? LoggedUser { get; private set; }
         public ICommand SaveCommand { get; }
         public ICommand RedirectToProfileScreenCommand { get; }
 
@@ -64,11 +67,13 @@ namespace CarPool.App.ViewModels
         {
             if (userLoggedMessage.User == null) return;
             _ = LoadAsync(userLoggedMessage.User.Id);
+            LoggedUser = userLoggedMessage.User;
         }
 
         private void RedirectToProfileScreen()
         {
-            _mediator.Send(new RedirectToProfileScreenMessage());
+            if (LoggedUser == null) return;
+            _mediator.Send(new SelectedMessage<UserListWrapper> { Id = LoggedUser.Id });
         }
 
     }

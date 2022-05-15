@@ -16,6 +16,9 @@
              </ResourceDictionary.MergedDictionaries>
 
             <converters:DateConverter x:Key="DateConverter" />
+            <converters:DateTimeConverter x:Key="DateTimeConverter" />
+            <converters:TimeSpanConverter x:Key="TimeSpanConverter" />
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

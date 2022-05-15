@@ -22,9 +22,10 @@ namespace CarPool.BL.Models
 			public MapperProfile()
 			{
 				CreateMap<RideEntity, RideListModel>();
+
 				CreateMap<UserRideEntity, RideListModel>()
 				.ConstructUsing(source => new RideListModel(default, default, "", ""))
-
+				.ForMember(dest => dest.Id, opt => opt.MapFrom(s => s.Ride!.Id))
 				.ForMember(dest => dest.TimeOfStart, opt => opt.MapFrom(s => s.Ride!.TimeOfStart))
 				.ForMember(dest => dest.Duration, opt => opt.MapFrom(s => s.Ride!.Duration))
 				.ForMember(dest => dest.RideOrigin, opt => opt.MapFrom(s => s.Ride!.RideOrigin))
@@ -32,5 +33,6 @@ namespace CarPool.BL.Models
 				.ForMember(dest => dest.Info, opt => opt.MapFrom(s => s.Ride!.Info));
 			}
 		}
+		public static RideListModel Empty => new(default, default, string.Empty, string.Empty);
 	}
 }

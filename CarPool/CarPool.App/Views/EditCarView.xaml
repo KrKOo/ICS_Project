@@ -21,7 +21,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" x:Name="BackButton" Content="{x:Static texts:NewEditCarResources.Back_Button}" Style="{StaticResource ButtonType2}"/>
+            <Button Grid.Column="0" x:Name="BackButton" Content="{x:Static texts:NewEditCarResources.Back_Button}" Style="{StaticResource ButtonType2}" Command="{Binding RedirectToCarDetailScreenCommand}"/>
             <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Text="{x:Static texts:NewEditCarResources.Edit_Heading_Content}" Style="{StaticResource H2}"/>
         </Grid>
         <Grid Grid.Row="1">

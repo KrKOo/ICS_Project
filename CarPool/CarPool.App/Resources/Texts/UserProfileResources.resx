@@ -124,7 +124,7 @@
     <value>GO BACK</value>
   </data>
   <data name="Cars_Content" xml:space="preserve">
-    <value>Your Cars</value>
+    <value>Cars</value>
   </data>
   <data name="Date_Content" xml:space="preserve">
     <value>Date of Birth</value>

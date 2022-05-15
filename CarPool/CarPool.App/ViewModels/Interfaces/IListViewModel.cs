@@ -2,7 +2,7 @@
 
 namespace CarPool.App.ViewModels
 {
-    public interface IListViewModel
+    public interface IListViewModel : IViewModel
     {
         Task LoadAsync();
     }

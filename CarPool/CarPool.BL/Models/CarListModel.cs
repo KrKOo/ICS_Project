@@ -4,9 +4,10 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CarPool.BL.Models
 {
-	public record CarListModel(string LicensePlate) : ModelBase
+	public record CarListModel(string LicensePlate, int NumberOfSeats) : ModelBase
 	{
 		public string LicensePlate { get; set; } = LicensePlate;
+		public int NumberOfSeats { get; set; } = NumberOfSeats;
 		public string? PhotoUrl { get; set; }
 
 		public class MapperProfile : Profile
@@ -16,5 +17,7 @@ namespace CarPool.BL.Models
 				CreateMap<CarEntity, CarListModel>();
 			}
 		}
+
+		public static CarListModel Empty => new(string.Empty, default);
 	}
 }

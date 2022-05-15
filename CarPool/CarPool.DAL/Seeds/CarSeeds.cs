@@ -26,8 +26,8 @@ public static class CarSeeds
 		LicensePlate: "5A6 0606",
 		DateOfRegistration: new DateOnly(2021,6,6),
 		PhotoUrl: @"https://autoartmodels.de/wp-content/uploads/2020/04/70143a-scaled.jpg",
-		NumberOfSeats: 1,
-		OwnerID: UserSeeds.User1.Id)
+		NumberOfSeats: 2,
+		OwnerID: UserSeeds.User2.Id)
 	{
         Owner = UserSeeds.User2
     };

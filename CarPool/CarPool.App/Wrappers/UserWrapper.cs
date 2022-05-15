@@ -66,7 +66,7 @@ namespace CarPool.App.Wrappers
         {
             if (model.Cars == null)
             {
-                throw new ArgumentException("Ingredients cannot be null");
+                throw new ArgumentException("Cars cannot be null");
             }
             Cars.AddRange(model.Cars.Select(e => new CarListWrapper(e)));
 
@@ -74,7 +74,7 @@ namespace CarPool.App.Wrappers
 
             if (model.RidesAsPassenger == null)
             {
-                throw new ArgumentException("Ingredients cannot be null");
+                throw new ArgumentException("RidesAsPassenger cannot be null");
             }
             RidesAsPassenger.AddRange(model.RidesAsPassenger.Select(e => new RideListWrapper(e)));
 
@@ -82,7 +82,7 @@ namespace CarPool.App.Wrappers
 
             if (model.RidesAsDriver == null)
             {
-                throw new ArgumentException("Ingredients cannot be null");
+                throw new ArgumentException("RidesAsDriver cannot be null");
             }
             RidesAsDriver.AddRange(model.RidesAsDriver.Select(e => new RideListWrapper(e)));
 

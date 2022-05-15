@@ -52,6 +52,7 @@ namespace CarPool.App.ViewModels
         private async void CarDeleted(DeleteMessage<CarWrapper> obj) => await LoadAsync();
 
         private async void CarUpdated(UpdateMessage<CarWrapper> obj) => await LoadAsync();
+
         public async Task LoadAsync()
         {
             Cars.Clear();
